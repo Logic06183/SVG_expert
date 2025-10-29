@@ -197,7 +197,7 @@ fit_dlnm_model <- function(data) {
 # 3. Create 3D Lag-Response Surface
 ################################################################################
 
-plot_3d_surface <- function(pred, output_path = "outputs/dlnm_surface_3d.png") {
+plot_3d_surface <- function(pred, output_path = "outputs/dlnm_surface_3d.svg") {
   #' Create 3D perspective plot of lag-response surface
   #'
   #' @param pred crosspred object from DLNM
@@ -205,7 +205,7 @@ plot_3d_surface <- function(pred, output_path = "outputs/dlnm_surface_3d.png") {
 
   cat("\nCreating 3D lag-response surface...\n")
 
-  png(output_path, width = 3000, height = 2400, res = 300)
+  svg(output_path, width = 12, height = 10)
 
   # Set up plotting parameters
   par(mar = c(5, 5, 4, 2), family = "sans")
@@ -234,7 +234,7 @@ plot_3d_surface <- function(pred, output_path = "outputs/dlnm_surface_3d.png") {
 # 4. Create Contour Plot (Heatmap)
 ################################################################################
 
-plot_contour <- function(pred, output_path = "outputs/dlnm_contour.png") {
+plot_contour <- function(pred, output_path = "outputs/dlnm_contour.svg") {
   #' Create contour plot (heatmap) of lag-response surface
   #'
   #' @param pred crosspred object from DLNM
@@ -242,10 +242,11 @@ plot_contour <- function(pred, output_path = "outputs/dlnm_contour.png") {
 
   cat("Creating contour plot...\n")
 
-  png(output_path, width = 3200, height = 2400, res = 300)
+  svg(output_path, width = 12, height = 9)
 
   par(mar = c(5, 5, 4, 6), family = "sans")
 
+  # Use contour plot without conflicting col argument
   plot(
     pred,
     "contour",
@@ -253,11 +254,8 @@ plot_contour <- function(pred, output_path = "outputs/dlnm_contour.png") {
     ylab = "Lag (days)",
     main = "Lag-Response Surface: Temperature × Lag Interaction",
     key.title = title("Relative\nEffect"),
-    col = rev(brewer.pal(11, "RdBu")),
     cex.main = 1.3,
-    cex.lab = 1.1,
-    plot.title = title(xlab = "Temperature (°C)", ylab = "Lag (days)",
-                       cex.lab = 1.1)
+    cex.lab = 1.1
   )
 
   dev.off()
@@ -268,7 +266,7 @@ plot_contour <- function(pred, output_path = "outputs/dlnm_contour.png") {
 # 5. Create Lag-Specific Curves
 ################################################################################
 
-plot_lag_curves <- function(pred, output_path = "outputs/dlnm_lag_curves.png") {
+plot_lag_curves <- function(pred, output_path = "outputs/dlnm_lag_curves.svg") {
   #' Plot temperature-response curves at specific lags
   #'
   #' @param pred crosspred object from DLNM
@@ -276,7 +274,7 @@ plot_lag_curves <- function(pred, output_path = "outputs/dlnm_lag_curves.png") {
 
   cat("Creating lag-specific curves...\n")
 
-  png(output_path, width = 3200, height = 2400, res = 300)
+  svg(output_path, width = 12, height = 9)
 
   par(mar = c(5, 5, 4, 2), family = "sans")
 
@@ -311,7 +309,7 @@ plot_lag_curves <- function(pred, output_path = "outputs/dlnm_lag_curves.png") {
 # 6. Create Overall Cumulative Curve
 ################################################################################
 
-plot_overall_curve <- function(pred, output_path = "outputs/dlnm_overall_curve.png") {
+plot_overall_curve <- function(pred, output_path = "outputs/dlnm_overall_curve.svg") {
   #' Plot overall cumulative exposure-response curve
   #'
   #' @param pred crosspred object from DLNM
@@ -319,7 +317,7 @@ plot_overall_curve <- function(pred, output_path = "outputs/dlnm_overall_curve.p
 
   cat("Creating overall cumulative curve...\n")
 
-  png(output_path, width = 3200, height = 2400, res = 300)
+  svg(output_path, width = 12, height = 9)
 
   par(mar = c(5, 5, 4, 2), family = "sans")
 
@@ -415,10 +413,11 @@ main <- function() {
   cat("ANALYSIS COMPLETE\n")
   cat(rep("=", 70), "\n", sep = "")
   cat("\nOutputs saved to:\n")
-  cat("  - outputs/dlnm_surface_3d.png\n")
-  cat("  - outputs/dlnm_contour.png\n")
-  cat("  - outputs/dlnm_lag_curves.png\n")
-  cat("  - outputs/dlnm_overall_curve.png\n\n")
+  cat("  - outputs/dlnm_surface_3d.svg\n")
+  cat("  - outputs/dlnm_contour.svg\n")
+  cat("  - outputs/dlnm_lag_curves.svg\n")
+  cat("  - outputs/dlnm_overall_curve.svg\n")
+  cat("\nSVG files are fully editable in Figma!\n\n")
 }
 
 # Run main function
