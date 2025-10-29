@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg"
+     viewBox="0 0 1920 1080"
+     width="1920"
+     height="1080">
+
+  <defs>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap');
+
+      .slide-title {
+        font-family: 'Inter', sans-serif;
+        font-size: 64px;
+        font-weight: 700;
+        fill: #2c5cda;
+        letter-spacing: -0.02em;
+      }
+      .body-text {
+        font-family: 'Inter', sans-serif;
+        font-size: 36px;
+        font-weight: 400;
+        fill: #424242;
+        line-height: 1.5;
+      }
+      .bullet {
+        font-family: 'Inter', sans-serif;
+        font-size: 32px;
+        font-weight: 400;
+        fill: #424242;
+      }
+      .caption {
+        font-family: 'Inter', sans-serif;
+        font-size: 24px;
+        font-weight: 400;
+        fill: #666666;
+        font-style: italic;
+      }
+      .accent { fill: #2c5cda; }
+      .teal { fill: #00bec5; }
+      .branding-text {
+        font-family: 'Inter', sans-serif;
+        font-size: 18px;
+        font-weight: 400;
+        fill: #666666;
+      }
+    </style>
+  </defs>
+
+  <!-- Background -->
+  <g id="background">
+    <rect width="1920" height="1080" fill="#ffffff"/>
+  </g>
+
+  <!-- Content -->
+  <g id="content">
+    <!-- Title -->
+    <text x="100" y="150" class="slide-title">
+      Key Findings
+    </text>
+
+    <!-- Left Column: Text Content -->
+    <g id="text-content">
+      <!-- Bullet points -->
+      <g id="bullet-1" transform="translate(100, 280)">
+        <circle cx="0" cy="-10" r="8" class="accent"/>
+        <text x="30" y="0" class="bullet">
+          First key finding or insight
+        </text>
+      </g>
+
+      <g id="bullet-2" transform="translate(100, 380)">
+        <circle cx="0" cy="-10" r="8" class="accent"/>
+        <text x="30" y="0" class="bullet">
+          Second important point
+        </text>
+      </g>
+
+      <g id="bullet-3" transform="translate(100, 480)">
+        <circle cx="0" cy="-10" r="8" class="accent"/>
+        <text x="30" y="0" class="bullet">
+          Third supporting detail
+        </text>
+      </g>
+
+      <g id="bullet-4" transform="translate(100, 580)">
+        <circle cx="0" cy="-10" r="8" class="accent"/>
+        <text x="30" y="0" class="bullet">
+          Fourth consideration
+        </text>
+      </g>
+    </g>
+
+    <!-- Vertical divider -->
+    <line x1="960" y1="220" x2="960" y2="900"
+          stroke="#e0e0e0"
+          stroke-width="2"/>
+
+    <!-- Right Column: Visual Content -->
+    <g id="visual-content">
+      <!-- Placeholder for chart/visualization -->
+      <rect x="1020" y="280" width="780" height="500" fill="#f4f4f4" rx="12"/>
+
+      <!-- Chart title -->
+      <text x="1410" y="340" class="body-text" text-anchor="middle">
+        [Visualization Area]
+      </text>
+
+      <!-- Example bars for reference -->
+      <g id="example-chart">
+        <rect x="1100" y="420" width="120" height="280" class="accent" rx="6"/>
+        <rect x="1280" y="520" width="120" height="180" class="teal" rx="6"/>
+        <rect x="1460" y="380" width="120" height="320" class="accent" opacity="0.6" rx="6"/>
+        <rect x="1640" y="460" width="120" height="240" class="teal" opacity="0.6" rx="6"/>
+      </g>
+
+      <!-- Caption -->
+      <text x="1410" y="840" class="caption" text-anchor="middle">
+        Figure caption or data source
+      </text>
+    </g>
+  </g>
+
+  <!-- Branding -->
+  <g id="branding">
+    <text x="1820" y="1020" class="branding-text" text-anchor="end">
+      Wits Planetary Health Research
+    </text>
+  </g>
+
+</svg>

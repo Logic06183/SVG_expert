@@ -1,0 +1,238 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg"
+     viewBox="0 0 1920 1080"
+     width="1920"
+     height="1080">
+
+  <defs>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap');
+
+      .slide-title {
+        font-family: 'Inter', sans-serif;
+        font-size: 48px;
+        font-weight: 700;
+        fill: #1a1a1a;
+        letter-spacing: -0.02em;
+      }
+      .section-header {
+        font-family: 'Inter', sans-serif;
+        font-size: 32px;
+        font-weight: 700;
+        fill: #ffffff;
+      }
+      .body-text {
+        font-family: 'Inter', sans-serif;
+        font-size: 20px;
+        font-weight: 400;
+        fill: #424242;
+        line-height: 1.5;
+      }
+      .highlight-text {
+        font-family: 'Inter', sans-serif;
+        font-size: 20px;
+        font-weight: 700;
+        fill: #2c5cda;
+      }
+      .citation {
+        font-family: 'Inter', sans-serif;
+        font-size: 16px;
+        font-weight: 400;
+        fill: #666666;
+        font-style: italic;
+      }
+      .branding-text {
+        font-family: 'Inter', sans-serif;
+        font-size: 18px;
+        font-weight: 400;
+        fill: #666666;
+      }
+    </style>
+
+    <linearGradient id="header-left" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#2c5cda;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#00bec5;stop-opacity:1" />
+    </linearGradient>
+
+    <linearGradient id="header-right" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#e67e22;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#d68910;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+
+  <!-- Background -->
+  <g id="background">
+    <rect width="1920" height="1080" fill="#ffffff"/>
+    <rect x="0" y="0" width="1920" height="6" fill="url(#header-left)"/>
+  </g>
+
+  <!-- Title -->
+  <g id="title">
+    <text x="960" y="90" class="slide-title" text-anchor="middle">
+      SHAP in Environmental Health
+    </text>
+    <text x="960" y="135" class="body-text" text-anchor="middle" fill="#666666">
+      Heavy Metals &amp; Chronic Bronchitis Risk (2025)
+    </text>
+    <line x1="200" y1="155" x2="1720" y2="155" stroke="#e0e0e0" stroke-width="2"/>
+  </g>
+
+  <!-- Left Column: Key Findings -->
+  <g id="left-column">
+    <rect x="100" y="190" width="850" height="680" fill="#ffffff" stroke="#2c5cda" stroke-width="3" rx="12"/>
+
+    <rect x="100" y="190" width="850" height="60" fill="url(#header-left)" rx="12"/>
+    <rect x="100" y="220" width="850" height="30" fill="url(#header-left)"/>
+    <text x="525" y="237" class="section-header" text-anchor="middle">Key Findings</text>
+
+    <!-- Finding 1 -->
+    <circle cx="130" cy="295" r="6" fill="#2c5cda"/>
+    <text x="155" y="300" class="body-text">
+      <tspan x="155" dy="0">Sample: 7,493 participants (US nationally</tspan>
+      <tspan x="155" dy="28">representative)</tspan>
+    </text>
+
+    <!-- Finding 2 -->
+    <circle cx="130" cy="360" r="6" fill="#2c5cda"/>
+    <text x="155" y="365" class="body-text">
+      <tspan x="155" dy="0">Exposures: Heavy metals (blood/urine Cd, Pb)</tspan>
+    </text>
+
+    <!-- Finding 3 -->
+    <circle cx="130" cy="410" r="6" fill="#2c5cda"/>
+    <text x="155" y="415" class="body-text">
+      <tspan x="155" dy="0">Outcome: Chronic bronchitis diagnosis</tspan>
+    </text>
+
+    <!-- Finding 4 -->
+    <circle cx="130" cy="460" r="6" fill="#2c5cda"/>
+    <text x="155" y="465" class="body-text">
+      <tspan x="155" dy="0">Best algorithm: CatBoost</tspan>
+    </text>
+
+    <!-- Finding 5 -->
+    <rect x="120" y="500" width="810" height="155" fill="#e3ecfc" stroke="#2c5cda" stroke-width="2" rx="8"/>
+    <text x="140" y="530" class="body-text" font-weight="600">SHAP Top Contributors:</text>
+
+    <circle cx="140" cy="565" r="6" fill="#cc1a1b"/>
+    <text x="165" y="571" class="highlight-text">Blood-cadmium (Cd)</text>
+    <text x="470" y="571" class="body-text">(strongest)</text>
+
+    <circle cx="140" cy="600" r="6" fill="#d68910"/>
+    <text x="165" y="606" class="highlight-text">Smoking status</text>
+
+    <circle cx="140" cy="635" r="6" fill="#20a3fc"/>
+    <text x="165" y="641" class="highlight-text">Gender</text>
+
+    <!-- Finding 6 -->
+    <text x="130" y="695" class="body-text" font-weight="600">SHAP Dependence Insights:</text>
+
+    <circle cx="130" cy="730" r="5" fill="#2c5cda"/>
+    <text x="155" y="735" class="body-text">
+      <tspan x="155" dy="0">Non-linear dose-response curves revealed</tspan>
+    </text>
+
+    <circle cx="130" cy="765" r="5" fill="#2c5cda"/>
+    <text x="155" y="770" class="body-text">
+      <tspan x="155" dy="0">Increased blood Cd → higher predicted risk</tspan>
+    </text>
+
+    <circle cx="130" cy="800" r="5" fill="#2c5cda"/>
+    <text x="155" y="805" class="body-text">
+      <tspan x="155" dy="0">Interactions with smoking behavior observed</tspan>
+    </text>
+  </g>
+
+  <!-- Right Column: Relevance -->
+  <g id="right-column">
+    <rect x="970" y="190" width="850" height="680" fill="#ffffff" stroke="#e67e22" stroke-width="3" rx="12"/>
+
+    <rect x="970" y="190" width="850" height="60" fill="url(#header-right)" rx="12"/>
+    <rect x="970" y="220" width="850" height="30" fill="url(#header-right)"/>
+    <text x="1395" y="237" class="section-header" text-anchor="middle">Relevance to Your Work</text>
+
+    <!-- Relevance 1 -->
+    <text x="1000" y="295" class="body-text" font-weight="600" fill="#e67e22">
+      Environmental Exposome Parallel
+    </text>
+
+    <circle cx="1000" cy="330" r="5" fill="#e67e22"/>
+    <text x="1025" y="335" class="body-text">
+      <tspan x="1025" dy="0">Heavy metals ≈ environmental exposome</tspan>
+    </text>
+
+    <circle cx="1000" cy="365" r="5" fill="#e67e22"/>
+    <text x="1025" y="370" class="body-text">
+      <tspan x="1025" dy="0">Analogous to your climate + land-use +</tspan>
+      <tspan x="1025" dy="28">pollutant variable framework</tspan>
+    </text>
+
+    <circle cx="1000" cy="425" r="5" fill="#e67e22"/>
+    <text x="1025" y="430" class="body-text">
+      <tspan x="1025" dy="0">Demonstrates SHAP efficacy in high-</tspan>
+      <tspan x="1025" dy="28">dimensional exposure data</tspan>
+    </text>
+
+    <!-- Relevance 2 -->
+    <text x="1000" y="500" class="body-text" font-weight="600" fill="#e67e22">
+      Non-Linear Detection Before DLNM
+    </text>
+
+    <circle cx="1000" cy="535" r="5" fill="#e67e22"/>
+    <text x="1025" y="540" class="body-text">
+      <tspan x="1025" dy="0">SHAP dependence plots identify non-linearity</tspan>
+    </text>
+
+    <circle cx="1000" cy="570" r="5" fill="#e67e22"/>
+    <text x="1025" y="575" class="body-text">
+      <tspan x="1025" dy="0">Critical step before fitting DLNM models—</tspan>
+      <tspan x="1025" dy="28">informs basis function choice (cubic splines)</tspan>
+    </text>
+
+    <!-- Relevance 3 -->
+    <text x="1000" y="640" class="body-text" font-weight="600" fill="#e67e22">
+      Feature Screening from Exposome
+    </text>
+
+    <circle cx="1000" cy="675" r="5" fill="#e67e22"/>
+    <text x="1025" y="680" class="body-text">
+      <tspan x="1025" dy="0">Many metals measured; SHAP ranked them</tspan>
+    </text>
+
+    <circle cx="1000" cy="710" r="5" fill="#e67e22"/>
+    <text x="1025" y="715" class="body-text">
+      <tspan x="1025" dy="0">Your RP2: which climate/pollutant metrics</tspan>
+      <tspan x="1025" dy="28">matter most for preterm birth?</tspan>
+    </text>
+
+    <!-- Application -->
+    <rect x="990" y="760" width="810" height="90" fill="#fde4cd" stroke="#e67e22" stroke-width="2" rx="8"/>
+    <text x="1010" y="790" class="body-text" font-size="18" font-weight="600" fill="#7d3f0e">
+      💡 Your Pipeline Application
+    </text>
+    <text x="1010" y="818" class="body-text" font-size="17" fill="#7d3f0e">
+      <tspan x="1010" dy="0">Screen exposures with SHAP → detect non-linearity →</tspan>
+      <tspan x="1010" dy="24">build DLNM with informed spline structure</tspan>
+    </text>
+  </g>
+
+  <!-- Citation -->
+  <g id="citation">
+    <rect x="100" y="895" width="1720" height="85" fill="#f0f0f0" stroke="#d0d0d0" stroke-width="2" rx="8"/>
+    <text x="120" y="925" class="citation" font-weight="600" fill="#2c5cda">Citation:</text>
+    <text x="120" y="950" class="citation">
+      "Machine learning prediction model with SHAP interpretation for chronic bronchitis risk assessment
+    </text>
+    <text x="120" y="970" class="citation">
+      based on heavy metal exposure: a nationally representative study" | BMC Pulmonary Medicine, 2025
+    </text>
+  </g>
+
+  <!-- Branding -->
+  <g id="branding">
+    <text x="1800" y="1045" class="branding-text" text-anchor="end">
+      Wits Planetary Health Research
+    </text>
+  </g>
+
+</svg>

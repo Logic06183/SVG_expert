@@ -1,0 +1,274 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg"
+     viewBox="0 0 1920 1080"
+     width="1920"
+     height="1080">
+
+  <defs>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap');
+
+      .main-title {
+        font-family: 'Inter', sans-serif;
+        font-size: 64px;
+        font-weight: 700;
+        fill: #1a1a1a;
+        letter-spacing: -0.02em;
+      }
+      .subtitle {
+        font-family: 'Inter', sans-serif;
+        font-size: 28px;
+        font-weight: 400;
+        fill: #666666;
+      }
+      .stage-title {
+        font-family: 'Inter', sans-serif;
+        font-size: 32px;
+        font-weight: 700;
+        fill: #ffffff;
+      }
+      .section-label {
+        font-family: 'Inter', sans-serif;
+        font-size: 20px;
+        font-weight: 700;
+        fill: #1a1a1a;
+      }
+      .body-text {
+        font-family: 'Inter', sans-serif;
+        font-size: 18px;
+        font-weight: 400;
+        fill: #424242;
+        line-height: 1.4;
+      }
+      .arrow-label {
+        font-family: 'Inter', sans-serif;
+        font-size: 20px;
+        font-weight: 600;
+        fill: #2c5cda;
+      }
+      .output-text {
+        font-family: 'Inter', sans-serif;
+        font-size: 18px;
+        font-weight: 600;
+        fill: #2c5cda;
+      }
+      .footer-text {
+        font-family: 'Inter', sans-serif;
+        font-size: 16px;
+        font-weight: 400;
+        fill: #666666;
+      }
+      .branding-text {
+        font-family: 'Inter', sans-serif;
+        font-size: 18px;
+        font-weight: 500;
+        fill: #2c5cda;
+      }
+    </style>
+
+    <linearGradient id="stage1-grad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#2c5cda;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#5c9ed4;stop-opacity:1" />
+    </linearGradient>
+
+    <linearGradient id="stage2-grad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#00bec5;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#20a3fc;stop-opacity:1" />
+    </linearGradient>
+
+    <linearGradient id="stage3-grad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#cc1a1b;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#e67e22;stop-opacity:1" />
+    </linearGradient>
+
+    <marker id="arrow-marker" markerWidth="12" markerHeight="12" refX="11" refY="4" orient="auto">
+      <polygon points="0 0, 12 4, 0 8" fill="#2c5cda" />
+    </marker>
+  </defs>
+
+  <!-- Background -->
+  <g id="background">
+    <rect width="1920" height="1080" fill="#ffffff"/>
+    <rect x="0" y="0" width="1920" height="8" fill="url(#stage1-grad)"/>
+  </g>
+
+  <!-- Title -->
+  <g id="title">
+    <text x="960" y="90" class="main-title" text-anchor="middle">
+      Conceptual Pipeline: SHAP-Based Exposure Screening
+    </text>
+    <text x="960" y="135" class="subtitle" text-anchor="middle">
+      From high-dimensional exposure space to causal effect estimation
+    </text>
+    <line x1="200" y1="155" x2="1720" y2="155" stroke="#e0e0e0" stroke-width="2"/>
+  </g>
+
+  <!-- Stage 1: Exposure Space -->
+  <g id="stage1">
+    <rect x="80" y="220" width="480" height="590" fill="#ffffff" stroke="#2c5cda" stroke-width="4" rx="12"/>
+
+    <!-- Header -->
+    <rect x="80" y="220" width="480" height="65" fill="url(#stage1-grad)" rx="12"/>
+    <rect x="80" y="260" width="480" height="25" fill="url(#stage1-grad)"/>
+    <text x="320" y="268" class="stage-title" text-anchor="middle">Stage 1: Exposure Space</text>
+
+    <!-- Content -->
+    <text x="110" y="325" class="section-label">Climate Variables</text>
+    <text x="110" y="352" class="body-text">Temperature, humidity, rainfall</text>
+
+    <text x="110" y="395" class="section-label">Air Quality</text>
+    <text x="110" y="422" class="body-text">PM₂.₅, NO₂, O₃, CO</text>
+
+    <text x="110" y="465" class="section-label">Built Environment</text>
+    <text x="110" y="492" class="body-text">NDVI, land use, infrastructure</text>
+
+    <text x="110" y="535" class="section-label">Socioeconomic</text>
+    <text x="110" y="562" class="body-text">Income, education, access</text>
+
+    <!-- Summary box -->
+    <rect x="100" y="605" width="440" height="180" fill="#e3ecfc" rx="8"/>
+    <text x="320" y="645" class="body-text" font-weight="700" text-anchor="middle" fill="#2c5cda">
+      High-Dimensional Input
+    </text>
+    <text x="320" y="680" class="body-text" text-anchor="middle">
+      <tspan x="320" dy="0">n = 50-200+ variables</tspan>
+    </text>
+    <text x="320" y="720" class="body-text" text-anchor="middle" font-size="16" fill="#666666">
+      <tspan x="320" dy="0">Many correlated exposures,</tspan>
+      <tspan x="320" dy="20">complex interactions,</tspan>
+      <tspan x="320" dy="20">non-linear relationships</tspan>
+    </text>
+  </g>
+
+  <!-- Arrow 1 to 2 -->
+  <line x1="590" y1="515" x2="710" y2="515" stroke="#2c5cda" stroke-width="6" marker-end="url(#arrow-marker)"/>
+  <text x="650" y="500" class="arrow-label" text-anchor="middle">Predictive</text>
+  <text x="650" y="522" class="arrow-label" text-anchor="middle">Modelling</text>
+
+  <!-- Stage 2: ML + SHAP -->
+  <g id="stage2">
+    <rect x="740" y="220" width="480" height="590" fill="#ffffff" stroke="#00bec5" stroke-width="4" rx="12"/>
+
+    <!-- Header -->
+    <rect x="740" y="220" width="480" height="65" fill="url(#stage2-grad)" rx="12"/>
+    <rect x="740" y="260" width="480" height="25" fill="url(#stage2-grad)"/>
+    <text x="980" y="268" class="stage-title" text-anchor="middle">Stage 2: ML + SHAP</text>
+
+    <!-- Content -->
+    <text x="770" y="325" class="section-label">Model Training</text>
+    <text x="770" y="352" class="body-text">RF / XGBoost / Neural Network</text>
+
+    <text x="770" y="395" class="section-label">SHAP Interpretation</text>
+
+    <circle cx="770" cy="427" r="4" fill="#00bec5"/>
+    <text x="785" y="432" class="body-text">
+      Global feature importance (mean |φᵢ|)
+    </text>
+
+    <circle cx="770" cy="457" r="4" fill="#00bec5"/>
+    <text x="785" y="462" class="body-text">
+      Dependence plots (non-linearity)
+    </text>
+
+    <circle cx="770" cy="487" r="4" fill="#00bec5"/>
+    <text x="785" y="492" class="body-text">
+      Interaction values (synergies)
+    </text>
+
+    <!-- Output box -->
+    <rect x="760" y="530" width="440" height="255" fill="#d4f4f4" rx="8"/>
+    <text x="980" y="570" class="output-text" text-anchor="middle" font-size="24">
+      Output: Top k Features
+    </text>
+    <text x="980" y="610" class="body-text" text-anchor="middle">
+      <tspan x="980" dy="0">Features explaining ~80% of</tspan>
+      <tspan x="980" dy="24">model variance</tspan>
+    </text>
+
+    <rect x="780" y="655" width="400" height="110" fill="#ffffff" rx="6"/>
+    <text x="980" y="690" class="body-text" text-anchor="middle" font-size="16">
+      <tspan x="980" dy="0">Example: Top 5 exposures:</tspan>
+      <tspan x="980" dy="22">Max temp, PM₂.₅, NDVI,</tspan>
+      <tspan x="980" dy="22">Income, Land surface temp</tspan>
+    </text>
+  </g>
+
+  <!-- Arrow 2 to 3 -->
+  <line x1="1250" y1="515" x2="1370" y2="515" stroke="#2c5cda" stroke-width="6" marker-end="url(#arrow-marker)"/>
+  <text x="1310" y="500" class="arrow-label" text-anchor="middle">Feature</text>
+  <text x="1310" y="522" class="arrow-label" text-anchor="middle">Selection</text>
+
+  <!-- Stage 3: Causal Models -->
+  <g id="stage3">
+    <rect x="1400" y="220" width="480" height="590" fill="#ffffff" stroke="#cc1a1b" stroke-width="4" rx="12"/>
+
+    <!-- Header -->
+    <rect x="1400" y="220" width="480" height="65" fill="url(#stage3-grad)" rx="12"/>
+    <rect x="1400" y="260" width="480" height="25" fill="url(#stage3-grad)"/>
+    <text x="1640" y="268" class="stage-title" text-anchor="middle">Stage 3: Causal Models</text>
+
+    <!-- Content -->
+    <text x="1430" y="325" class="section-label">Distributed Lag Models</text>
+    <text x="1430" y="352" class="body-text">DLNM for lag-response patterns</text>
+
+    <text x="1430" y="395" class="section-label">Mixed-Effects Models</text>
+    <text x="1430" y="422" class="body-text">Random intercepts (region, ward)</text>
+
+    <text x="1430" y="465" class="section-label">Confounding Control</text>
+    <text x="1430" y="492" class="body-text">Temporal/spatial autocorrelation</text>
+
+    <!-- Output box -->
+    <rect x="1420" y="540" width="440" height="245" fill="#fde4cd" rx="8"/>
+    <text x="1640" y="580" class="output-text" text-anchor="middle" font-size="24" fill="#cc1a1b">
+      Effect Estimates + CI
+    </text>
+    <text x="1640" y="620" class="body-text" text-anchor="middle">
+      <tspan x="1640" dy="0">Policy-relevant metrics:</tspan>
+    </text>
+
+    <circle cx="1450" cy="662" r="4" fill="#cc1a1b"/>
+    <text x="1465" y="667" class="body-text">
+      Relative risks per exposure unit
+    </text>
+
+    <circle cx="1450" cy="692" r="4" fill="#cc1a1b"/>
+    <text x="1465" y="697" class="body-text">
+      Lag-response curves (0-14 days)
+    </text>
+
+    <circle cx="1450" cy="722" r="4" fill="#cc1a1b"/>
+    <text x="1465" y="727" class="body-text">
+      Heat vulnerability indices
+    </text>
+
+    <circle cx="1450" cy="752" r="4" fill="#cc1a1b"/>
+    <text x="1465" y="757" class="body-text">
+      Region-specific effects
+    </text>
+  </g>
+
+  <!-- Footer -->
+  <g id="footer">
+    <rect x="80" y="850" width="1800" height="160" fill="#f4f4f4" rx="8"/>
+
+    <text x="100" y="890" class="section-label" fill="#2c5cda">Key References:</text>
+    <text x="100" y="920" class="footer-text">
+      • Lundberg &amp; Lee (2017). A Unified Approach to Interpreting Model Predictions. arXiv:1705.07874
+    </text>
+    <text x="100" y="945" class="footer-text">
+      • Gasparrini (2011). Distributed lag non-linear models. Statistics in Medicine
+    </text>
+    <text x="100" y="970" class="footer-text">
+      • HE²AT Centre Research Project 2 | NIH DS-I Africa Programme
+    </text>
+  </g>
+
+  <!-- Branding -->
+  <g id="branding">
+    <rect x="1620" y="870" width="240" height="60" fill="#ffffff" rx="8"/>
+    <text x="1740" y="908" class="branding-text" text-anchor="middle">
+      Wits PHR
+    </text>
+  </g>
+
+</svg>

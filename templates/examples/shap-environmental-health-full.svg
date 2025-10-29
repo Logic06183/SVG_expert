@@ -1,0 +1,328 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg"
+     viewBox="0 0 1920 1080"
+     width="1920"
+     height="1080">
+
+  <defs>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap');
+
+      .main-title {
+        font-family: 'Inter', sans-serif;
+        font-size: 52px;
+        font-weight: 700;
+        fill: #1a1a1a;
+        letter-spacing: -0.02em;
+      }
+      .subtitle {
+        font-family: 'Inter', sans-serif;
+        font-size: 22px;
+        font-weight: 400;
+        fill: #666666;
+      }
+      .section-header {
+        font-family: 'Inter', sans-serif;
+        font-size: 28px;
+        font-weight: 700;
+        fill: #ffffff;
+      }
+      .subsection-title {
+        font-family: 'Inter', sans-serif;
+        font-size: 18px;
+        font-weight: 700;
+        fill: #2c5cda;
+      }
+      .body-text {
+        font-family: 'Inter', sans-serif;
+        font-size: 15px;
+        font-weight: 400;
+        fill: #424242;
+      }
+      .body-bold {
+        font-family: 'Inter', sans-serif;
+        font-size: 15px;
+        font-weight: 600;
+        fill: #1a1a1a;
+      }
+      .highlight-text {
+        font-family: 'Inter', sans-serif;
+        font-size: 14px;
+        font-weight: 500;
+        fill: #7d3f0e;
+      }
+      .citation {
+        font-family: 'Inter', sans-serif;
+        font-size: 13px;
+        font-weight: 400;
+        fill: #666666;
+        font-style: italic;
+      }
+      .citation-title {
+        font-family: 'Inter', sans-serif;
+        font-size: 14px;
+        font-weight: 600;
+        fill: #2c5cda;
+      }
+      .branding-text {
+        font-family: 'Inter', sans-serif;
+        font-size: 16px;
+        font-weight: 400;
+        fill: #666666;
+      }
+
+      /* Color classes */
+      .wits-navy { fill: #2c5cda; }
+      .wits-teal { fill: #00bec5; }
+      .wits-blue { fill: #20a3fc; }
+      .accent-orange { fill: #e67e22; }
+      .accent-gold { fill: #d68910; }
+      .red-highlight { fill: #cc1a1b; }
+    </style>
+
+    <linearGradient id="header-gradient-left" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#2c5cda;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#00bec5;stop-opacity:1" />
+    </linearGradient>
+
+    <linearGradient id="header-gradient-right" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#e67e22;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#d68910;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+
+  <!-- Background -->
+  <g id="background">
+    <rect width="1920" height="1080" fill="#fafafa"/>
+    <rect x="0" y="0" width="1920" height="6" fill="url(#header-gradient-left)"/>
+  </g>
+
+  <!-- Title Section -->
+  <g id="title-section">
+    <text x="960" y="70" class="main-title" text-anchor="middle">
+      SHAP in Environmental Health
+    </text>
+    <text x="960" y="105" class="subtitle" text-anchor="middle">
+      Heavy Metals &amp; Chronic Bronchitis: Non-Linear Exposure-Response from 7,493 Participants
+    </text>
+    <line x1="200" y1="125" x2="1720" y2="125" stroke="#e0e0e0" stroke-width="2"/>
+  </g>
+
+  <!-- Left Column: Key Findings -->
+  <g id="left-column">
+    <rect x="100" y="155" width="850" height="720" fill="#ffffff" stroke="#2c5cda" stroke-width="3" rx="12"/>
+
+    <!-- Header -->
+    <rect x="100" y="155" width="850" height="55" fill="url(#header-gradient-left)" rx="12"/>
+    <rect x="100" y="185" width="850" height="25" fill="url(#header-gradient-left)"/>
+    <text x="525" y="192" class="section-header" text-anchor="middle">
+      Key Findings
+    </text>
+
+    <!-- Study Design -->
+    <text x="130" y="245" class="subsection-title">Study Design</text>
+
+    <circle cx="130" cy="272" r="5" class="wits-navy"/>
+    <text x="150" y="277" class="body-text">
+      Sample: 7,493 participants (nationally representative)
+    </text>
+
+    <circle cx="130" cy="302" r="5" class="wits-navy"/>
+    <text x="150" y="307" class="body-text">
+      Outcome: Chronic bronchitis diagnosis
+    </text>
+
+    <circle cx="130" cy="332" r="5" class="wits-navy"/>
+    <text x="150" y="337" class="body-text">
+      Exposures: Heavy metals (blood/urine Cd, Pb, etc.)
+    </text>
+
+    <!-- ML Model & Performance -->
+    <text x="130" y="385" class="subsection-title">ML Model &amp; Performance</text>
+
+    <rect x="120" y="400" width="810" height="110" fill="#e3ecfc" stroke="#2c5cda" stroke-width="2" rx="8"/>
+
+    <circle cx="140" cy="425" r="5" class="wits-navy"/>
+    <text x="160" y="430" class="body-bold">Algorithm: CatBoost</text>
+
+    <circle cx="140" cy="455" r="5" class="wits-navy"/>
+    <text x="160" y="460" class="body-text">
+      Reason: Handles mixed data types, high accuracy
+    </text>
+
+    <circle cx="140" cy="485" r="5" class="wits-navy"/>
+    <text x="160" y="490" class="body-text">
+      SHAP applied for feature importance decomposition
+    </text>
+
+    <!-- Top SHAP-Ranked Contributors -->
+    <text x="130" y="550" class="subsection-title">Top SHAP-Ranked Contributors</text>
+
+    <rect x="120" y="565" width="810" height="135" fill="#fdeaa8" stroke="#d68910" stroke-width="2" rx="8"/>
+
+    <circle cx="140" cy="595" r="6" class="red-highlight"/>
+    <text x="160" y="601" class="body-bold" fill="#cc1a1b">
+      Blood-cadmium (Cd) concentration
+    </text>
+    <text x="550" y="601" class="body-text" fill="#666666">
+      (strongest predictor)
+    </text>
+
+    <circle cx="140" cy="630" r="6" class="accent-gold"/>
+    <text x="160" y="636" class="body-bold" fill="#d68910">
+      Smoking status
+    </text>
+
+    <circle cx="140" cy="665" r="6" class="wits-blue"/>
+    <text x="160" y="671" class="body-bold" fill="#20a3fc">
+      Gender
+    </text>
+
+    <!-- SHAP Dependence Insights -->
+    <text x="130" y="745" class="subsection-title">SHAP Dependence Insights</text>
+
+    <circle cx="130" cy="772" r="5" class="wits-navy"/>
+    <text x="150" y="777" class="body-text">
+      Non-linear dose-response curves revealed
+    </text>
+
+    <circle cx="130" cy="802" r="5" class="wits-navy"/>
+    <text x="150" y="807" class="body-text">
+      Increased blood Cd → higher predicted bronchitis risk
+    </text>
+
+    <circle cx="130" cy="832" r="5" class="wits-navy"/>
+    <text x="150" y="837" class="body-text">
+      Critical for understanding exposure thresholds
+    </text>
+  </g>
+
+  <!-- Right Column: Relevance -->
+  <g id="right-column">
+    <rect x="970" y="155" width="850" height="720" fill="#ffffff" stroke="#e67e22" stroke-width="3" rx="12"/>
+
+    <!-- Header -->
+    <rect x="970" y="155" width="850" height="55" fill="url(#header-gradient-right)" rx="12"/>
+    <rect x="970" y="185" width="850" height="25" fill="url(#header-gradient-right)"/>
+    <text x="1395" y="192" class="section-header" text-anchor="middle">
+      Relevance to Your Work
+    </text>
+
+    <!-- Environmental Exposome Modelling -->
+    <text x="1000" y="245" class="subsection-title" fill="#e67e22">
+      Environmental Exposome Modelling
+    </text>
+
+    <circle cx="1000" cy="272" r="5" class="accent-orange"/>
+    <text x="1020" y="277" class="body-text">
+      Heavy metals ≈ environmental exposome
+    </text>
+
+    <circle cx="1000" cy="302" r="5" class="accent-orange"/>
+    <text x="1020" y="307" class="body-text">
+      Parallel to climate + land-use + socio-economic exposures
+    </text>
+
+    <circle cx="1000" cy="332" r="5" class="accent-orange"/>
+    <text x="1020" y="337" class="body-text">
+      Demonstrates SHAP efficacy in high-dimensional data
+    </text>
+
+    <!-- Non-Linear Dose-Response -->
+    <text x="1000" y="380" class="subsection-title" fill="#e67e22">
+      Non-Linear Dose-Response
+    </text>
+
+    <circle cx="1000" cy="407" r="5" class="accent-orange"/>
+    <text x="1020" y="412" class="body-text">
+      SHAP dependence plots detected non-linearity
+    </text>
+
+    <circle cx="1000" cy="437" r="5" class="accent-orange"/>
+    <text x="1020" y="442" class="body-text">
+      Critical step before fitting DLNM
+    </text>
+
+    <circle cx="1000" cy="467" r="5" class="accent-orange"/>
+    <text x="1020" y="472" class="body-text">
+      Informs basis function choice (e.g., cubic splines)
+    </text>
+
+    <!-- Screening from Exposome -->
+    <text x="1000" y="515" class="subsection-title" fill="#e67e22">
+      Screening from Exposome
+    </text>
+
+    <circle cx="1000" cy="542" r="5" class="accent-orange"/>
+    <text x="1020" y="547" class="body-text">
+      Many metals measured; SHAP ranked them
+    </text>
+
+    <circle cx="1000" cy="572" r="5" class="accent-orange"/>
+    <text x="1020" y="577" class="body-text">
+      Cadmium emerged as top predictor
+    </text>
+
+    <circle cx="1000" cy="602" r="5" class="accent-orange"/>
+    <text x="1020" y="607" class="body-text">
+      Your RP2: which climate/pollutant metrics matter most?
+    </text>
+
+    <!-- Application Box -->
+    <rect x="990" y="640" width="810" height="215" fill="#fde4cd" stroke="#e67e22" stroke-width="3" rx="8"/>
+
+    <text x="1010" y="670" class="subsection-title" fill="#d68910">
+      💡 Application to Your Pipeline
+    </text>
+
+    <circle cx="1010" cy="700" r="4" fill="#7d3f0e"/>
+    <text x="1030" y="705" class="highlight-text">
+      1. Build CatBoost for preterm birth with climate/exposure matrix
+    </text>
+
+    <circle cx="1010" cy="730" r="4" fill="#7d3f0e"/>
+    <text x="1030" y="735" class="highlight-text">
+      2. SHAP to rank temperature/humidity/pollution indices
+    </text>
+
+    <circle cx="1010" cy="760" r="4" fill="#7d3f0e"/>
+    <text x="1030" y="765" class="highlight-text">
+      3. SHAP dependence plots → non-linearity thresholds
+    </text>
+
+    <circle cx="1010" cy="790" r="4" fill="#7d3f0e"/>
+    <text x="1030" y="795" class="highlight-text">
+      4. Build DLNM with informed basis functions for top exposures
+    </text>
+
+    <circle cx="1010" cy="820" r="4" fill="#7d3f0e"/>
+    <text x="1030" y="825" class="highlight-text">
+      5. Validate with sensitivity analysis across exposure windows
+    </text>
+  </g>
+
+  <!-- Citation Footer -->
+  <g id="citation">
+    <rect x="100" y="900" width="1720" height="110" fill="#f0f0f0" stroke="#d0d0d0" stroke-width="2" rx="8"/>
+
+    <text x="120" y="930" class="citation-title">Citation:</text>
+
+    <text x="120" y="955" class="citation">
+      "Machine learning prediction model with SHAP interpretation for chronic bronchitis risk assessment
+    </text>
+    <text x="120" y="975" class="citation">
+      based on heavy metal exposure: a nationally representative study"
+    </text>
+    <text x="120" y="995" class="citation" fill="#2c5cda">
+      BMC Pulmonary Medicine, 2025 | DOI: 10.1186/s12890-025-03724-8
+    </text>
+  </g>
+
+  <!-- Branding -->
+  <g id="branding">
+    <text x="1800" y="1045" class="branding-text" text-anchor="end">
+      Wits Planetary Health Research
+    </text>
+  </g>
+
+</svg>

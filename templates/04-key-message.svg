@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg"
+     viewBox="0 0 1920 1080"
+     width="1920"
+     height="1080">
+
+  <defs>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap');
+
+      .hero-stat {
+        font-family: 'Inter', sans-serif;
+        font-size: 180px;
+        font-weight: 700;
+        fill: #2c5cda;
+        letter-spacing: -0.03em;
+      }
+      .hero-text {
+        font-family: 'Inter', sans-serif;
+        font-size: 72px;
+        font-weight: 600;
+        fill: #1a1a1a;
+        letter-spacing: -0.02em;
+      }
+      .context {
+        font-family: 'Inter', sans-serif;
+        font-size: 36px;
+        font-weight: 400;
+        fill: #424242;
+      }
+      .source {
+        font-family: 'Inter', sans-serif;
+        font-size: 28px;
+        font-weight: 400;
+        fill: #666666;
+        font-style: italic;
+      }
+      .accent { fill: #2c5cda; }
+      .branding-text {
+        font-family: 'Inter', sans-serif;
+        font-size: 18px;
+        font-weight: 400;
+        fill: #666666;
+      }
+    </style>
+  </defs>
+
+  <!-- Background -->
+  <g id="background">
+    <rect width="1920" height="1080" fill="#ffffff"/>
+
+    <!-- Decorative circles -->
+    <circle cx="1600" cy="300" r="200" fill="#2c5cda" opacity="0.05"/>
+    <circle cx="300" cy="800" r="150" fill="#00bec5" opacity="0.05"/>
+  </g>
+
+  <!-- Content -->
+  <g id="content">
+    <!-- Main statistic -->
+    <text x="960" y="420" class="hero-stat" text-anchor="middle">
+      +2.4°C
+    </text>
+
+    <!-- Key message -->
+    <text x="960" y="540" class="hero-text" text-anchor="middle">
+      projected warming by 2100
+    </text>
+
+    <!-- Decorative line -->
+    <line x1="660" y1="600" x2="1260" y2="600"
+          stroke="#2c5cda"
+          stroke-width="4"
+          opacity="0.3"/>
+
+    <!-- Context -->
+    <text x="960" y="680" class="context" text-anchor="middle">
+      <tspan x="960" dy="0">Without immediate action on emissions,</tspan>
+      <tspan x="960" dy="48">global temperatures will exceed Paris targets</tspan>
+    </text>
+
+    <!-- Source -->
+    <text x="960" y="820" class="source" text-anchor="middle">
+      — IPCC Sixth Assessment Report, 2023
+    </text>
+  </g>
+
+  <!-- Branding -->
+  <g id="branding">
+    <text x="1820" y="1020" class="branding-text" text-anchor="end">
+      Wits Planetary Health Research
+    </text>
+  </g>
+
+</svg>

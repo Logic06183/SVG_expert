@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg"
+     viewBox="0 0 1920 1080"
+     width="1920"
+     height="1080">
+
+  <defs>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap');
+
+      .hero-number {
+        font-family: 'Inter', sans-serif;
+        font-size: 180px;
+        font-weight: 700;
+        fill: #cc1a1b;
+        letter-spacing: -0.03em;
+      }
+      .hero-text {
+        font-family: 'Inter', sans-serif;
+        font-size: 64px;
+        font-weight: 700;
+        fill: #1a1a1a;
+        letter-spacing: -0.02em;
+      }
+      .subtext {
+        font-family: 'Inter', sans-serif;
+        font-size: 36px;
+        font-weight: 500;
+        fill: #424242;
+      }
+      .context {
+        font-family: 'Inter', sans-serif;
+        font-size: 28px;
+        font-weight: 400;
+        fill: #666666;
+      }
+      .citation {
+        font-family: 'Inter', sans-serif;
+        font-size: 20px;
+        font-weight: 400;
+        fill: #666666;
+        font-style: italic;
+      }
+      .branding-text {
+        font-family: 'Inter', sans-serif;
+        font-size: 18px;
+        font-weight: 400;
+        fill: #666666;
+      }
+    </style>
+
+    <linearGradient id="accent-gradient" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#cc1a1b;stop-opacity:0.1" />
+      <stop offset="100%" style="stop-color:#d68910;stop-opacity:0.1" />
+    </linearGradient>
+  </defs>
+
+  <!-- Background -->
+  <g id="background">
+    <rect width="1920" height="1080" fill="#ffffff"/>
+
+    <!-- Decorative circles -->
+    <circle cx="1650" cy="250" r="180" fill="#cc1a1b" opacity="0.06"/>
+    <circle cx="270" cy="850" r="150" fill="#d68910" opacity="0.06"/>
+
+    <!-- Top accent -->
+    <rect x="0" y="0" width="1920" height="8" fill="url(#accent-gradient)"/>
+  </g>
+
+  <!-- Content -->
+  <g id="content">
+    <!-- Label -->
+    <text x="960" y="280" class="context" text-anchor="middle">
+      Blood-Cadmium as Predictor
+    </text>
+
+    <!-- Main statistic -->
+    <text x="960" y="460" class="hero-number" text-anchor="middle">
+      #1
+    </text>
+
+    <!-- Key message -->
+    <text x="960" y="560" class="hero-text" text-anchor="middle">
+      SHAP-Ranked Feature
+    </text>
+
+    <text x="960" y="630" class="subtext" text-anchor="middle">
+      for Chronic Bronchitis Risk
+    </text>
+
+    <!-- Decorative line -->
+    <line x1="660" y1="680" x2="1260" y2="680"
+          stroke="#cc1a1b"
+          stroke-width="4"
+          opacity="0.3"/>
+
+    <!-- Context -->
+    <text x="960" y="760" class="context" text-anchor="middle">
+      <tspan x="960" dy="0">Machine learning analysis of 7,493 participants revealed</tspan>
+      <tspan x="960" dy="44">blood-cadmium concentration as the strongest predictor,</tspan>
+      <tspan x="960" dy="44">with clear non-linear dose-response relationship</tspan>
+    </text>
+
+    <!-- Source -->
+    <text x="960" y="920" class="citation" text-anchor="middle">
+      BMC Pulmonary Medicine, 2025 | SHAP + CatBoost Analysis
+    </text>
+  </g>
+
+  <!-- Branding -->
+  <g id="branding">
+    <text x="1820" y="1020" class="branding-text" text-anchor="end">
+      Wits Planetary Health Research
+    </text>
+  </g>
+
+</svg>

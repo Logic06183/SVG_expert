@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg"
+     viewBox="0 0 1920 1080"
+     width="1920"
+     height="1080">
+
+  <defs>
+    <linearGradient id="header-gradient" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#2c5cda;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#00bec5;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+
+  <!-- Background -->
+  <g id="background">
+    <rect width="1920" height="1080" fill="#ffffff"/>
+    <rect x="0" y="0" width="1920" height="8" fill="url(#header-gradient)"/>
+  </g>
+
+  <!-- Title -->
+  <g id="title">
+    <text x="960" y="100" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="64" letter-spacing="-1.28" font-weight="700" fill="#2c5cda">
+      SHAP / Shapley Values Foundation
+    </text>
+    <line x1="200" y1="130" x2="1720" y2="130" stroke="#e0e0e0" stroke-width="2"/>
+  </g>
+
+  <!-- Content -->
+  <g id="content">
+    <!-- Origin -->
+    <text x="120" y="200" font-family="Inter, Arial, sans-serif" font-size="36" font-weight="700" fill="#1a1a1a">Theoretical Origin</text>
+
+    <circle cx="120" cy="258" r="6" fill="#2c5cda"/>
+    <text x="145" y="263" font-family="Inter, Arial, sans-serif" font-size="24" font-weight="400" fill="#424242">
+      <tspan x="145" dy="0">Rooted in cooperative game theory</tspan>
+    </text>
+
+    <circle cx="120" cy="303" r="6" fill="#2c5cda"/>
+    <text x="145" y="308" font-family="Inter, Arial, sans-serif" font-size="24" font-weight="400" fill="#424242">
+      <tspan x="145" dy="0">Fairly allocates contributions to players (features) in a coalition</tspan>
+    </text>
+
+    <!-- Formula Box -->
+    <rect x="120" y="340" width="1680" height="100" fill="#e3ecfc" stroke="#2c5cda" stroke-width="2" rx="12"/>
+    <text x="960" y="385" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="20" font-weight="400" fill="#2c5cda" font-style="italic">
+      φᵢ = Σ [ |S|!(n-|S|-1)! / n! ] × [ v(S ∪ {i}) - v(S) ]
+    </text>
+    <text x="960" y="420" text-anchor="middle" font-size="24" fill="#424242" font-family="Inter, Arial, sans-serif" font-weight="400">
+      Shapley value for feature i: weighted average of marginal contributions across all subsets S
+    </text>
+
+    <!-- Key Properties -->
+    <text x="120" y="500" font-family="Inter, Arial, sans-serif" font-size="36" font-weight="700" fill="#1a1a1a">Formal Properties</text>
+
+    <rect x="120" y="530" width="810" height="340" fill="#ffffff" stroke="#2c5cda" stroke-width="2" rx="12"/>
+
+    <text x="150" y="575" font-family="Inter, Arial, sans-serif" font-size="24" font-weight="600" fill="#2c5cda">Local Accuracy</text>
+    <text x="170" y="610" font-family="Inter, Arial, sans-serif" font-size="24" font-weight="400" fill="#424242">
+      <tspan x="170" dy="0">Sum of feature attributions + baseline</tspan>
+      <tspan x="170" dy="32">= model output at that instance</tspan>
+    </text>
+
+    <text x="150" y="695" font-family="Inter, Arial, sans-serif" font-size="24" font-weight="600" fill="#2c5cda">Consistency</text>
+    <text x="170" y="730" font-family="Inter, Arial, sans-serif" font-size="24" font-weight="400" fill="#424242">
+      <tspan x="170" dy="0">If feature's marginal effect increases,</tspan>
+      <tspan x="170" dy="32">SHAP value doesn't decrease</tspan>
+    </text>
+
+    <text x="150" y="815" font-family="Inter, Arial, sans-serif" font-size="24" font-weight="600" fill="#2c5cda">Missingness</text>
+    <text x="170" y="850" font-family="Inter, Arial, sans-serif" font-size="24" font-weight="400" fill="#424242">
+      <tspan x="170" dy="0">Missing features get zero attribution</tspan>
+    </text>
+
+    <!-- Application -->
+    <rect x="990" y="530" width="810" height="340" fill="#ffffff" stroke="#00bec5" stroke-width="2" rx="12"/>
+
+    <text x="1020" y="575" fill="#1a1a1a" font-family="Inter, Arial, sans-serif" font-size="36" font-weight="700">In Machine Learning</text>
+
+    <circle cx="1020" cy="628" r="6" fill="#00bec5"/>
+    <text x="1045" y="633" font-family="Inter, Arial, sans-serif" font-size="24" font-weight="400" fill="#424242">
+      <tspan x="1045" dy="0">Attributes model predictions to each</tspan>
+      <tspan x="1045" dy="32">feature on a per-instance basis</tspan>
+    </text>
+
+    <circle cx="1020" cy="698" r="6" fill="#00bec5"/>
+    <text x="1045" y="703" font-family="Inter, Arial, sans-serif" font-size="24" font-weight="400" fill="#424242">
+      <tspan x="1045" dy="0">Model-agnostic (Kernel SHAP) or</tspan>
+      <tspan x="1045" dy="32">model-specific (TreeSHAP for GBMs)</tspan>
+    </text>
+
+    <circle cx="1020" cy="768" r="6" fill="#00bec5"/>
+    <text x="1045" y="773" font-family="Inter, Arial, sans-serif" font-size="24" font-weight="400" fill="#424242">
+      <tspan x="1045" dy="0">Handles complex, non-linear, interactive</tspan>
+      <tspan x="1045" dy="32">models (XGBoost, Random Forest, NNs)</tspan>
+    </text>
+
+    <circle cx="1020" cy="838" r="6" fill="#00bec5"/>
+    <text x="1045" y="843" font-family="Inter, Arial, sans-serif" font-size="24" font-weight="400" fill="#424242">
+      <tspan x="1045" dy="0">Aggregates to global importance rankings</tspan>
+    </text>
+
+    <!-- Key Insight -->
+    <rect x="120" y="910" width="1680" height="80" fill="#fdeaa8" stroke="#d68910" stroke-width="2" rx="8"/>
+    <text x="150" y="950" font-size="24" font-weight="400" font-family="Inter, Arial, sans-serif" fill="#424242">
+      <tspan x="150" dy="0">💡 Key Insight: SHAP explains model behavior (prediction attribution), not necessarily</tspan>
+      <tspan x="150" dy="30">causation. Ideal for feature screening in high-dimensional exposure spaces.</tspan>
+    </text>
+  </g>
+
+  <!-- Branding -->
+  <g id="branding">
+    <text x="1800" y="1045" text-anchor="end" font-family="Inter, Arial, sans-serif" font-size="18" font-weight="400" fill="#666666">
+      Wits Planetary Health Research
+    </text>
+  </g>
+
+</svg>

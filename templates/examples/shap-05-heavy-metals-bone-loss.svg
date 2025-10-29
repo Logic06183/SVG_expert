@@ -1,0 +1,232 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg"
+     viewBox="0 0 1920 1080"
+     width="1920"
+     height="1080">
+
+  <defs>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap');
+
+      .slide-title {
+        font-family: 'Inter', sans-serif;
+        font-size: 48px;
+        font-weight: 700;
+        fill: #1a1a1a;
+        letter-spacing: -0.02em;
+      }
+      .section-header {
+        font-family: 'Inter', sans-serif;
+        font-size: 32px;
+        font-weight: 700;
+        fill: #ffffff;
+      }
+      .body-text {
+        font-family: 'Inter', sans-serif;
+        font-size: 20px;
+        font-weight: 400;
+        fill: #424242;
+        line-height: 1.5;
+      }
+      .highlight-text {
+        font-family: 'Inter', sans-serif;
+        font-size: 20px;
+        font-weight: 700;
+        fill: #2c5cda;
+      }
+      .citation {
+        font-family: 'Inter', sans-serif;
+        font-size: 16px;
+        font-weight: 400;
+        fill: #666666;
+        font-style: italic;
+      }
+      .branding-text {
+        font-family: 'Inter', sans-serif;
+        font-size: 18px;
+        font-weight: 400;
+        fill: #666666;
+      }
+    </style>
+
+    <linearGradient id="header-left" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#2c5cda;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#00bec5;stop-opacity:1" />
+    </linearGradient>
+
+    <linearGradient id="header-right" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#e67e22;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#d68910;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+
+  <!-- Background -->
+  <g id="background">
+    <rect width="1920" height="1080" fill="#ffffff"/>
+    <rect x="0" y="0" width="1920" height="6" fill="url(#header-left)"/>
+  </g>
+
+  <!-- Title -->
+  <g id="title">
+    <text x="960" y="90" class="slide-title" text-anchor="middle">
+      SHAP in Environmental Epidemiology
+    </text>
+    <text x="960" y="135" class="body-text" text-anchor="middle" fill="#666666">
+      Heavy Metal Exposure &amp; Alveolar Bone Loss (2025)
+    </text>
+    <line x1="200" y1="155" x2="1720" y2="155" stroke="#e0e0e0" stroke-width="2"/>
+  </g>
+
+  <!-- Left Column: Key Findings -->
+  <g id="left-column">
+    <rect x="100" y="190" width="850" height="680" fill="#ffffff" stroke="#2c5cda" stroke-width="3" rx="12"/>
+
+    <rect x="100" y="190" width="850" height="60" fill="url(#header-left)" rx="12"/>
+    <rect x="100" y="220" width="850" height="30" fill="url(#header-left)"/>
+    <text x="525" y="237" class="section-header" text-anchor="middle">Key Findings</text>
+
+    <!-- Finding 1 -->
+    <circle cx="130" cy="295" r="6" fill="#2c5cda"/>
+    <text x="155" y="300" class="body-text">
+      <tspan x="155" dy="0">Data source: NHANES 2015-2018</tspan>
+    </text>
+
+    <!-- Finding 2 -->
+    <circle cx="130" cy="345" r="6" fill="#2c5cda"/>
+    <text x="155" y="350" class="body-text">
+      <tspan x="155" dy="0">Outcome: Alveolar bone loss (dental health)</tspan>
+    </text>
+
+    <!-- Finding 3 -->
+    <circle cx="130" cy="395" r="6" fill="#2c5cda"/>
+    <text x="155" y="400" class="body-text">
+      <tspan x="155" dy="0">Exposures: Heavy metal concentrations</tspan>
+    </text>
+
+    <!-- Finding 4 -->
+    <rect x="120" y="435" width="810" height="140" fill="#e3ecfc" stroke="#2c5cda" stroke-width="2" rx="8"/>
+    <text x="140" y="465" class="body-text" font-weight="600">SHAP Summary &amp; Bee-Swarm Plots:</text>
+
+    <circle cx="140" cy="500" r="6" fill="#cc1a1b"/>
+    <text x="165" y="506" class="highlight-text">Cadmium (Cd)</text>
+    <text x="360" y="506" class="body-text">(strongest predictor)</text>
+
+    <circle cx="140" cy="535" r="6" fill="#d68910"/>
+    <text x="165" y="541" class="highlight-text">Cobalt</text>
+
+    <circle cx="140" cy="565" r="6" fill="#20a3fc"/>
+    <text x="165" y="571" class="highlight-text">Lead (Pb)</text>
+
+    <!-- Finding 5 -->
+    <text x="130" y="615" class="body-text" font-weight="600">Socio-Demographic Modifiers:</text>
+
+    <circle cx="130" cy="650" r="5" fill="#2c5cda"/>
+    <text x="155" y="655" class="body-text">
+      <tspan x="155" dy="0">Low-income participants showed stronger</tspan>
+      <tspan x="155" dy="28">associations with adverse outcomes</tspan>
+    </text>
+
+    <circle cx="130" cy="705" r="5" fill="#2c5cda"/>
+    <text x="155" y="710" class="body-text">
+      <tspan x="155" dy="0">SHAP revealed income as effect modifier</tspan>
+    </text>
+
+    <!-- Note -->
+    <rect x="120" y="745" width="810" height="105" fill="#f4f4f4" rx="8"/>
+    <text x="140" y="775" class="body-text" font-size="18" fill="#666666">
+      <tspan x="140" dy="0">High-dimensional exposure modelling + SHAP</tspan>
+      <tspan x="140" dy="26">identified both exposure importance and socio-</tspan>
+      <tspan x="140" dy="26">economic effect modifiers.</tspan>
+    </text>
+  </g>
+
+  <!-- Right Column: Relevance -->
+  <g id="right-column">
+    <rect x="970" y="190" width="850" height="680" fill="#ffffff" stroke="#e67e22" stroke-width="3" rx="12"/>
+
+    <rect x="970" y="190" width="850" height="60" fill="url(#header-right)" rx="12"/>
+    <rect x="970" y="220" width="850" height="30" fill="url(#header-right)"/>
+    <text x="1395" y="237" class="section-header" text-anchor="middle">Relevance to Your Work</text>
+
+    <!-- Relevance 1 -->
+    <text x="1000" y="295" class="body-text" font-weight="600" fill="#e67e22">
+      High-Dimensional Exposure Analysis
+    </text>
+
+    <circle cx="1000" cy="330" r="5" fill="#e67e22"/>
+    <text x="1025" y="335" class="body-text">
+      <tspan x="1025" dy="0">Multiple heavy metals analyzed—similar to</tspan>
+      <tspan x="1025" dy="28">your many climate/exposure variables</tspan>
+    </text>
+
+    <circle cx="1000" cy="385" r="5" fill="#e67e22"/>
+    <text x="1025" y="390" class="body-text">
+      <tspan x="1025" dy="0">SHAP effectively ranked importance across</tspan>
+      <tspan x="1025" dy="28">correlated exposures</tspan>
+    </text>
+
+    <!-- Relevance 2 -->
+    <text x="1000" y="455" class="body-text" font-weight="600" fill="#e67e22">
+      Effect Modification Detection
+    </text>
+
+    <circle cx="1000" cy="490" r="5" fill="#e67e22"/>
+    <text x="1025" y="495" class="body-text">
+      <tspan x="1025" dy="0">SHAP identified income as modifier of</tspan>
+      <tspan x="1025" dy="28">exposure-outcome relationship</tspan>
+    </text>
+
+    <circle cx="1000" cy="545" r="5" fill="#e67e22"/>
+    <text x="1025" y="550" class="body-text">
+      <tspan x="1025" dy="0">Your combined climate + socio-economic</tspan>
+      <tspan x="1025" dy="28">pipeline needs this: which socio-economic</tspan>
+      <tspan x="1025" dy="28">factors modify climate-health effects?</tspan>
+    </text>
+
+    <!-- Relevance 3 -->
+    <text x="1000" y="630" class="body-text" font-weight="600" fill="#e67e22">
+      Visualization Techniques
+    </text>
+
+    <circle cx="1000" cy="665" r="5" fill="#e67e22"/>
+    <text x="1025" y="670" class="body-text">
+      <tspan x="1025" dy="0">Bee-swarm plots show SHAP value distribution</tspan>
+      <tspan x="1025" dy="28">for each feature—useful for publications</tspan>
+    </text>
+
+    <circle cx="1000" cy="715" r="5" fill="#e67e22"/>
+    <text x="1025" y="720" class="body-text">
+      <tspan x="1025" dy="0">Summary plots rank features visually</tspan>
+    </text>
+
+    <!-- Application -->
+    <rect x="990" y="760" width="810" height="90" fill="#fde4cd" stroke="#e67e22" stroke-width="2" rx="8"/>
+    <text x="1010" y="790" class="body-text" font-size="18" font-weight="600" fill="#7d3f0e">
+      💡 Your Pipeline Application
+    </text>
+    <text x="1010" y="818" class="body-text" font-size="17" fill="#7d3f0e">
+      <tspan x="1010" dy="0">Use SHAP to identify which socio-economic factors</tspan>
+      <tspan x="1010" dy="24">modify climate-preterm birth associations</tspan>
+    </text>
+  </g>
+
+  <!-- Citation -->
+  <g id="citation">
+    <rect x="100" y="895" width="1720" height="85" fill="#f0f0f0" stroke="#d0d0d0" stroke-width="2" rx="8"/>
+    <text x="120" y="925" class="citation" font-weight="600" fill="#2c5cda">Citation:</text>
+    <text x="120" y="950" class="citation">
+      "Development of a machine learning model related to explore the association between heavy metal exposure
+    </text>
+    <text x="120" y="970" class="citation">
+      and alveolar bone loss among US adults utilizing SHAP: a study based on NHANES 2015-2018" | BMC Public Health, 2025
+    </text>
+  </g>
+
+  <!-- Branding -->
+  <g id="branding">
+    <text x="1800" y="1045" class="branding-text" text-anchor="end">
+      Wits Planetary Health Research
+    </text>
+  </g>
+
+</svg>

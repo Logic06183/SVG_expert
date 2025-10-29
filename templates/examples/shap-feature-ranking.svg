@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg"
+     viewBox="0 0 1920 1080"
+     width="1920"
+     height="1080">
+
+  <defs>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap');
+
+      .slide-title {
+        font-family: 'Inter', sans-serif;
+        font-size: 56px;
+        font-weight: 700;
+        fill: #1a1a1a;
+        letter-spacing: -0.02em;
+      }
+      .subtitle {
+        font-family: 'Inter', sans-serif;
+        font-size: 28px;
+        font-weight: 400;
+        fill: #666666;
+      }
+      .axis-label {
+        font-family: 'Inter', sans-serif;
+        font-size: 24px;
+        font-weight: 500;
+        fill: #424242;
+      }
+      .data-label {
+        font-family: 'Inter', sans-serif;
+        font-size: 28px;
+        font-weight: 700;
+        fill: #1a1a1a;
+      }
+      .value-label {
+        font-family: 'Inter', sans-serif;
+        font-size: 24px;
+        font-weight: 600;
+        fill: #ffffff;
+      }
+      .caption {
+        font-family: 'Inter', sans-serif;
+        font-size: 22px;
+        font-weight: 400;
+        fill: #666666;
+      }
+      .annotation {
+        font-family: 'Inter', sans-serif;
+        font-size: 18px;
+        font-weight: 500;
+        fill: #cc1a1b;
+      }
+      .branding-text {
+        font-family: 'Inter', sans-serif;
+        font-size: 18px;
+        font-weight: 400;
+        fill: #666666;
+      }
+      .gridline {
+        stroke: #e0e0e0;
+        stroke-width: 1;
+      }
+    </style>
+
+    <linearGradient id="bar-gradient-1" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#cc1a1b;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#e74c3c;stop-opacity:1" />
+    </linearGradient>
+
+    <linearGradient id="bar-gradient-2" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#d68910;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#f39c12;stop-opacity:1" />
+    </linearGradient>
+
+    <linearGradient id="bar-gradient-3" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#2c5cda;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#20a3fc;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+
+  <!-- Background -->
+  <g id="background">
+    <rect width="1920" height="1080" fill="#ffffff"/>
+    <rect x="0" y="0" width="1920" height="6" fill="url(#bar-gradient-1)"/>
+  </g>
+
+  <!-- Title -->
+  <g id="title">
+    <text x="960" y="90" class="slide-title" text-anchor="middle">
+      SHAP Feature Importance Rankings
+    </text>
+    <text x="960" y="135" class="subtitle" text-anchor="middle">
+      Chronic Bronchitis Risk Prediction Model (n=7,493)
+    </text>
+  </g>
+
+  <!-- Chart Area -->
+  <g id="chart" transform="translate(200, 220)">
+    <!-- Gridlines (vertical) -->
+    <line x1="0" y1="0" x2="0" y2="700" stroke="#424242" stroke-width="2"/>
+    <line x1="250" y1="0" x2="250" y2="700" class="gridline"/>
+    <line x1="500" y1="0" x2="500" y2="700" class="gridline"/>
+    <line x1="750" y1="0" x2="750" y2="700" class="gridline"/>
+    <line x1="1000" y1="0" x2="1000" y2="700" class="gridline"/>
+    <line x1="1250" y1="0" x2="1250" y2="700" class="gridline"/>
+    <line x1="1500" y1="0" x2="1500" y2="700" class="gridline"/>
+
+    <!-- X-axis labels -->
+    <text x="0" y="735" class="axis-label" text-anchor="middle">0</text>
+    <text x="250" y="735" class="axis-label" text-anchor="middle">0.05</text>
+    <text x="500" y="735" class="axis-label" text-anchor="middle">0.10</text>
+    <text x="750" y="735" class="axis-label" text-anchor="middle">0.15</text>
+    <text x="1000" y="735" class="axis-label" text-anchor="middle">0.20</text>
+    <text x="1250" y="735" class="axis-label" text-anchor="middle">0.25</text>
+    <text x="1500" y="735" class="axis-label" text-anchor="middle">0.30</text>
+
+    <text x="750" y="780" class="axis-label" text-anchor="middle" font-weight="600">
+      Mean |SHAP Value|
+    </text>
+
+    <!-- Bar 1: Blood Cadmium -->
+    <rect x="0" y="50" width="1400" height="75" fill="url(#bar-gradient-1)" rx="6"/>
+    <text x="1420" y="92" class="value-label" fill="#cc1a1b">0.28</text>
+    <text x="-10" y="92" class="data-label" text-anchor="end">Blood Cadmium (Cd)</text>
+
+    <!-- Annotation -->
+    <text x="1450" y="72" class="annotation">← Strongest</text>
+    <text x="1450" y="95" class="annotation">predictor</text>
+
+    <!-- Bar 2: Smoking Status -->
+    <rect x="0" y="155" width="1050" height="75" fill="url(#bar-gradient-2)" rx="6"/>
+    <text x="1070" y="197" class="value-label" fill="#d68910">0.21</text>
+    <text x="-10" y="197" class="data-label" text-anchor="end">Smoking Status</text>
+
+    <!-- Bar 3: Gender -->
+    <rect x="0" y="260" width="900" height="75" fill="url(#bar-gradient-3)" rx="6"/>
+    <text x="920" y="302" class="value-label" fill="#2c5cda">0.18</text>
+    <text x="-10" y="302" class="data-label" text-anchor="end">Gender</text>
+
+    <!-- Bar 4: Age -->
+    <rect x="0" y="365" width="700" height="75" fill="#2c5cda" opacity="0.7" rx="6"/>
+    <text x="720" y="407" class="value-label" fill="#2c5cda">0.14</text>
+    <text x="-10" y="407" class="data-label" text-anchor="end">Age</text>
+
+    <!-- Bar 5: Blood Lead (Pb) -->
+    <rect x="0" y="470" width="550" height="75" fill="#00bec5" opacity="0.7" rx="6"/>
+    <text x="570" y="512" class="value-label" fill="#00bec5">0.11</text>
+    <text x="-10" y="512" class="data-label" text-anchor="end">Blood Lead (Pb)</text>
+
+    <!-- Bar 6: BMI -->
+    <rect x="0" y="575" width="400" height="75" fill="#20a3fc" opacity="0.6" rx="6"/>
+    <text x="420" y="617" class="value-label" fill="#20a3fc">0.08</text>
+    <text x="-10" y="617" class="data-label" text-anchor="end">BMI</text>
+  </g>
+
+  <!-- Caption -->
+  <g id="caption">
+    <text x="960" y="980" class="caption" text-anchor="middle">
+      CatBoost model with SHAP analysis reveals blood-cadmium concentration as primary risk factor
+    </text>
+    <text x="960" y="1010" class="caption" text-anchor="middle">
+      BMC Pulmonary Medicine, 2025 | Nationally representative US sample
+    </text>
+  </g>
+
+  <!-- Branding -->
+  <g id="branding">
+    <text x="1820" y="1045" class="branding-text" text-anchor="end">
+      Wits Planetary Health Research
+    </text>
+  </g>
+
+</svg>

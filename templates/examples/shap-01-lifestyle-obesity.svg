@@ -1,0 +1,231 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg"
+     viewBox="0 0 1920 1080"
+     width="1920"
+     height="1080">
+
+  <defs>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap');
+
+      .slide-title {
+        font-family: 'Inter', sans-serif;
+        font-size: 48px;
+        font-weight: 700;
+        fill: #1a1a1a;
+        letter-spacing: -0.02em;
+      }
+      .section-header {
+        font-family: 'Inter', sans-serif;
+        font-size: 32px;
+        font-weight: 700;
+        fill: #ffffff;
+      }
+      .body-text {
+        font-family: 'Inter', sans-serif;
+        font-size: 20px;
+        font-weight: 400;
+        fill: #424242;
+        line-height: 1.5;
+      }
+      .highlight-text {
+        font-family: 'Inter', sans-serif;
+        font-size: 20px;
+        font-weight: 700;
+        fill: #2c5cda;
+      }
+      .citation {
+        font-family: 'Inter', sans-serif;
+        font-size: 16px;
+        font-weight: 400;
+        fill: #666666;
+        font-style: italic;
+      }
+      .branding-text {
+        font-family: 'Inter', sans-serif;
+        font-size: 18px;
+        font-weight: 400;
+        fill: #666666;
+      }
+    </style>
+
+    <linearGradient id="header-left" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#2c5cda;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#00bec5;stop-opacity:1" />
+    </linearGradient>
+
+    <linearGradient id="header-right" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#e67e22;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#d68910;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+
+  <!-- Background -->
+  <g id="background">
+    <rect width="1920" height="1080" fill="#ffffff"/>
+    <rect x="0" y="0" width="1920" height="6" fill="url(#header-left)"/>
+  </g>
+
+  <!-- Title -->
+  <g id="title">
+    <text x="960" y="90" class="slide-title" text-anchor="middle">
+      SHAP in Lifestyle &amp; Obesity Research
+    </text>
+    <text x="960" y="135" class="body-text" text-anchor="middle" fill="#666666">
+      Machine Learning to Identify Key Lifestyle Factors (2024)
+    </text>
+    <line x1="200" y1="155" x2="1720" y2="155" stroke="#e0e0e0" stroke-width="2"/>
+  </g>
+
+  <!-- Left Column: Key Findings -->
+  <g id="left-column">
+    <rect x="100" y="190" width="850" height="680" fill="#ffffff" stroke="#2c5cda" stroke-width="3" rx="12"/>
+
+    <rect x="100" y="190" width="850" height="60" fill="url(#header-left)" rx="12"/>
+    <rect x="100" y="220" width="850" height="30" fill="url(#header-left)"/>
+    <text x="525" y="237" class="section-header" text-anchor="middle">Key Findings</text>
+
+    <!-- Finding 1 -->
+    <circle cx="130" cy="295" r="6" fill="#2c5cda"/>
+    <text x="155" y="300" class="body-text">
+      <tspan x="155" dy="0">Pooled data: ~46,000 adults (China &amp; USA)</tspan>
+    </text>
+
+    <!-- Finding 2 -->
+    <circle cx="130" cy="345" r="6" fill="#2c5cda"/>
+    <text x="155" y="350" class="body-text">
+      <tspan x="155" dy="0">Algorithm: Gradient Boosting Decision Tree</tspan>
+      <tspan x="155" dy="28">(best performance)</tspan>
+    </text>
+
+    <!-- Finding 3 -->
+    <rect x="120" y="395" width="810" height="130" fill="#e3ecfc" stroke="#2c5cda" stroke-width="2" rx="8"/>
+    <text x="140" y="425" class="body-text" font-weight="600">SHAP Top Predictors:</text>
+
+    <circle cx="140" cy="460" r="5" fill="#cc1a1b"/>
+    <text x="160" y="465" class="highlight-text">Sedentary behaviour</text>
+    <text x="430" y="465" class="body-text">(strongest)</text>
+
+    <circle cx="140" cy="490" r="5" fill="#d68910"/>
+    <text x="160" y="495" class="highlight-text">Alcohol consumption</text>
+
+    <circle cx="140" cy="520" r="5" fill="#20a3fc"/>
+    <text x="160" y="525" class="highlight-text">Protein intake</text>
+
+    <!-- Finding 4 -->
+    <text x="130" y="575" class="body-text" font-weight="600">Thresholds Identified:</text>
+
+    <circle cx="130" cy="610" r="5" fill="#2c5cda"/>
+    <text x="155" y="615" class="body-text">
+      <tspan x="155" dy="0">&gt;28-35 hrs/week sedentary time</tspan>
+    </text>
+
+    <circle cx="130" cy="645" r="5" fill="#2c5cda"/>
+    <text x="155" y="650" class="body-text">
+      <tspan x="155" dy="0">&gt;7 alcohol cups/week</tspan>
+    </text>
+
+    <circle cx="130" cy="680" r="5" fill="#2c5cda"/>
+    <text x="155" y="685" class="body-text">
+      <tspan x="155" dy="0">&gt;80 g/day protein intake</tspan>
+    </text>
+
+    <!-- Note -->
+    <rect x="120" y="715" width="810" height="135" fill="#f4f4f4" rx="8"/>
+    <text x="140" y="745" class="body-text" font-size="18" fill="#666666">
+      <tspan x="140" dy="0">Study demonstrates SHAP's ability to identify</tspan>
+      <tspan x="140" dy="26">actionable thresholds from complex lifestyle data.</tspan>
+      <tspan x="140" dy="26">Gradient Boosting + SHAP revealed non-linear</tspan>
+      <tspan x="140" dy="26">exposure-response relationships across populations.</tspan>
+    </text>
+  </g>
+
+  <!-- Right Column: Relevance -->
+  <g id="right-column">
+    <rect x="970" y="190" width="850" height="680" fill="#ffffff" stroke="#e67e22" stroke-width="3" rx="12"/>
+
+    <rect x="970" y="190" width="850" height="60" fill="url(#header-right)" rx="12"/>
+    <rect x="970" y="220" width="850" height="30" fill="url(#header-right)"/>
+    <text x="1395" y="237" class="section-header" text-anchor="middle">Relevance to Your Work</text>
+
+    <!-- Relevance 1 -->
+    <text x="1000" y="295" class="body-text" font-weight="600" fill="#e67e22">
+      Multi-Exposure Screening
+    </text>
+
+    <circle cx="1000" cy="330" r="5" fill="#e67e22"/>
+    <text x="1025" y="335" class="body-text">
+      <tspan x="1025" dy="0">SHAP ranked many lifestyle exposures—</tspan>
+      <tspan x="1025" dy="28">analogous to your climate/land-use/pollutant</tspan>
+      <tspan x="1025" dy="28">variables</tspan>
+    </text>
+
+    <circle cx="1000" cy="415" r="5" fill="#e67e22"/>
+    <text x="1025" y="420" class="body-text">
+      <tspan x="1025" dy="0">Demonstrates feature screening before deep</tspan>
+      <tspan x="1025" dy="28">modelling (DLNM, random effects)</tspan>
+    </text>
+
+    <!-- Relevance 2 -->
+    <text x="1000" y="490" class="body-text" font-weight="600" fill="#e67e22">
+      Actionable Thresholds
+    </text>
+
+    <circle cx="1000" cy="525" r="5" fill="#e67e22"/>
+    <text x="1025" y="530" class="body-text">
+      <tspan x="1025" dy="0">SHAP identified specific exposure thresholds</tspan>
+      <tspan x="1025" dy="28">(&gt;28 hrs sedentary, &gt;7 drinks/week)</tspan>
+    </text>
+
+    <circle cx="1000" cy="585" r="5" fill="#e67e22"/>
+    <text x="1025" y="590" class="body-text">
+      <tspan x="1025" dy="0">Useful for climate-health interventions—</tspan>
+      <tspan x="1025" dy="28">identify critical temperature/humidity levels</tspan>
+    </text>
+
+    <!-- Relevance 3 -->
+    <text x="1000" y="655" class="body-text" font-weight="600" fill="#e67e22">
+      Cross-Population Validation
+    </text>
+
+    <circle cx="1000" cy="690" r="5" fill="#e67e22"/>
+    <text x="1025" y="695" class="body-text">
+      <tspan x="1025" dy="0">Pooled China + USA data shows generalizability</tspan>
+    </text>
+
+    <circle cx="1000" cy="730" r="5" fill="#e67e22"/>
+    <text x="1025" y="735" class="body-text">
+      <tspan x="1025" dy="0">Relevant for multi-site climate-health studies</tspan>
+    </text>
+
+    <!-- Application -->
+    <rect x="990" y="770" width="810" height="80" fill="#fde4cd" stroke="#e67e22" stroke-width="2" rx="8"/>
+    <text x="1010" y="800" class="body-text" font-size="18" font-weight="600" fill="#7d3f0e">
+      💡 Your Pipeline Application
+    </text>
+    <text x="1010" y="828" class="body-text" font-size="17" fill="#7d3f0e">
+      <tspan x="1010" dy="0">Use SHAP to screen 50+ climate/exposure metrics →</tspan>
+      <tspan x="1010" dy="24">identify top 5-10 for detailed DLNM analysis</tspan>
+    </text>
+  </g>
+
+  <!-- Citation -->
+  <g id="citation">
+    <rect x="100" y="895" width="1720" height="85" fill="#f0f0f0" stroke="#d0d0d0" stroke-width="2" rx="8"/>
+    <text x="120" y="925" class="citation" font-weight="600" fill="#2c5cda">Citation:</text>
+    <text x="120" y="950" class="citation">
+      "Using interpretable machine learning methods to identify the relative importance of lifestyle factors
+    </text>
+    <text x="120" y="970" class="citation">
+      for overweight and obesity in adults: pooled evidence from CHNS and NHANES"
+    </text>
+  </g>
+
+  <!-- Branding -->
+  <g id="branding">
+    <text x="1800" y="1045" class="branding-text" text-anchor="end">
+      Wits Planetary Health Research
+    </text>
+  </g>
+
+</svg>

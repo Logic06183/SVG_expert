@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg"
+     viewBox="0 0 1920 1080"
+     width="1920"
+     height="1080">
+
+  <defs>
+    <linearGradient id="header-gradient" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#2c5cda;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#00bec5;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+
+  <!-- Background -->
+  <g id="background">
+    <rect width="1920" height="1080" fill="#ffffff"/>
+    <rect x="0" y="0" width="1920" height="8" fill="url(#header-gradient)"/>
+  </g>
+
+  <!-- Title -->
+  <g id="title">
+    <text x="960" y="100" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="64" letter-spacing="-1.28" font-weight="700" fill="#2c5cda">
+      Traditional Statistical Approaches
+    </text>
+    <line x1="200" y1="130" x2="1720" y2="130" stroke="#e0e0e0" stroke-width="2"/>
+  </g>
+
+  <!-- Content -->
+  <g id="content">
+    <!-- DLNM Section -->
+    <rect x="100" y="170" width="850" height="790" fill="#ffffff" stroke="#2c5cda" stroke-width="3" rx="12"/>
+
+    <rect x="100" y="170" width="850" height="60" fill="url(#header-gradient)" rx="12"/>
+    <rect x="100" y="200" width="850" height="30" fill="url(#header-gradient)"/>
+    <text x="525" y="217" text-anchor="middle" fill="#1a1a1a" font-family="Inter, Arial, sans-serif" font-size="36" font-weight="700">
+      DLNM
+    </text>
+
+    <text x="130" y="280" font-family="Inter, Arial, sans-serif" font-size="28" font-weight="700" fill="#2c5cda">Distributed Lag Nonlinear Models</text>
+
+    <circle cx="130" cy="328" r="6" fill="#2c5cda"/>
+    <text x="155" y="333" font-family="Inter, Arial, sans-serif" font-size="24" font-weight="400" fill="#424242">
+      <tspan x="155" dy="0">Designed for exposure-lag-response</tspan>
+      <tspan x="155" dy="32">relationships in time-series data</tspan>
+    </text>
+
+    <circle cx="130" cy="398" r="6" fill="#2c5cda"/>
+    <text x="155" y="403" font-family="Inter, Arial, sans-serif" font-size="24" font-weight="400" fill="#424242">
+      <tspan x="155" dy="0">Cross-basis function combines</tspan>
+      <tspan x="155" dy="32">exposure-response + lag-response</tspan>
+    </text>
+
+    <!-- DLNM Formula -->
+    <rect x="120" y="460" width="810" height="80" fill="#e3ecfc" stroke="#2c5cda" stroke-width="2" rx="8"/>
+    <text x="525" y="495" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="20" font-weight="400" fill="#2c5cda" font-style="italic">
+      log(μₜ) = α + Σ f(xₜ₋ₗ, ℓ) + ...
+    </text>
+    <text x="525" y="525" text-anchor="middle" font-size="24" fill="#424242" font-family="Inter, Arial, sans-serif" font-weight="400">
+      Bi-dimensional surface: exposure × lag
+    </text>
+
+    <text x="130" y="585" font-weight="400" font-family="Inter, Arial, sans-serif" font-size="24" fill="#424242">Key Strengths:</text>
+
+    <circle cx="130" cy="623" r="5" fill="#00bec5"/>
+    <text x="155" y="628" font-family="Inter, Arial, sans-serif" font-size="24" font-weight="400" fill="#424242">
+      <tspan x="155" dy="0">Explicit lag structure (delays, cumulative</tspan>
+      <tspan x="155" dy="32">effects over time)</tspan>
+    </text>
+
+    <circle cx="130" cy="688" r="5" fill="#00bec5"/>
+    <text x="155" y="693" font-family="Inter, Arial, sans-serif" font-size="24" font-weight="400" fill="#424242">
+      <tspan x="155" dy="0">Non-linear exposure-response curves</tspan>
+    </text>
+
+    <circle cx="130" cy="728" r="5" fill="#00bec5"/>
+    <text x="155" y="733" font-family="Inter, Arial, sans-serif" font-size="24" font-weight="400" fill="#424242">
+      <tspan x="155" dy="0">Well-established in climate-health</tspan>
+      <tspan x="155" dy="32">epidemiology (temp-mortality, etc.)</tspan>
+    </text>
+
+    <circle cx="130" cy="793" r="5" fill="#00bec5"/>
+    <text x="155" y="798" font-family="Inter, Arial, sans-serif" font-size="24" font-weight="400" fill="#424242">
+      <tspan x="155" dy="0">Produces policy-relevant effect</tspan>
+      <tspan x="155" dy="32">estimates (RR, CI)</tspan>
+    </text>
+
+    <text x="130" y="883" font-size="24" fill="#424242" font-style="italic" font-family="Inter, Arial, sans-serif" font-weight="400">
+      <tspan x="130" dy="0">Neophytou et al. 2018, Am J Epidemiol;</tspan>
+      <tspan x="130" dy="24">Gasparrini et al. 2021, Environ Sci Pollut Res</tspan>
+    </text>
+
+    <!-- Random/Mixed Effects Section -->
+    <rect x="970" y="170" width="850" height="790" fill="#ffffff" stroke="#e67e22" stroke-width="3" rx="12"/>
+
+    <rect x="970" y="170" width="850" height="60" fill="#e67e22" rx="12"/>
+    <rect x="970" y="200" width="850" height="30" fill="#e67e22"/>
+    <text x="1395" y="217" text-anchor="middle" fill="#1a1a1a" font-family="Inter, Arial, sans-serif" font-size="36" font-weight="700">
+      Random/Mixed Effects
+    </text>
+
+    <text x="1000" y="280" fill="#2c5cda" font-family="Inter, Arial, sans-serif" font-size="28" font-weight="700">
+      Hierarchical & Spatial Models
+    </text>
+
+    <circle cx="1000" cy="328" r="6" fill="#e67e22"/>
+    <text x="1025" y="333" font-family="Inter, Arial, sans-serif" font-size="24" font-weight="400" fill="#424242">
+      <tspan x="1025" dy="0">Models hierarchical/clustered data</tspan>
+      <tspan x="1025" dy="32">(wards, regions, repeated measures)</tspan>
+    </text>
+
+    <circle cx="1000" cy="398" r="6" fill="#e67e22"/>
+    <text x="1025" y="403" font-family="Inter, Arial, sans-serif" font-size="24" font-weight="400" fill="#424242">
+      <tspan x="1025" dy="0">Random intercepts/slopes account for</tspan>
+      <tspan x="1025" dy="32">cluster-level variation</tspan>
+    </text>
+
+    <circle cx="1000" cy="468" r="6" fill="#e67e22"/>
+    <text x="1025" y="473" font-family="Inter, Arial, sans-serif" font-size="24" font-weight="400" fill="#424242">
+      <tspan x="1025" dy="0">Controls for correlated errors,</tspan>
+      <tspan x="1025" dy="32">spatial/temporal autocorrelation</tspan>
+    </text>
+
+    <text x="1000" y="553" font-weight="400" font-family="Inter, Arial, sans-serif" font-size="24" fill="#424242">Key Strengths:</text>
+
+    <circle cx="1000" cy="591" r="5" fill="#d68910"/>
+    <text x="1025" y="596" font-family="Inter, Arial, sans-serif" font-size="24" font-weight="400" fill="#424242">
+      <tspan x="1025" dy="0">Partitions within vs between-cluster</tspan>
+      <tspan x="1025" dy="32">variation (heterogeneity analysis)</tspan>
+    </text>
+
+    <circle cx="1000" cy="656" r="5" fill="#d68910"/>
+    <text x="1025" y="661" font-family="Inter, Arial, sans-serif" font-size="24" font-weight="400" fill="#424242">
+      <tspan x="1025" dy="0">Formal inference with CIs, p-values</tspan>
+    </text>
+
+    <circle cx="1000" cy="696" r="5" fill="#d68910"/>
+    <text x="1025" y="701" font-family="Inter, Arial, sans-serif" font-size="24" font-weight="400" fill="#424242">
+      <tspan x="1025" dy="0">Handles confounding, effect</tspan>
+      <tspan x="1025" dy="32">modification across groups</tspan>
+    </text>
+
+    <circle cx="1000" cy="761" r="5" fill="#d68910"/>
+    <text x="1025" y="766" font-family="Inter, Arial, sans-serif" font-size="24" font-weight="400" fill="#424242">
+      <tspan x="1025" dy="0">Interpretable for policymakers</tspan>
+      <tspan x="1025" dy="32">(region-specific effects)</tspan>
+    </text>
+
+    <rect x="990" y="820" width="810" height="120" fill="#fde4cd" stroke="#e67e22" stroke-width="2" rx="8"/>
+    <text x="1010" y="860" font-size="24" font-weight="400" fill="#424242" font-family="Inter, Arial, sans-serif">
+      <tspan x="1010" dy="0">Common Use: Spatial DLNMs combine both</tspan>
+      <tspan x="1010" dy="30">approaches—lag structure + random effects</tspan>
+      <tspan x="1010" dy="30">for region-specific temperature-health curves</tspan>
+    </text>
+  </g>
+
+  <!-- Branding -->
+  <g id="branding">
+    <text x="1800" y="1045" text-anchor="end" font-family="Inter, Arial, sans-serif" font-size="18" font-weight="400" fill="#666666">
+      Wits Planetary Health Research
+    </text>
+  </g>
+
+</svg>

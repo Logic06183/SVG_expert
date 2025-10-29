@@ -1,0 +1,248 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg"
+     viewBox="0 0 1920 1080"
+     width="1920"
+     height="1080">
+
+  <defs>
+    <linearGradient id="header-grad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#2c5cda;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#00bec5;stop-opacity:1" />
+    </linearGradient>
+
+    <!-- Gradient for feature value coloring (low to high) -->
+    <linearGradient id="value-gradient" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#3b4cc0;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#f7f7f7;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#b40426;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+
+  <!-- Background -->
+  <g id="background">
+    <rect width="1920" height="1080" fill="#ffffff"/>
+    <rect x="0" y="0" width="1920" height="6" fill="url(#header-grad)"/>
+  </g>
+
+  <!-- Title -->
+  <g id="title">
+    <text x="960" y="70"
+          text-anchor="middle"
+          font-family="Inter, Arial, sans-serif"
+          font-size="56"
+          font-weight="700"
+          fill="#1a1a1a"
+          letter-spacing="-1.12">
+      SHAP Feature Importance: CD4 Count Prediction
+    </text>
+    <text x="960" y="110"
+          text-anchor="middle"
+          font-family="Inter, Arial, sans-serif"
+          font-size="24"
+          font-weight="400"
+          fill="#666666">
+      Bee swarm plot showing impact of climate and socioeconomic features
+    </text>
+  </g>
+
+  <!-- Chart Area -->
+  <g id="chart">
+    <!-- Chart background -->
+    <rect x="150" y="160" width="1620" height="780" fill="#fafafa" stroke="#e0e0e0" stroke-width="1"/>
+
+    <!-- Y-axis labels (feature names) -->
+    <text x="460" y="245" text-anchor="end" font-family="Inter, Arial, sans-serif" font-size="20" font-weight="500" fill="#424242">
+      Maximum Temperature
+    </text>
+    <text x="460" y="330" text-anchor="end" font-family="Inter, Arial, sans-serif" font-size="20" font-weight="500" fill="#424242">
+      PM₂.₅ Concentration
+    </text>
+    <text x="460" y="415" text-anchor="end" font-family="Inter, Arial, sans-serif" font-size="20" font-weight="500" fill="#424242">
+      Rainfall (mm/month)
+    </text>
+    <text x="460" y="500" text-anchor="end" font-family="Inter, Arial, sans-serif" font-size="20" font-weight="500" fill="#424242">
+      NDVI (Vegetation Index)
+    </text>
+    <text x="460" y="585" text-anchor="end" font-family="Inter, Arial, sans-serif" font-size="20" font-weight="500" fill="#424242">
+      Household Income
+    </text>
+    <text x="460" y="670" text-anchor="end" font-family="Inter, Arial, sans-serif" font-size="20" font-weight="500" fill="#424242">
+      Education Level
+    </text>
+    <text x="460" y="755" text-anchor="end" font-family="Inter, Arial, sans-serif" font-size="20" font-weight="500" fill="#424242">
+      Healthcare Access
+    </text>
+    <text x="460" y="840" text-anchor="end" font-family="Inter, Arial, sans-serif" font-size="20" font-weight="500" fill="#424242">
+      Population Density
+    </text>
+
+    <!-- X-axis -->
+    <line x1="490" y1="870" x2="1720" y2="870" stroke="#424242" stroke-width="2"/>
+
+    <!-- X-axis ticks and labels -->
+    <line x1="490" y1="870" x2="490" y2="880" stroke="#424242" stroke-width="2"/>
+    <text x="490" y="905" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="18" font-weight="400" fill="#424242">-2</text>
+
+    <line x1="798" y1="870" x2="798" y2="880" stroke="#424242" stroke-width="2"/>
+    <text x="798" y="905" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="18" font-weight="400" fill="#424242">-1</text>
+
+    <line x1="1105" y1="870" x2="1105" y2="880" stroke="#424242" stroke-width="2"/>
+    <text x="1105" y="905" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="18" font-weight="400" fill="#424242">0</text>
+
+    <line x1="1413" y1="870" x2="1413" y2="880" stroke="#424242" stroke-width="2"/>
+    <text x="1413" y="905" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="18" font-weight="400" fill="#424242">1</text>
+
+    <line x1="1720" y1="870" x2="1720" y2="880" stroke="#424242" stroke-width="2"/>
+    <text x="1720" y="905" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="18" font-weight="400" fill="#424242">2</text>
+
+    <!-- X-axis label -->
+    <text x="1105" y="945" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="22" font-weight="600" fill="#1a1a1a">
+      SHAP value (impact on CD4 count)
+    </text>
+
+    <!-- Zero line -->
+    <line x1="1105" y1="200" x2="1105" y2="870" stroke="#999999" stroke-width="1" stroke-dasharray="5,5" opacity="0.5"/>
+
+    <!-- Bee swarm dots - Maximum Temperature (mostly positive impact) -->
+    <circle cx="1250" cy="235" r="6" fill="#b40426" opacity="0.6"/>
+    <circle cx="1280" cy="240" r="6" fill="#b40426" opacity="0.6"/>
+    <circle cx="1320" cy="238" r="6" fill="#d9534f" opacity="0.6"/>
+    <circle cx="1290" cy="245" r="6" fill="#b40426" opacity="0.6"/>
+    <circle cx="1310" cy="250" r="6" fill="#d9534f" opacity="0.6"/>
+    <circle cx="1260" cy="255" r="6" fill="#b40426" opacity="0.6"/>
+    <circle cx="1160" cy="245" r="6" fill="#7fb3d5" opacity="0.6"/>
+    <circle cx="1140" cy="240" r="6" fill="#7fb3d5" opacity="0.6"/>
+    <circle cx="1180" cy="250" r="6" fill="#9dc2e0" opacity="0.6"/>
+    <circle cx="1200" cy="235" r="6" fill="#9dc2e0" opacity="0.6"/>
+    <circle cx="1220" cy="255" r="6" fill="#c9d9e8" opacity="0.6"/>
+
+    <!-- PM2.5 (negative impact) -->
+    <circle cx="920" cy="320" r="6" fill="#b40426" opacity="0.6"/>
+    <circle cx="880" cy="325" r="6" fill="#b40426" opacity="0.6"/>
+    <circle cx="900" cy="335" r="6" fill="#d9534f" opacity="0.6"/>
+    <circle cx="860" cy="330" r="6" fill="#b40426" opacity="0.6"/>
+    <circle cx="940" cy="340" r="6" fill="#d9534f" opacity="0.6"/>
+    <circle cx="1020" cy="325" r="6" fill="#7fb3d5" opacity="0.6"/>
+    <circle cx="1040" cy="330" r="6" fill="#7fb3d5" opacity="0.6"/>
+    <circle cx="1000" cy="335" r="6" fill="#9dc2e0" opacity="0.6"/>
+    <circle cx="980" cy="340" r="6" fill="#9dc2e0" opacity="0.6"/>
+    <circle cx="960" cy="320" r="6" fill="#c9d9e8" opacity="0.6"/>
+
+    <!-- Rainfall (slight negative) -->
+    <circle cx="1080" cy="405" r="6" fill="#7fb3d5" opacity="0.6"/>
+    <circle cx="1060" cy="410" r="6" fill="#7fb3d5" opacity="0.6"/>
+    <circle cx="1040" cy="415" r="6" fill="#9dc2e0" opacity="0.6"/>
+    <circle cx="1020" cy="420" r="6" fill="#9dc2e0" opacity="0.6"/>
+    <circle cx="1100" cy="425" r="6" fill="#c9d9e8" opacity="0.6"/>
+    <circle cx="1140" cy="410" r="6" fill="#d9534f" opacity="0.6"/>
+    <circle cx="1160" cy="415" r="6" fill="#d9534f" opacity="0.6"/>
+    <circle cx="1120" cy="420" r="6" fill="#c9d9e8" opacity="0.6"/>
+
+    <!-- NDVI (positive impact) -->
+    <circle cx="1220" cy="490" r="6" fill="#3b7a3b" opacity="0.6"/>
+    <circle cx="1240" cy="495" r="6" fill="#3b7a3b" opacity="0.6"/>
+    <circle cx="1260" cy="500" r="6" fill="#5fa35f" opacity="0.6"/>
+    <circle cx="1280" cy="505" r="6" fill="#5fa35f" opacity="0.6"/>
+    <circle cx="1200" cy="510" r="6" fill="#7fb37f" opacity="0.6"/>
+    <circle cx="1180" cy="495" r="6" fill="#7fb37f" opacity="0.6"/>
+    <circle cx="1160" cy="500" r="6" fill="#9dc29d" opacity="0.6"/>
+    <circle cx="1140" cy="505" r="6" fill="#9dc29d" opacity="0.6"/>
+    <circle cx="1120" cy="490" r="6" fill="#c9d9c9" opacity="0.6"/>
+
+    <!-- Household Income (strong positive) -->
+    <circle cx="1320" cy="575" r="6" fill="#2c5cda" opacity="0.6"/>
+    <circle cx="1350" cy="580" r="6" fill="#2c5cda" opacity="0.6"/>
+    <circle cx="1380" cy="585" r="6" fill="#4a7ae0" opacity="0.6"/>
+    <circle cx="1310" cy="590" r="6" fill="#2c5cda" opacity="0.6"/>
+    <circle cx="1340" cy="595" r="6" fill="#4a7ae0" opacity="0.6"/>
+    <circle cx="1250" cy="580" r="6" fill="#7fb3d5" opacity="0.6"/>
+    <circle cx="1280" cy="585" r="6" fill="#7fb3d5" opacity="0.6"/>
+    <circle cx="1220" cy="590" r="6" fill="#9dc2e0" opacity="0.6"/>
+    <circle cx="1190" cy="575" r="6" fill="#9dc2e0" opacity="0.6"/>
+    <circle cx="1160" cy="595" r="6" fill="#c9d9e8" opacity="0.6"/>
+
+    <!-- Education Level (moderate positive) -->
+    <circle cx="1180" cy="660" r="6" fill="#2c5cda" opacity="0.6"/>
+    <circle cx="1200" cy="665" r="6" fill="#2c5cda" opacity="0.6"/>
+    <circle cx="1220" cy="670" r="6" fill="#4a7ae0" opacity="0.6"/>
+    <circle cx="1240" cy="675" r="6" fill="#4a7ae0" opacity="0.6"/>
+    <circle cx="1160" cy="680" r="6" fill="#7fb3d5" opacity="0.6"/>
+    <circle cx="1140" cy="665" r="6" fill="#7fb3d5" opacity="0.6"/>
+    <circle cx="1120" cy="670" r="6" fill="#9dc2e0" opacity="0.6"/>
+    <circle cx="1100" cy="675" r="6" fill="#9dc2e0" opacity="0.6"/>
+
+    <!-- Healthcare Access (strong positive) -->
+    <circle cx="1280" cy="745" r="6" fill="#00bec5" opacity="0.6"/>
+    <circle cx="1310" cy="750" r="6" fill="#00bec5" opacity="0.6"/>
+    <circle cx="1340" cy="755" r="6" fill="#20d9e0" opacity="0.6"/>
+    <circle cx="1250" cy="760" r="6" fill="#00bec5" opacity="0.6"/>
+    <circle cx="1370" cy="765" r="6" fill="#20d9e0" opacity="0.6"/>
+    <circle cx="1180" cy="750" r="6" fill="#7fb3d5" opacity="0.6"/>
+    <circle cx="1210" cy="755" r="6" fill="#7fb3d5" opacity="0.6"/>
+    <circle cx="1150" cy="760" r="6" fill="#9dc2e0" opacity="0.6"/>
+    <circle cx="1120" cy="745" r="6" fill="#9dc2e0" opacity="0.6"/>
+
+    <!-- Population Density (slight negative) -->
+    <circle cx="1060" cy="830" r="6" fill="#b40426" opacity="0.6"/>
+    <circle cx="1040" cy="835" r="6" fill="#b40426" opacity="0.6"/>
+    <circle cx="1020" cy="840" r="6" fill="#d9534f" opacity="0.6"/>
+    <circle cx="1000" cy="845" r="6" fill="#d9534f" opacity="0.6"/>
+    <circle cx="1080" cy="850" r="6" fill="#c9d9e8" opacity="0.6"/>
+    <circle cx="1120" cy="835" r="6" fill="#9dc2e0" opacity="0.6"/>
+    <circle cx="1140" cy="840" r="6" fill="#9dc2e0" opacity="0.6"/>
+    <circle cx="1100" cy="845" r="6" fill="#c9d9e8" opacity="0.6"/>
+
+  </g>
+
+  <!-- Legend -->
+  <g id="legend">
+    <rect x="1550" y="180" width="200" height="120" fill="#ffffff" stroke="#cccccc" stroke-width="1" rx="6"/>
+    <text x="1650" y="210" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="16" font-weight="600" fill="#1a1a1a">
+      Feature Value
+    </text>
+
+    <!-- Gradient bar -->
+    <defs>
+      <linearGradient id="legend-grad" x1="0%" y1="0%" x2="100%" y2="0%">
+        <stop offset="0%" style="stop-color:#3b4cc0;stop-opacity:1" />
+        <stop offset="50%" style="stop-color:#f7f7f7;stop-opacity:1" />
+        <stop offset="100%" style="stop-color:#b40426;stop-opacity:1" />
+      </linearGradient>
+    </defs>
+    <rect x="1570" y="230" width="160" height="20" fill="url(#legend-grad)" rx="3"/>
+
+    <text x="1570" y="270" text-anchor="start" font-family="Inter, Arial, sans-serif" font-size="14" font-weight="400" fill="#666666">
+      Low
+    </text>
+    <text x="1730" y="270" text-anchor="end" font-family="Inter, Arial, sans-serif" font-size="14" font-weight="400" fill="#666666">
+      High
+    </text>
+  </g>
+
+  <!-- Interpretation box -->
+  <g id="interpretation">
+    <rect x="150" y="960" width="1620" height="90" fill="#e3ecfc" rx="8"/>
+    <text x="170" y="990" font-family="Inter, Arial, sans-serif" font-size="18" font-weight="600" fill="#2c5cda">
+      Key Insight:
+    </text>
+    <text x="170" y="1020" font-family="Inter, Arial, sans-serif" font-size="16" font-weight="400" fill="#424242">
+      Household income, healthcare access, and maximum temperature are the strongest predictors of CD4 count.
+    </text>
+    <text x="170" y="1040" font-family="Inter, Arial, sans-serif" font-size="16" font-weight="400" fill="#424242">
+      Higher PM₂.₅ concentrations show negative impact, while vegetation (NDVI) shows protective effects.
+    </text>
+  </g>
+
+  <!-- Branding -->
+  <g id="branding">
+    <text x="1850" y="1060"
+          text-anchor="end"
+          font-family="Inter, Arial, sans-serif"
+          font-size="16"
+          font-weight="400"
+          fill="#999999">
+      Wits Planetary Health Research
+    </text>
+  </g>
+
+</svg>

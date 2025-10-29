@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg"
+     viewBox="0 0 1920 1080"
+     width="1920"
+     height="1080">
+
+  <defs>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap');
+
+      .slide-title {
+        font-family: 'Inter', sans-serif;
+        font-size: 64px;
+        font-weight: 700;
+        fill: #2c5cda;
+        letter-spacing: -0.02em;
+      }
+      .axis-label {
+        font-family: 'Inter', sans-serif;
+        font-size: 28px;
+        font-weight: 500;
+        fill: #424242;
+      }
+      .data-label {
+        font-family: 'Inter', sans-serif;
+        font-size: 32px;
+        font-weight: 600;
+        fill: #1a1a1a;
+      }
+      .caption {
+        font-family: 'Inter', sans-serif;
+        font-size: 28px;
+        font-weight: 400;
+        fill: #666666;
+      }
+      .gridline {
+        stroke: #e0e0e0;
+        stroke-width: 1;
+      }
+      .accent { fill: #2c5cda; }
+      .teal { fill: #00bec5; }
+      .blue { fill: #20a3fc; }
+      .red { fill: #cc1a1b; }
+      .branding-text {
+        font-family: 'Inter', sans-serif;
+        font-size: 18px;
+        font-weight: 400;
+        fill: #666666;
+      }
+    </style>
+  </defs>
+
+  <!-- Background -->
+  <g id="background">
+    <rect width="1920" height="1080" fill="#ffffff"/>
+  </g>
+
+  <!-- Content -->
+  <g id="content">
+    <!-- Title -->
+    <text x="100" y="120" class="slide-title">
+      Temperature Anomalies by Region
+    </text>
+
+    <!-- Chart Area -->
+    <g id="chart" transform="translate(150, 220)">
+      <!-- Gridlines (horizontal) -->
+      <line x1="0" y1="0" x2="1620" y2="0" class="gridline"/>
+      <line x1="0" y1="140" x2="1620" y2="140" class="gridline"/>
+      <line x1="0" y1="280" x2="1620" y2="280" class="gridline"/>
+      <line x1="0" y1="420" x2="1620" y2="420" class="gridline"/>
+      <line x1="0" y1="560" x2="1620" y2="560" class="gridline"/>
+      <line x1="0" y1="700" x2="1620" y2="700" class="gridline"/>
+
+      <!-- Y-axis labels -->
+      <text x="-20" y="705" class="axis-label" text-anchor="end">0°C</text>
+      <text x="-20" y="565" class="axis-label" text-anchor="end">0.5°C</text>
+      <text x="-20" y="425" class="axis-label" text-anchor="end">1.0°C</text>
+      <text x="-20" y="285" class="axis-label" text-anchor="end">1.5°C</text>
+      <text x="-20" y="145" class="axis-label" text-anchor="end">2.0°C</text>
+      <text x="-20" y="5" class="axis-label" text-anchor="end">2.5°C</text>
+
+      <!-- Bar groups -->
+      <g id="bar-group-1">
+        <rect x="50" y="280" width="180" height="420" class="accent" rx="8"/>
+        <text x="140" y="260" class="data-label" text-anchor="middle">1.5°C</text>
+        <text x="140" y="750" class="axis-label" text-anchor="middle">Africa</text>
+      </g>
+
+      <g id="bar-group-2">
+        <rect x="370" y="140" width="180" height="560" class="teal" rx="8"/>
+        <text x="460" y="120" class="data-label" text-anchor="middle">2.0°C</text>
+        <text x="460" y="750" class="axis-label" text-anchor="middle">Asia</text>
+      </g>
+
+      <g id="bar-group-3">
+        <rect x="690" y="420" width="180" height="280" class="blue" rx="8"/>
+        <text x="780" y="400" class="data-label" text-anchor="middle">1.0°C</text>
+        <text x="780" y="750" class="axis-label" text-anchor="middle">Europe</text>
+      </g>
+
+      <g id="bar-group-4">
+        <rect x="1010" y="196" width="180" height="504" class="red" rx="8"/>
+        <text x="1100" y="176" class="data-label" text-anchor="middle">1.8°C</text>
+        <text x="1100" y="750" class="axis-label" text-anchor="middle">Americas</text>
+      </g>
+
+      <g id="bar-group-5">
+        <rect x="1330" y="350" width="180" height="350" class="accent" opacity="0.7" rx="8"/>
+        <text x="1420" y="330" class="data-label" text-anchor="middle">1.25°C</text>
+        <text x="1420" y="750" class="axis-label" text-anchor="middle">Oceania</text>
+      </g>
+    </g>
+
+    <!-- Key insight/caption -->
+    <text x="960" y="1000" class="caption" text-anchor="middle">
+      Data source: Global Climate Assessment 2024 | All regions show warming above pre-industrial baseline
+    </text>
+  </g>
+
+  <!-- Branding -->
+  <g id="branding">
+    <text x="1820" y="1040" class="branding-text" text-anchor="end">
+      Wits Planetary Health Research
+    </text>
+  </g>
+
+</svg>

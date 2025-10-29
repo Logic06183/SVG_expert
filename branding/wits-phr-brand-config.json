@@ -1,0 +1,221 @@
+{
+  "organization": {
+    "name": "Wits Planetary Health Research",
+    "shortName": "Wits PHR",
+    "parentInstitution": "University of the Witwatersrand",
+    "location": "Johannesburg, South Africa",
+    "website": "https://witsphr.org"
+  },
+  "colors": {
+    "primary": {
+      "navy": {
+        "hex": "#2c5cda",
+        "rgb": "44, 92, 218",
+        "usage": "Primary actions, headers, emphasis, key messages"
+      },
+      "teal": {
+        "hex": "#00bec5",
+        "rgb": "0, 190, 197",
+        "usage": "Secondary accent, data visualization, supporting elements"
+      },
+      "blue": {
+        "hex": "#20a3fc",
+        "rgb": "32, 163, 252",
+        "usage": "Tertiary accent, highlights, interactive elements"
+      },
+      "red": {
+        "hex": "#cc1a1b",
+        "rgb": "204, 26, 27",
+        "usage": "Critical information, alerts, key findings"
+      }
+    },
+    "neutrals": {
+      "backgroundLight": {
+        "hex": "#f4f4f4",
+        "rgb": "244, 244, 244",
+        "usage": "Slide backgrounds, light sections, panels"
+      },
+      "white": {
+        "hex": "#ffffff",
+        "rgb": "255, 255, 255",
+        "usage": "Primary canvas, clean backgrounds"
+      },
+      "textDark": {
+        "hex": "#424242",
+        "rgb": "66, 66, 66",
+        "usage": "Body text, descriptions, secondary information"
+      },
+      "textBlack": {
+        "hex": "#1a1a1a",
+        "rgb": "26, 26, 26",
+        "usage": "Headlines, important text, primary messages"
+      },
+      "textGray": {
+        "hex": "#666666",
+        "rgb": "102, 102, 102",
+        "usage": "Captions, labels, metadata"
+      }
+    },
+    "witsUniversity": {
+      "oxfordBlue": {
+        "hex": "#2d3748",
+        "rgb": "45, 55, 72",
+        "usage": "Formal presentations, institutional branding"
+      },
+      "astronautBlue": {
+        "hex": "#003b5b",
+        "rgb": "0, 59, 91",
+        "usage": "Dark themes, formal documents"
+      },
+      "cornflowerBlue": {
+        "hex": "#55a1ed",
+        "rgb": "85, 161, 237",
+        "usage": "Light accents, supporting colors"
+      }
+    },
+    "dataVisualization": {
+      "sequential": [
+        "#e3ecfc",
+        "#b8d4f8",
+        "#8abbe8",
+        "#5c9ed4",
+        "#2c5cda"
+      ],
+      "categorical": [
+        "#2c5cda",
+        "#00bec5",
+        "#20a3fc",
+        "#cc1a1b",
+        "#55a1ed"
+      ],
+      "diverging": {
+        "coolToWarm": [
+          "#2c5cda",
+          "#5c9ed4",
+          "#8abbe8",
+          "#f4a582",
+          "#cc1a1b"
+        ],
+        "navyToTeal": [
+          "#2c5cda",
+          "#2680d0",
+          "#20a3fc",
+          "#00b8c5",
+          "#00bec5"
+        ]
+      }
+    }
+  },
+  "typography": {
+    "primaryFonts": [
+      {
+        "name": "Inter",
+        "weights": [400, 500, 600, 700],
+        "usage": "Body text, data labels, captions",
+        "url": "https://fonts.google.com/specimen/Inter",
+        "import": "https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+      },
+      {
+        "name": "Roboto",
+        "weights": [400, 500, 700],
+        "usage": "Headers, subheaders, emphasis",
+        "url": "https://fonts.google.com/specimen/Roboto",
+        "import": "https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap"
+      }
+    ],
+    "fallbackFonts": ["Arial", "Helvetica", "sans-serif"],
+    "sizeHierarchy": {
+      "slide_1920x1080": {
+        "title": "80-120px",
+        "subtitle": "48-64px",
+        "sectionHeader": "56-72px",
+        "bodyText": "32-40px",
+        "captions": "24-28px",
+        "labels": "28-32px"
+      }
+    },
+    "lineHeight": {
+      "titles": "1.1-1.2",
+      "body": "1.4-1.6",
+      "captions": "1.3-1.5"
+    },
+    "letterSpacing": {
+      "titles": "-0.02em",
+      "body": "0",
+      "captions": "0.01em"
+    }
+  },
+  "layout": {
+    "slideFormat": {
+      "standard": {
+        "width": 1920,
+        "height": 1080,
+        "aspectRatio": "16:9"
+      }
+    },
+    "margins": {
+      "safe": {
+        "all": "80-100px",
+        "description": "Content safety margins from all edges"
+      }
+    },
+    "grid": {
+      "columns": [12, 24],
+      "gutters": "40-60px"
+    },
+    "whitespace": {
+      "target": "40-60%",
+      "principle": "Embrace generous whitespace, never crowd content"
+    }
+  },
+  "logo": {
+    "placement": {
+      "preferred": ["bottom-right", "top-right"],
+      "margins": "40-60px from edges"
+    },
+    "sizing": {
+      "width": "120-180px",
+      "maintainAspectRatio": true
+    },
+    "variants": {
+      "dark": {
+        "filename": "logo-dark.png",
+        "usage": "Light backgrounds"
+      },
+      "light": {
+        "filename": "logo-light-bordered.png",
+        "usage": "Dark backgrounds"
+      }
+    }
+  },
+  "accessibility": {
+    "colorContrast": {
+      "standard": "WCAG AA minimum",
+      "textOnBackground": {
+        "darkOnLight": {
+          "text": "#1a1a1a",
+          "background": "#ffffff",
+          "ratio": "16.5:1"
+        },
+        "lightOnDark": {
+          "text": "#ffffff",
+          "background": "#1a1a1a",
+          "ratio": "16.5:1"
+        }
+      }
+    },
+    "dataVisualization": {
+      "colorBlindSafe": true,
+      "patternFills": "Use as alternative to color",
+      "directLabeling": "Prefer over legend-only"
+    }
+  },
+  "designPrinciples": [
+    "Clarity over decoration",
+    "Data-driven storytelling",
+    "Professional and accessible",
+    "Scientific rigor with visual appeal",
+    "Consistent brand presence",
+    "Figma-editable by default"
+  ]
+}

@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg"
+     viewBox="0 0 1920 1080"
+     width="1920"
+     height="1080">
+
+  <defs>
+    <linearGradient id="header-left" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#2c5cda;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#00bec5;stop-opacity:1" />
+    </linearGradient>
+
+    <linearGradient id="header-right" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#e67e22;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#d68910;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+
+  <!-- Background -->
+  <g id="background">
+    <rect width="1920" height="1080" fill="#ffffff"/>
+    <rect x="0" y="0" width="1920" height="8" fill="url(#header-left)"/>
+  </g>
+
+  <!-- Title -->
+  <g id="title">
+    <text x="960" y="100" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="64" letter-spacing="-1.28" font-weight="700" fill="#2c5cda">
+      Comparative Analysis
+    </text>
+    <line x1="200" y1="130" x2="1720" y2="130" stroke="#e0e0e0" stroke-width="2"/>
+  </g>
+
+  <!-- Left Column: SHAP/ML -->
+  <g id="left-column">
+    <rect x="100" y="170" width="850" height="870" fill="#ffffff" stroke="#2c5cda" stroke-width="3" rx="12"/>
+
+    <rect x="100" y="170" width="850" height="55" fill="url(#header-left)" rx="12"/>
+    <rect x="100" y="195" width="850" height="30" fill="url(#header-left)"/>
+    <text x="525" y="213" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="28" font-weight="700" fill="#ffffff">
+      SHAP / Machine Learning
+    </text>
+
+    <!-- Advantages -->
+    <text x="130" y="270" font-weight="400" fill="#424242" font-family="Inter, Arial, sans-serif" font-size="20">✓ Advantages</text>
+
+    <text x="150" y="310" font-family="Inter, Arial, sans-serif" font-size="20" font-weight="500" fill="#2c5cda">
+      High-dimensional feature spaces
+    </text>
+    <text x="150" y="338" font-size="20" font-family="Inter, Arial, sans-serif" font-weight="400" fill="#424242">
+      Handles many exposures, non-linearities, interactions
+    </text>
+
+    <text x="150" y="380" font-family="Inter, Arial, sans-serif" font-size="20" font-weight="500" fill="#2c5cda">
+      Instance-level interpretations
+    </text>
+    <text x="150" y="408" font-size="20" font-family="Inter, Arial, sans-serif" font-weight="400" fill="#424242">
+      See how contributions vary by case
+    </text>
+
+    <text x="150" y="450" font-family="Inter, Arial, sans-serif" font-size="20" font-weight="500" fill="#2c5cda">
+      Model-agnostic flexibility
+    </text>
+    <text x="150" y="478" font-size="20" font-family="Inter, Arial, sans-serif" font-weight="400" fill="#424242">
+      Works with GBMs, Random Forest, Neural Networks
+    </text>
+
+    <text x="150" y="520" font-family="Inter, Arial, sans-serif" font-size="20" font-weight="500" fill="#2c5cda">
+      Efficient feature screening
+    </text>
+    <text x="150" y="548" font-size="20" font-family="Inter, Arial, sans-serif" font-weight="400" fill="#424242">
+      Rapidly assess 50+ climate/socio-economic metrics
+    </text>
+
+    <!-- Disadvantages -->
+    <text x="130" y="610" font-weight="400" fill="#424242" font-family="Inter, Arial, sans-serif" font-size="20">✗ Disadvantages</text>
+
+    <text x="150" y="650" font-family="Inter, Arial, sans-serif" font-size="20" font-weight="500" fill="#cc1a1b">
+      Attribution ≠ Causation
+    </text>
+    <text x="150" y="678" font-size="20" font-family="Inter, Arial, sans-serif" font-weight="400" fill="#424242">
+      Explains model predictions, not causal mechanisms
+    </text>
+
+    <text x="150" y="720" font-family="Inter, Arial, sans-serif" font-size="20" font-weight="500" fill="#cc1a1b">
+      Correlated features issue
+    </text>
+    <text x="150" y="748" font-size="20" font-family="Inter, Arial, sans-serif" font-weight="400" fill="#424242">
+      Can distort importance rankings among correlated
+    </text>
+    <text x="150" y="773" font-size="20" font-family="Inter, Arial, sans-serif" font-weight="400" fill="#424242">
+      exposures (temp, heat index, humidity)
+    </text>
+
+    <text x="150" y="815" font-family="Inter, Arial, sans-serif" font-size="20" font-weight="500" fill="#cc1a1b">
+      Computational demands
+    </text>
+    <text x="150" y="843" font-size="20" font-family="Inter, Arial, sans-serif" font-weight="400" fill="#424242">
+      Expensive in very large feature spaces
+    </text>
+
+    <text x="150" y="885" font-family="Inter, Arial, sans-serif" font-size="20" font-weight="500" fill="#cc1a1b">
+      No inherent lag structure
+    </text>
+    <text x="150" y="913" font-size="20" font-family="Inter, Arial, sans-serif" font-weight="400" fill="#424242">
+      Unless explicitly built into model features
+    </text>
+
+    <text x="130" y="975" font-size="20" fill="#424242" font-style="italic" font-family="Inter, Arial, sans-serif" font-weight="400">
+      <tspan x="130" dy="0">Lundberg &amp; Lee 2017; Molnar 2022;</tspan>
+      <tspan x="130" dy="20">Kumar et al. 2020</tspan>
+    </text>
+  </g>
+
+  <!-- Right Column: DLNM/Random Effects -->
+  <g id="right-column">
+    <rect x="970" y="170" width="850" height="870" fill="#ffffff" stroke="#e67e22" stroke-width="3" rx="12"/>
+
+    <rect x="970" y="170" width="850" height="55" fill="url(#header-right)" rx="12"/>
+    <rect x="970" y="195" width="850" height="30" fill="url(#header-right)"/>
+    <text x="1395" y="213" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="28" font-weight="700" fill="#ffffff">
+      DLNM / Random Effects
+    </text>
+
+    <!-- Advantages -->
+    <text x="1000" y="270" font-weight="400" fill="#424242" font-family="Inter, Arial, sans-serif" font-size="20">✓ Advantages</text>
+
+    <text x="1020" y="310" font-family="Inter, Arial, sans-serif" font-size="20" font-weight="500" fill="#2c5cda">
+      Designed for causal inference
+    </text>
+    <text x="1020" y="338" font-size="20" font-family="Inter, Arial, sans-serif" font-weight="400" fill="#424242">
+      Formal effect estimates, lags, confidence intervals
+    </text>
+
+    <text x="1020" y="380" font-family="Inter, Arial, sans-serif" font-size="20" font-weight="500" fill="#2c5cda">
+      Temporal/spatial structure
+    </text>
+    <text x="1020" y="408" font-size="20" font-family="Inter, Arial, sans-serif" font-weight="400" fill="#424242">
+      Handles correlation, cluster variation explicitly
+    </text>
+
+    <text x="1020" y="450" font-family="Inter, Arial, sans-serif" font-size="20" font-weight="500" fill="#2c5cda">
+      Policy-relevant metrics
+    </text>
+    <text x="1020" y="478" font-size="20" font-family="Inter, Arial, sans-serif" font-weight="400" fill="#424242">
+      RR per exposure unit, attributable fraction
+    </text>
+
+    <text x="1020" y="520" font-family="Inter, Arial, sans-serif" font-size="20" font-weight="500" fill="#2c5cda">
+      Established in climate-health
+    </text>
+    <text x="1020" y="548" font-size="20" font-family="Inter, Arial, sans-serif" font-weight="400" fill="#424242">
+      Strong precedence in temperature-mortality literature
+    </text>
+
+    <!-- Disadvantages -->
+    <text x="1000" y="610" font-weight="400" fill="#424242" font-family="Inter, Arial, sans-serif" font-size="20">✗ Disadvantages</text>
+
+    <text x="1020" y="650" font-family="Inter, Arial, sans-serif" font-size="20" font-weight="500" fill="#cc1a1b">
+      Limited high-dimensional capacity
+    </text>
+    <text x="1020" y="678" font-size="20" font-family="Inter, Arial, sans-serif" font-weight="400" fill="#424242">
+      Not optimal for 50+ exposures without pre-selection
+    </text>
+
+    <text x="1020" y="720" font-family="Inter, Arial, sans-serif" font-size="20" font-weight="500" fill="#cc1a1b">
+      A priori specification required
+    </text>
+    <text x="1020" y="748" font-size="20" font-family="Inter, Arial, sans-serif" font-weight="400" fill="#424242">
+      Must choose basis functions, degrees of freedom,
+    </text>
+    <text x="1020" y="773" font-size="20" font-family="Inter, Arial, sans-serif" font-weight="400" fill="#424242">
+      lag length before model fitting
+    </text>
+
+    <text x="1020" y="815" font-family="Inter, Arial, sans-serif" font-size="20" font-weight="500" fill="#cc1a1b">
+      May miss complex interactions
+    </text>
+    <text x="1020" y="843" font-size="20" font-family="Inter, Arial, sans-serif" font-weight="400" fill="#424242">
+      Unless explicitly specified; ML discovers patterns
+    </text>
+
+    <text x="1020" y="885" font-family="Inter, Arial, sans-serif" font-size="20" font-weight="500" fill="#cc1a1b">
+      Computational intensity
+    </text>
+    <text x="1020" y="913" font-size="20" font-family="Inter, Arial, sans-serif" font-weight="400" fill="#424242">
+      Spatial DLNM, Bayesian random effects can be heavy
+    </text>
+
+    <text x="1000" y="975" font-size="20" fill="#424242" font-style="italic" font-family="Inter, Arial, sans-serif" font-weight="400">
+      <tspan x="1000" dy="0">Gasparrini 2011; Neophytou et al. 2018;</tspan>
+      <tspan x="1000" dy="20">Bhaskaran et al. 2013</tspan>
+    </text>
+  </g>
+
+  <!-- Branding -->
+  <g id="branding">
+    <text x="1800" y="1060" text-anchor="end" font-family="Inter, Arial, sans-serif" font-size="18" font-weight="400" fill="#666666">
+      Wits Planetary Health Research
+    </text>
+  </g>
+
+</svg>

@@ -1,0 +1,341 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg"
+     viewBox="0 0 1920 1080"
+     width="1920"
+     height="1080">
+
+  <defs>
+    <linearGradient id="header-grad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#2c5cda;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#00bec5;stop-opacity:1" />
+    </linearGradient>
+
+    <!-- Heat map gradient (blue-white-red) -->
+    <linearGradient id="heatmap-grad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#67001f;stop-opacity:1" />
+      <stop offset="25%" style="stop-color:#d6604d;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#f7f7f7;stop-opacity:1" />
+      <stop offset="75%" style="stop-color:#4393c3;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#053061;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+
+  <!-- Background -->
+  <g id="background">
+    <rect width="1920" height="1080" fill="#ffffff"/>
+    <rect x="0" y="0" width="1920" height="6" fill="url(#header-grad)"/>
+  </g>
+
+  <!-- Title -->
+  <g id="title">
+    <text x="960" y="70"
+          text-anchor="middle"
+          font-family="Inter, Arial, sans-serif"
+          font-size="56"
+          font-weight="700"
+          fill="#1a1a1a"
+          letter-spacing="-1.12">
+      DLNM: Temperature Lag-Response for CD4 Count
+    </text>
+    <text x="960" y="110"
+          text-anchor="middle"
+          font-family="Inter, Arial, sans-serif"
+          font-size="24"
+          font-weight="400"
+          fill="#666666">
+      Distributed Lag Non-Linear Model showing cumulative heat effects over 14 days
+    </text>
+  </g>
+
+  <!-- Main heatmap: 3D surface visualization -->
+  <g id="heatmap">
+    <rect x="100" y="160" width="880" height="650" fill="#fafafa" stroke="#e0e0e0" stroke-width="1"/>
+
+    <!-- Title -->
+    <text x="540" y="195" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="22" font-weight="600" fill="#1a1a1a">
+      Lag-Response Surface
+    </text>
+
+    <!-- Create heatmap tiles -->
+    <!-- Y-axis: Temperature (15°C to 35°C) -->
+    <!-- X-axis: Lag days (0-14) -->
+
+    <!-- Heatmap grid (simplified representation) -->
+    <!-- Row 1: 15°C (low risk, blue) -->
+    <rect x="180" y="240" width="48" height="35" fill="#4393c3" opacity="0.9"/>
+    <rect x="228" y="240" width="48" height="35" fill="#4393c3" opacity="0.9"/>
+    <rect x="276" y="240" width="48" height="35" fill="#92c5de" opacity="0.9"/>
+    <rect x="324" y="240" width="48" height="35" fill="#d1e5f0" opacity="0.9"/>
+    <rect x="372" y="240" width="48" height="35" fill="#f7f7f7" opacity="0.9"/>
+    <rect x="420" y="240" width="48" height="35" fill="#f7f7f7" opacity="0.9"/>
+    <rect x="468" y="240" width="48" height="35" fill="#f7f7f7" opacity="0.9"/>
+    <rect x="516" y="240" width="48" height="35" fill="#f7f7f7" opacity="0.9"/>
+    <rect x="564" y="240" width="48" height="35" fill="#f7f7f7" opacity="0.9"/>
+    <rect x="612" y="240" width="48" height="35" fill="#f7f7f7" opacity="0.9"/>
+    <rect x="660" y="240" width="48" height="35" fill="#f7f7f7" opacity="0.9"/>
+    <rect x="708" y="240" width="48" height="35" fill="#fddbc7" opacity="0.9"/>
+    <rect x="756" y="240" width="48" height="35" fill="#fddbc7" opacity="0.9"/>
+    <rect x="804" y="240" width="48" height="35" fill="#f4a582" opacity="0.9"/>
+    <rect x="852" y="240" width="48" height="35" fill="#d6604d" opacity="0.9"/>
+
+    <!-- Row 2: 18°C -->
+    <rect x="180" y="275" width="48" height="35" fill="#92c5de" opacity="0.9"/>
+    <rect x="228" y="275" width="48" height="35" fill="#92c5de" opacity="0.9"/>
+    <rect x="276" y="275" width="48" height="35" fill="#d1e5f0" opacity="0.9"/>
+    <rect x="324" y="275" width="48" height="35" fill="#f7f7f7" opacity="0.9"/>
+    <rect x="372" y="275" width="48" height="35" fill="#f7f7f7" opacity="0.9"/>
+    <rect x="420" y="275" width="48" height="35" fill="#f7f7f7" opacity="0.9"/>
+    <rect x="468" y="275" width="48" height="35" fill="#f7f7f7" opacity="0.9"/>
+    <rect x="516" y="275" width="48" height="35" fill="#f7f7f7" opacity="0.9"/>
+    <rect x="564" y="275" width="48" height="35" fill="#fddbc7" opacity="0.9"/>
+    <rect x="612" y="275" width="48" height="35" fill="#fddbc7" opacity="0.9"/>
+    <rect x="660" y="275" width="48" height="35" fill="#fddbc7" opacity="0.9"/>
+    <rect x="708" y="275" width="48" height="35" fill="#f4a582" opacity="0.9"/>
+    <rect x="756" y="275" width="48" height="35" fill="#f4a582" opacity="0.9"/>
+    <rect x="804" y="275" width="48" height="35" fill="#d6604d" opacity="0.9"/>
+    <rect x="852" y="275" width="48" height="35" fill="#ca4848" opacity="0.9"/>
+
+    <!-- Row 3: 21°C -->
+    <rect x="180" y="310" width="48" height="35" fill="#d1e5f0" opacity="0.9"/>
+    <rect x="228" y="310" width="48" height="35" fill="#d1e5f0" opacity="0.9"/>
+    <rect x="276" y="310" width="48" height="35" fill="#f7f7f7" opacity="0.9"/>
+    <rect x="324" y="310" width="48" height="35" fill="#f7f7f7" opacity="0.9"/>
+    <rect x="372" y="310" width="48" height="35" fill="#f7f7f7" opacity="0.9"/>
+    <rect x="420" y="310" width="48" height="35" fill="#f7f7f7" opacity="0.9"/>
+    <rect x="468" y="310" width="48" height="35" fill="#fddbc7" opacity="0.9"/>
+    <rect x="516" y="310" width="48" height="35" fill="#fddbc7" opacity="0.9"/>
+    <rect x="564" y="310" width="48" height="35" fill="#fddbc7" opacity="0.9"/>
+    <rect x="612" y="310" width="48" height="35" fill="#fddbc7" opacity="0.9"/>
+    <rect x="660" y="310" width="48" height="35" fill="#f4a582" opacity="0.9"/>
+    <rect x="708" y="310" width="48" height="35" fill="#f4a582" opacity="0.9"/>
+    <rect x="756" y="310" width="48" height="35" fill="#d6604d" opacity="0.9"/>
+    <rect x="804" y="310" width="48" height="35" fill="#ca4848" opacity="0.9"/>
+    <rect x="852" y="310" width="48" height="35" fill="#b73939" opacity="0.9"/>
+
+    <!-- Row 4: 24°C -->
+    <rect x="180" y="345" width="48" height="35" fill="#f7f7f7" opacity="0.9"/>
+    <rect x="228" y="345" width="48" height="35" fill="#f7f7f7" opacity="0.9"/>
+    <rect x="276" y="345" width="48" height="35" fill="#f7f7f7" opacity="0.9"/>
+    <rect x="324" y="345" width="48" height="35" fill="#fddbc7" opacity="0.9"/>
+    <rect x="372" y="345" width="48" height="35" fill="#fddbc7" opacity="0.9"/>
+    <rect x="420" y="345" width="48" height="35" fill="#fddbc7" opacity="0.9"/>
+    <rect x="468" y="345" width="48" height="35" fill="#fddbc7" opacity="0.9"/>
+    <rect x="516" y="345" width="48" height="35" fill="#f4a582" opacity="0.9"/>
+    <rect x="564" y="345" width="48" height="35" fill="#f4a582" opacity="0.9"/>
+    <rect x="612" y="345" width="48" height="35" fill="#f4a582" opacity="0.9"/>
+    <rect x="660" y="345" width="48" height="35" fill="#d6604d" opacity="0.9"/>
+    <rect x="708" y="345" width="48" height="35" fill="#d6604d" opacity="0.9"/>
+    <rect x="756" y="345" width="48" height="35" fill="#ca4848" opacity="0.9"/>
+    <rect x="804" y="345" width="48" height="35" fill="#b73939" opacity="0.9"/>
+    <rect x="852" y="345" width="48" height="35" fill="#a42a2a" opacity="0.9"/>
+
+    <!-- Row 5: 27°C -->
+    <rect x="180" y="380" width="48" height="35" fill="#fddbc7" opacity="0.9"/>
+    <rect x="228" y="380" width="48" height="35" fill="#fddbc7" opacity="0.9"/>
+    <rect x="276" y="380" width="48" height="35" fill="#fddbc7" opacity="0.9"/>
+    <rect x="324" y="380" width="48" height="35" fill="#f4a582" opacity="0.9"/>
+    <rect x="372" y="380" width="48" height="35" fill="#f4a582" opacity="0.9"/>
+    <rect x="420" y="380" width="48" height="35" fill="#f4a582" opacity="0.9"/>
+    <rect x="468" y="380" width="48" height="35" fill="#f4a582" opacity="0.9"/>
+    <rect x="516" y="380" width="48" height="35" fill="#d6604d" opacity="0.9"/>
+    <rect x="564" y="380" width="48" height="35" fill="#d6604d" opacity="0.9"/>
+    <rect x="612" y="380" width="48" height="35" fill="#ca4848" opacity="0.9"/>
+    <rect x="660" y="380" width="48" height="35" fill="#ca4848" opacity="0.9"/>
+    <rect x="708" y="380" width="48" height="35" fill="#b73939" opacity="0.9"/>
+    <rect x="756" y="380" width="48" height="35" fill="#a42a2a" opacity="0.9"/>
+    <rect x="804" y="380" width="48" height="35" fill="#911b1b" opacity="0.9"/>
+    <rect x="852" y="380" width="48" height="35" fill="#7e0c0c" opacity="0.9"/>
+
+    <!-- Row 6: 30°C (high risk) -->
+    <rect x="180" y="415" width="48" height="35" fill="#f4a582" opacity="0.9"/>
+    <rect x="228" y="415" width="48" height="35" fill="#f4a582" opacity="0.9"/>
+    <rect x="276" y="415" width="48" height="35" fill="#f4a582" opacity="0.9"/>
+    <rect x="324" y="415" width="48" height="35" fill="#d6604d" opacity="0.9"/>
+    <rect x="372" y="415" width="48" height="35" fill="#d6604d" opacity="0.9"/>
+    <rect x="420" y="415" width="48" height="35" fill="#d6604d" opacity="0.9"/>
+    <rect x="468" y="415" width="48" height="35" fill="#ca4848" opacity="0.9"/>
+    <rect x="516" y="415" width="48" height="35" fill="#ca4848" opacity="0.9"/>
+    <rect x="564" y="415" width="48" height="35" fill="#b73939" opacity="0.9"/>
+    <rect x="612" y="415" width="48" height="35" fill="#b73939" opacity="0.9"/>
+    <rect x="660" y="415" width="48" height="35" fill="#a42a2a" opacity="0.9"/>
+    <rect x="708" y="415" width="48" height="35" fill="#911b1b" opacity="0.9"/>
+    <rect x="756" y="415" width="48" height="35" fill="#7e0c0c" opacity="0.9"/>
+    <rect x="804" y="415" width="48" height="35" fill="#67001f" opacity="0.9"/>
+    <rect x="852" y="415" width="48" height="35" fill="#67001f" opacity="0.9"/>
+
+    <!-- Row 7: 33°C (very high risk) -->
+    <rect x="180" y="450" width="48" height="35" fill="#d6604d" opacity="0.9"/>
+    <rect x="228" y="450" width="48" height="35" fill="#d6604d" opacity="0.9"/>
+    <rect x="276" y="450" width="48" height="35" fill="#ca4848" opacity="0.9"/>
+    <rect x="324" y="450" width="48" height="35" fill="#ca4848" opacity="0.9"/>
+    <rect x="372" y="450" width="48" height="35" fill="#b73939" opacity="0.9"/>
+    <rect x="420" y="450" width="48" height="35" fill="#b73939" opacity="0.9"/>
+    <rect x="468" y="450" width="48" height="35" fill="#a42a2a" opacity="0.9"/>
+    <rect x="516" y="450" width="48" height="35" fill="#a42a2a" opacity="0.9"/>
+    <rect x="564" y="450" width="48" height="35" fill="#911b1b" opacity="0.9"/>
+    <rect x="612" y="450" width="48" height="35" fill="#911b1b" opacity="0.9"/>
+    <rect x="660" y="450" width="48" height="35" fill="#7e0c0c" opacity="0.9"/>
+    <rect x="708" y="450" width="48" height="35" fill="#7e0c0c" opacity="0.9"/>
+    <rect x="756" y="450" width="48" height="35" fill="#67001f" opacity="0.9"/>
+    <rect x="804" y="450" width="48" height="35" fill="#67001f" opacity="0.9"/>
+    <rect x="852" y="450" width="48" height="35" fill="#540016" opacity="0.9"/>
+
+    <!-- X-axis labels (Lag days) -->
+    <text x="204" y="505" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="13" fill="#666666">0</text>
+    <text x="300" y="505" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="13" fill="#666666">2</text>
+    <text x="396" y="505" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="13" fill="#666666">4</text>
+    <text x="492" y="505" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="13" fill="#666666">6</text>
+    <text x="588" y="505" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="13" fill="#666666">8</text>
+    <text x="684" y="505" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="13" fill="#666666">10</text>
+    <text x="780" y="505" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="13" fill="#666666">12</text>
+    <text x="876" y="505" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="13" fill="#666666">14</text>
+
+    <text x="540" y="530" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="16" font-weight="500" fill="#424242">
+      Lag (days)
+    </text>
+
+    <!-- Y-axis labels (Temperature) -->
+    <text x="165" y="262" text-anchor="end" font-family="Inter, Arial, sans-serif" font-size="13" fill="#666666">15°C</text>
+    <text x="165" y="297" text-anchor="end" font-family="Inter, Arial, sans-serif" font-size="13" fill="#666666">18°C</text>
+    <text x="165" y="332" text-anchor="end" font-family="Inter, Arial, sans-serif" font-size="13" fill="#666666">21°C</text>
+    <text x="165" y="367" text-anchor="end" font-family="Inter, Arial, sans-serif" font-size="13" fill="#666666">24°C</text>
+    <text x="165" y="402" text-anchor="end" font-family="Inter, Arial, sans-serif" font-size="13" fill="#666666">27°C</text>
+    <text x="165" y="437" text-anchor="end" font-family="Inter, Arial, sans-serif" font-size="13" fill="#666666">30°C</text>
+    <text x="165" y="472" text-anchor="end" font-family="Inter, Arial, sans-serif" font-size="13" fill="#666666">33°C</text>
+
+    <text x="120" y="360" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="16" font-weight="500" fill="#424242" transform="rotate(-90, 120, 360)">
+      Temperature (°C)
+    </text>
+
+    <!-- Color scale legend -->
+    <rect x="180" y="560" width="720" height="30" fill="url(#heatmap-grad)" transform="rotate(0)"/>
+    <rect x="180" y="560" width="720" height="30">
+      <animate attributeName="opacity" values="0.9;1;0.9" dur="3s" repeatCount="indefinite"/>
+    </rect>
+
+    <!-- Legend labels -->
+    <text x="180" y="610" text-anchor="start" font-family="Inter, Arial, sans-serif" font-size="14" fill="#666666">
+      RR = 0.5
+    </text>
+    <text x="540" y="610" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="14" fill="#666666">
+      RR = 1.0 (Reference)
+    </text>
+    <text x="900" y="610" text-anchor="end" font-family="Inter, Arial, sans-serif" font-size="14" fill="#666666">
+      RR = 2.0
+    </text>
+    <text x="540" y="635" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="15" font-weight="500" fill="#424242">
+      Relative Risk
+    </text>
+  </g>
+
+  <!-- Cumulative risk plot -->
+  <g id="cumulative-plot">
+    <rect x="1050" y="160" width="800" height="650" fill="#fafafa" stroke="#e0e0e0" stroke-width="1"/>
+
+    <!-- Title -->
+    <text x="1450" y="195" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="22" font-weight="600" fill="#1a1a1a">
+      Cumulative Relative Risk by Temperature
+    </text>
+
+    <!-- Axes -->
+    <line x1="1130" y1="720" x2="1780" y2="720" stroke="#424242" stroke-width="2"/>
+    <line x1="1130" y1="240" x2="1130" y2="720" stroke="#424242" stroke-width="2"/>
+
+    <!-- X-axis labels -->
+    <text x="1130" y="745" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="14" fill="#666666">15</text>
+    <text x="1290" y="745" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="14" fill="#666666">20</text>
+    <text x="1450" y="745" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="14" fill="#666666">25</text>
+    <text x="1610" y="745" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="14" fill="#666666">30</text>
+    <text x="1770" y="745" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="14" fill="#666666">35</text>
+
+    <!-- Y-axis labels -->
+    <text x="1115" y="720" text-anchor="end" font-family="Inter, Arial, sans-serif" font-size="14" fill="#666666">0.5</text>
+    <text x="1115" y="600" text-anchor="end" font-family="Inter, Arial, sans-serif" font-size="14" fill="#666666">1.0</text>
+    <text x="1115" y="480" text-anchor="end" font-family="Inter, Arial, sans-serif" font-size="14" fill="#666666">1.5</text>
+    <text x="1115" y="360" text-anchor="end" font-family="Inter, Arial, sans-serif" font-size="14" fill="#666666">2.0</text>
+    <text x="1115" y="240" text-anchor="end" font-family="Inter, Arial, sans-serif" font-size="14" fill="#666666">2.5</text>
+
+    <!-- Axis labels -->
+    <text x="1450" y="780" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="16" font-weight="500" fill="#424242">
+      Temperature (°C)
+    </text>
+    <text x="1075" y="480" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="16" font-weight="500" fill="#424242" transform="rotate(-90, 1075, 480)">
+      Cumulative RR (0-14 days)
+    </text>
+
+    <!-- Reference line at RR=1 -->
+    <line x1="1130" y1="600" x2="1780" y2="600" stroke="#999999" stroke-width="1" stroke-dasharray="5,5" opacity="0.5"/>
+
+    <!-- Main curve (exponential increase) -->
+    <path d="M 1130 650 Q 1300 620, 1450 530 Q 1610 400, 1770 250"
+          stroke="#cc1a1b"
+          stroke-width="4"
+          fill="none"/>
+
+    <!-- Confidence interval (shaded area) -->
+    <path d="M 1130 680 Q 1300 650, 1450 560 Q 1610 430, 1770 280 L 1770 220 Q 1610 370, 1450 500 Q 1300 590, 1130 620 Z"
+          fill="#cc1a1b"
+          opacity="0.2"/>
+
+    <!-- Add some points -->
+    <circle cx="1290" cy="615" r="5" fill="#cc1a1b"/>
+    <circle cx="1450" cy="530" r="5" fill="#cc1a1b"/>
+    <circle cx="1610" cy="400" r="5" fill="#cc1a1b"/>
+    <circle cx="1770" cy="250" r="5" fill="#cc1a1b"/>
+
+    <!-- Annotations -->
+    <text x="1320" y="605" font-family="Inter, Arial, sans-serif" font-size="13" font-weight="500" fill="#2c5cda">
+      RR = 1.02
+    </text>
+    <text x="1480" y="520" font-family="Inter, Arial, sans-serif" font-size="13" font-weight="500" fill="#2c5cda">
+      RR = 1.18
+    </text>
+    <text x="1640" y="390" font-family="Inter, Arial, sans-serif" font-size="13" font-weight="500" fill="#2c5cda">
+      RR = 1.52
+    </text>
+    <text x="1720" y="230" font-family="Inter, Arial, sans-serif" font-size="13" font-weight="500" fill="#cc1a1b">
+      RR = 2.15
+    </text>
+  </g>
+
+  <!-- Interpretation box -->
+  <g id="interpretation">
+    <rect x="100" y="840" width="1740" height="110" fill="#e3ecfc" rx="8"/>
+    <text x="120" y="870" font-family="Inter, Arial, sans-serif" font-size="20" font-weight="600" fill="#2c5cda">
+      Key Findings:
+    </text>
+    <text x="120" y="900" font-family="Inter, Arial, sans-serif" font-size="16" font-weight="400" fill="#424242">
+      • Immediate effect (lag 0): Strong negative impact of extreme heat on CD4 count (RR &lt; 0.6 at 33°C)
+    </text>
+    <text x="120" y="925" font-family="Inter, Arial, sans-serif" font-size="16" font-weight="400" fill="#424242">
+      • Cumulative exposure: Risk doubles (RR = 2.15) over 14 days at sustained high temperatures (&gt;32°C)
+    </text>
+    <text x="120" y="950" font-family="Inter, Arial, sans-serif" font-size="16" font-weight="400" fill="#424242">
+      • Optimal temperature range: 20-24°C shows minimal impact (RR ≈ 1.0), with protection at moderate temperatures
+    </text>
+  </g>
+
+  <!-- Method note -->
+  <g id="method">
+    <rect x="100" y="970" width="1740" height="60" fill="#f4f4f4" rx="8"/>
+    <text x="120" y="1000" font-family="Inter, Arial, sans-serif" font-size="15" font-weight="500" fill="#666666">
+      Generated using R dlnm package with natural cubic splines (df=4 for temperature, df=3 for lag).
+    </text>
+    <text x="120" y="1020" font-family="Inter, Arial, sans-serif" font-size="15" font-weight="500" fill="#666666">
+      Reference temperature: 22°C. Model adjusted for seasonality, PM₂.₅, and socioeconomic confounders.
+    </text>
+  </g>
+
+  <!-- Branding -->
+  <g id="branding">
+    <text x="1850" y="1060"
+          text-anchor="end"
+          font-family="Inter, Arial, sans-serif"
+          font-size="16"
+          font-weight="400"
+          fill="#999999">
+      Wits Planetary Health Research
+    </text>
+  </g>
+
+</svg>

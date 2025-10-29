@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg"
+     viewBox="0 0 1920 1080"
+     width="1920"
+     height="1080">
+
+  <defs>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap');
+
+      .section-number {
+        font-family: 'Inter', sans-serif;
+        font-size: 240px;
+        font-weight: 700;
+        fill: #2c5cda;
+        opacity: 0.15;
+        letter-spacing: -0.03em;
+      }
+      .section-title {
+        font-family: 'Inter', sans-serif;
+        font-size: 96px;
+        font-weight: 700;
+        fill: #1a1a1a;
+        letter-spacing: -0.02em;
+      }
+      .section-subtitle {
+        font-family: 'Inter', sans-serif;
+        font-size: 48px;
+        font-weight: 400;
+        fill: #424242;
+      }
+      .accent-bar {
+        fill: #2c5cda;
+      }
+      .branding-text {
+        font-family: 'Inter', sans-serif;
+        font-size: 18px;
+        font-weight: 400;
+        fill: #666666;
+      }
+    </style>
+
+    <linearGradient id="section-gradient" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#2c5cda;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#00bec5;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+
+  <!-- Background -->
+  <g id="background">
+    <rect width="1920" height="1080" fill="#ffffff"/>
+
+    <!-- Large section number background -->
+    <text x="1700" y="700" class="section-number" text-anchor="end">
+      02
+    </text>
+
+    <!-- Accent bar -->
+    <rect x="0" y="0" width="12" height="1080" fill="url(#section-gradient)"/>
+  </g>
+
+  <!-- Content -->
+  <g id="content">
+    <!-- Section number -->
+    <text x="120" y="400" class="section-number" style="opacity: 1; font-size: 120px;">
+      02
+    </text>
+
+    <!-- Section title -->
+    <text x="120" y="520" class="section-title">
+      Methodology
+    </text>
+
+    <!-- Section subtitle/description -->
+    <text x="120" y="600" class="section-subtitle">
+      <tspan x="120" dy="0">Data collection and analysis approach</tspan>
+    </text>
+
+    <!-- Decorative accent line -->
+    <rect x="120" y="640" width="600" height="6" class="accent-bar" rx="3"/>
+  </g>
+
+  <!-- Branding -->
+  <g id="branding">
+    <text x="1820" y="1020" class="branding-text" text-anchor="end">
+      Wits Planetary Health Research
+    </text>
+  </g>
+
+</svg>
