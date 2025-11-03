@@ -1,0 +1,373 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1080" width="1920" height="1080">
+  <title>Hyperparameter Tuning - Tree Depth - 3Blue1Brown Style</title>
+  <desc>Decision tree with varying depths showing underfit to optimal to overfit, with tree structure, decision boundary, and validation curve</desc>
+
+  <defs>
+    <!-- 3Blue1Brown color palette -->
+    <linearGradient id="underfitGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#FC6255;stop-opacity:0.3"/>
+      <stop offset="100%" style="stop-color:#FC6255;stop-opacity:0"/>
+    </linearGradient>
+
+    <linearGradient id="optimalGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#27AE60;stop-opacity:0.4"/>
+      <stop offset="100%" style="stop-color:#27AE60;stop-opacity:0"/>
+    </linearGradient>
+
+    <linearGradient id="overfitGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#29ABCA;stop-opacity:0.3"/>
+      <stop offset="100%" style="stop-color:#29ABCA;stop-opacity:0"/>
+    </linearGradient>
+
+    <!-- Filters -->
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="4" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+
+    <filter id="strongGlow">
+      <feGaussianBlur stdDeviation="8" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1920" height="1080" fill="#111111"/>
+
+  <!-- Title -->
+  <g id="title" opacity="0">
+    <text x="960" y="65" font-family="'SF Pro Display', 'Lato', sans-serif" font-size="64" font-weight="bold" fill="#FFFFFF" text-anchor="middle">
+      Hyperparameter Tuning: Tree Depth
+    </text>
+    <text x="960" y="105" font-family="'SF Pro Display', sans-serif" font-size="28" fill="#888888" text-anchor="middle">
+      Finding the Optimal Depth to Balance Bias and Variance
+    </text>
+    <animate attributeName="opacity" from="0" to="1" begin="0s" dur="0.8s" fill="freeze"/>
+  </g>
+
+  <!-- Depth slider at top -->
+  <g id="depthSlider" transform="translate(660, 140)" opacity="0">
+    <text x="0" y="-10" font-family="'SF Pro Display', sans-serif" font-size="28" fill="#EEEEEE" font-weight="bold">
+      Tree Depth:
+    </text>
+    <text x="180" y="-10" font-family="'SF Mono', monospace" font-size="36" fill="#FFFF00" font-weight="bold">
+      1
+      <set attributeName="textContent" to="1" begin="2s"/>
+      <set attributeName="textContent" to="3" begin="5s"/>
+      <set attributeName="textContent" to="5" begin="8s"/>
+      <set attributeName="textContent" to="10" begin="12s"/>
+      <set attributeName="textContent" to="20" begin="16s"/>
+    </text>
+
+    <!-- Slider track -->
+    <rect x="300" y="-20" width="600" height="20" fill="#333333" rx="10"/>
+
+    <!-- Slider fill -->
+    <rect x="300" y="-20" width="0" height="20" fill="#29ABCA" rx="10">
+      <animate attributeName="width" values="0;30;30;150;150;300;300;500;500;600" begin="2s" dur="18s" fill="freeze"/>
+    </rect>
+
+    <!-- Slider thumb -->
+    <circle cy="-10" r="16" fill="#EEEEEE" stroke="#29ABCA" stroke-width="3">
+      <animate attributeName="cx" values="300;330;330;450;450;600;600;800;800;900" begin="2s" dur="18s" fill="freeze"/>
+    </circle>
+
+    <animate attributeName="opacity" from="0" to="1" begin="1.5s" dur="0.5s" fill="freeze"/>
+  </g>
+
+  <!-- LEFT PANEL: Tree Structure -->
+  <g id="leftPanel" transform="translate(80, 200)">
+    <rect x="0" y="0" width="460" height="720" fill="#1A1A1A" rx="10" stroke="#444444" stroke-width="2" opacity="0">
+      <animate attributeName="opacity" from="0" to="1" begin="0.8s" dur="0.5s" fill="freeze"/>
+    </rect>
+
+    <text x="230" y="35" font-family="'SF Pro Display', sans-serif" font-size="28" font-weight="bold" fill="#EEEEEE" text-anchor="middle" opacity="0">
+      Tree Structure
+      <animate attributeName="opacity" from="0" to="1" begin="1s" dur="0.5s" fill="freeze"/>
+    </text>
+
+    <!-- Depth 1: Single split -->
+    <g id="depth1Tree" opacity="0">
+      <circle cx="230" cy="100" r="30" fill="#1C758A" stroke="#29ABCA" stroke-width="2"/>
+      <text x="230" y="105" font-family="monospace" font-size="14" fill="#FFFFFF" text-anchor="middle">Gini</text>
+
+      <!-- Children -->
+      <line x1="230" y1="130" x2="130" y2="200" stroke="#29ABCA" stroke-width="2"/>
+      <line x1="230" y1="130" x2="330" y2="200" stroke="#29ABCA" stroke-width="2"/>
+
+      <rect x="100" y="200" width="60" height="50" fill="#FC6255" opacity="0.7" rx="5"/>
+      <text x="130" y="230" font-family="monospace" font-size="12" fill="#FFFFFF" text-anchor="middle">High</text>
+
+      <rect x="300" y="200" width="60" height="50" fill="#29ABCA" opacity="0.7" rx="5"/>
+      <text x="330" y="230" font-family="monospace" font-size="12" fill="#FFFFFF" text-anchor="middle">Low</text>
+
+      <text x="230" y="290" font-family="sans-serif" font-size="18" fill="#FC6255" text-anchor="middle">
+        Depth = 1 (Underfit)
+      </text>
+
+      <animate attributeName="opacity" values="0;1;1;0" begin="2s" dur="6s" fill="freeze"/>
+    </g>
+
+    <!-- Depth 5: Optimal complexity -->
+    <g id="depth5Tree" opacity="0">
+      <!-- Root -->
+      <circle cx="230" cy="80" r="22" fill="#1C758A" stroke="#27AE60" stroke-width="3"/>
+      <text x="230" y="85" font-family="monospace" font-size="11" fill="#FFFFFF" text-anchor="middle">0.45</text>
+
+      <!-- Level 1 -->
+      <line x1="230" y1="102" x2="150" y2="150" stroke="#27AE60" stroke-width="2"/>
+      <line x1="230" y1="102" x2="310" y2="150" stroke="#27AE60" stroke-width="2"/>
+      <circle cx="150" cy="150" r="18" fill="#1C758A" stroke="#27AE60" stroke-width="2"/>
+      <text x="150" y="155" font-family="monospace" font-size="10" fill="#FFFFFF" text-anchor="middle">0.38</text>
+      <circle cx="310" cy="150" r="18" fill="#1C758A" stroke="#27AE60" stroke-width="2"/>
+      <text x="310" y="155" font-family="monospace" font-size="10" fill="#FFFFFF" text-anchor="middle">0.22</text>
+
+      <!-- Level 2 -->
+      <line x1="150" y1="168" x2="100" y2="210" stroke="#27AE60" stroke-width="2"/>
+      <line x1="150" y1="168" x2="200" y2="210" stroke="#27AE60" stroke-width="2"/>
+      <line x1="310" y1="168" x2="260" y2="210" stroke="#27AE60" stroke-width="2"/>
+      <line x1="310" y1="168" x2="360" y2="210" stroke="#27AE60" stroke-width="2"/>
+
+      <circle cx="100" cy="210" r="15" fill="#1C758A" stroke="#27AE60" stroke-width="2"/>
+      <circle cx="200" cy="210" r="15" fill="#1C758A" stroke="#27AE60" stroke-width="2"/>
+      <circle cx="260" cy="210" r="15" fill="#1C758A" stroke="#27AE60" stroke-width="2"/>
+      <circle cx="360" cy="210" r="15" fill="#1C758A" stroke="#27AE60" stroke-width="2"/>
+
+      <!-- Level 3 (leaves) -->
+      <line x1="100" y1="225" x2="70" y2="270" stroke="#27AE60" stroke-width="1.5"/>
+      <line x1="100" y1="225" x2="130" y2="270" stroke="#27AE60" stroke-width="1.5"/>
+      <line x1="200" y1="225" x2="170" y2="270" stroke="#27AE60" stroke-width="1.5"/>
+      <line x1="200" y1="225" x2="230" y2="270" stroke="#27AE60" stroke-width="1.5"/>
+      <line x1="260" y1="225" x2="230" y2="270" stroke="#27AE60" stroke-width="1.5"/>
+      <line x1="260" y1="225" x2="290" y2="270" stroke="#27AE60" stroke-width="1.5"/>
+      <line x1="360" y1="225" x2="330" y2="270" stroke="#27AE60" stroke-width="1.5"/>
+      <line x1="360" y1="225" x2="390" y2="270" stroke="#27AE60" stroke-width="1.5"/>
+
+      <!-- Leaf nodes -->
+      <rect x="60" y="270" width="20" height="20" fill="#FC6255" opacity="0.7" rx="3"/>
+      <rect x="120" y="270" width="20" height="20" fill="#29ABCA" opacity="0.7" rx="3"/>
+      <rect x="160" y="270" width="20" height="20" fill="#FC6255" opacity="0.7" rx="3"/>
+      <rect x="220" y="270" width="20" height="20" fill="#29ABCA" opacity="0.7" rx="3"/>
+      <rect x="220" y="270" width="20" height="20" fill="#29ABCA" opacity="0.7" rx="3"/>
+      <rect x="280" y="270" width="20" height="20" fill="#29ABCA" opacity="0.7" rx="3"/>
+      <rect x="320" y="270" width="20" height="20" fill="#FC6255" opacity="0.7" rx="3"/>
+      <rect x="380" y="270" width="20" height="20" fill="#29ABCA" opacity="0.7" rx="3"/>
+
+      <text x="230" y="330" font-family="sans-serif" font-size="20" fill="#27AE60" text-anchor="middle" font-weight="bold">
+        Depth = 5 (Optimal ★)
+      </text>
+
+      <animate attributeName="opacity" values="0;1;1;0" begin="8s" dur="6s" fill="freeze"/>
+    </g>
+
+    <!-- Depth 20: Very deep (overfit) -->
+    <g id="depth20Tree" opacity="0">
+      <text x="230" y="120" font-family="sans-serif" font-size="16" fill="#888888" text-anchor="middle">
+        [Very deep tree with
+      </text>
+      <text x="230" y="145" font-family="sans-serif" font-size="16" fill="#888888" text-anchor="middle">
+        20 levels shown as
+      </text>
+      <text x="230" y="170" font-family="sans-serif" font-size="16" fill="#888888" text-anchor="middle">
+        complex branching]
+      </text>
+
+      <!-- Simplified visualization showing complexity -->
+      <circle cx="230" cy="220" r="80" fill="none" stroke="#29ABCA" stroke-width="1" opacity="0.3"/>
+      <circle cx="230" cy="220" r="60" fill="none" stroke="#29ABCA" stroke-width="1" opacity="0.4"/>
+      <circle cx="230" cy="220" r="40" fill="none" stroke="#29ABCA" stroke-width="1" opacity="0.5"/>
+      <circle cx="230" cy="220" r="20" fill="#29ABCA" opacity="0.6"/>
+
+      <!-- Many tiny leaf nodes -->
+      <g transform="translate(230, 220)">
+        <rect x="-70" y="100" width="8" height="8" fill="#29ABCA" opacity="0.6"/>
+        <rect x="-50" y="100" width="8" height="8" fill="#FC6255" opacity="0.6"/>
+        <rect x="-30" y="100" width="8" height="8" fill="#29ABCA" opacity="0.6"/>
+        <rect x="-10" y="100" width="8" height="8" fill="#FC6255" opacity="0.6"/>
+        <rect x="10" y="100" width="8" height="8" fill="#29ABCA" opacity="0.6"/>
+        <rect x="30" y="100" width="8" height="8" fill="#FC6255" opacity="0.6"/>
+        <rect x="50" y="100" width="8" height="8" fill="#29ABCA" opacity="0.6"/>
+        <rect x="70" y="100" width="8" height="8" fill="#FC6255" opacity="0.6"/>
+      </g>
+
+      <text x="230" y="360" font-family="sans-serif" font-size="20" fill="#29ABCA" text-anchor="middle" font-weight="bold">
+        Depth = 20 (Overfit)
+      </text>
+
+      <animate attributeName="opacity" values="0;1;1;1" begin="16s" dur="4s" fill="freeze"/>
+    </g>
+  </g>
+
+  <!-- CENTER PANEL: Decision Boundary -->
+  <g id="centerPanel" transform="translate(580, 200)">
+    <rect x="0" y="0" width="560" height="720" fill="#1A1A1A" rx="10" stroke="#444444" stroke-width="2" opacity="0">
+      <animate attributeName="opacity" from="0" to="1" begin="0.8s" dur="0.5s" fill="freeze"/>
+    </rect>
+
+    <text x="280" y="35" font-family="'SF Pro Display', sans-serif" font-size="28" font-weight="bold" fill="#EEEEEE" text-anchor="middle" opacity="0">
+      Decision Boundary
+      <animate attributeName="opacity" from="0" to="1" begin="1s" dur="0.5s" fill="freeze"/>
+    </text>
+
+    <!-- Plot area -->
+    <g transform="translate(40, 80)">
+      <!-- Axes -->
+      <line x1="0" y1="600" x2="480" y2="600" stroke="#444444" stroke-width="2"/>
+      <line x1="0" y1="0" x2="0" y2="600" stroke="#444444" stroke-width="2"/>
+      <text x="240" y="630" font-family="sans-serif" font-size="18" fill="#888888" text-anchor="middle">Temperature</text>
+      <text x="-20" y="300" font-family="sans-serif" font-size="18" fill="#888888" text-anchor="middle" transform="rotate(-90 -20 300)">CV Risk</text>
+
+      <!-- Data points -->
+      <g id="dataPoints" opacity="0">
+        <circle cx="100" cy="450" r="6" fill="#29ABCA" opacity="0.7"/>
+        <circle cx="120" cy="470" r="6" fill="#29ABCA" opacity="0.7"/>
+        <circle cx="140" cy="460" r="6" fill="#29ABCA" opacity="0.7"/>
+        <circle cx="200" cy="350" r="6" fill="#FC6255" opacity="0.7"/>
+        <circle cx="220" cy="320" r="6" fill="#FC6255" opacity="0.7"/>
+        <circle cx="240" cy="280" r="6" fill="#FC6255" opacity="0.7"/>
+        <circle cx="260" cy="250" r="6" fill="#FC6255" opacity="0.7"/>
+        <circle cx="280" cy="220" r="6" fill="#FC6255" opacity="0.7"/>
+        <circle cx="300" cy="200" r="6" fill="#FC6255" opacity="0.7"/>
+        <circle cx="320" cy="210" r="6" fill="#FC6255" opacity="0.7"/>
+        <circle cx="340" cy="240" r="6" fill="#FC6255" opacity="0.7"/>
+        <circle cx="360" cy="280" r="6" fill="#FC6255" opacity="0.7"/>
+        <circle cx="380" cy="350" r="6" fill="#29ABCA" opacity="0.7"/>
+        <circle cx="400" cy="420" r="6" fill="#29ABCA" opacity="0.7"/>
+        <animate attributeName="opacity" from="0" to="1" begin="2s" dur="0.5s" fill="freeze"/>
+      </g>
+
+      <!-- Depth 1 boundary: Simple rectangles (underfit) -->
+      <g id="depth1Boundary" opacity="0">
+        <rect x="0" y="0" width="240" height="600" fill="#FC6255" opacity="0.15"/>
+        <rect x="240" y="0" width="240" height="600" fill="#29ABCA" opacity="0.15"/>
+        <line x1="240" y1="0" x2="240" y2="600" stroke="#FC6255" stroke-width="4"/>
+        <animate attributeName="opacity" values="0;0.8;0.8;0" begin="2s" dur="6s" fill="freeze"/>
+      </g>
+
+      <!-- Depth 5 boundary: Smooth complex (optimal) -->
+      <path id="depth5Boundary" d="M 0,500 L 150,490 Q 240,350 300,200 T 380,280 L 480,400"
+            fill="none" stroke="#27AE60" stroke-width="5" opacity="0" filter="url(#strongGlow)">
+        <animate attributeName="opacity" values="0;1;1;0" begin="8s" dur="6s" fill="freeze"/>
+      </path>
+
+      <!-- Depth 20 boundary: Fragmented (overfit) -->
+      <g id="depth20Boundary" opacity="0">
+        <!-- Many small rectangular regions -->
+        <rect x="80" y="430" width="60" height="60" fill="#29ABCA" opacity="0.2" stroke="#29ABCA" stroke-width="2"/>
+        <rect x="180" y="310" width="40" height="80" fill="#FC6255" opacity="0.2" stroke="#29ABCA" stroke-width="2"/>
+        <rect x="220" y="240" width="50" height="70" fill="#FC6255" opacity="0.2" stroke="#29ABCA" stroke-width="2"/>
+        <rect x="270" y="180" width="40" height="60" fill="#FC6255" opacity="0.2" stroke="#29ABCA" stroke-width="2"/>
+        <rect x="310" y="190" width="35" height="50" fill="#FC6255" opacity="0.2" stroke="#29ABCA" stroke-width="2"/>
+        <rect x="345" y="230" width="40" height="60" fill="#FC6255" opacity="0.2" stroke="#29ABCA" stroke-width="2"/>
+        <rect x="360" y="330" width="50" height="80" fill="#29ABCA" opacity="0.2" stroke="#29ABCA" stroke-width="2"/>
+        <animate attributeName="opacity" values="0;0.8;0.8;0.8" begin="16s" dur="4s" fill="freeze"/>
+      </g>
+    </g>
+  </g>
+
+  <!-- RIGHT PANEL: Validation Curve -->
+  <g id="rightPanel" transform="translate(1180, 200)">
+    <rect x="0" y="0" width="660" height="720" fill="#1A1A1A" rx="10" stroke="#444444" stroke-width="2" opacity="0">
+      <animate attributeName="opacity" from="0" to="1" begin="0.8s" dur="0.5s" fill="freeze"/>
+    </rect>
+
+    <text x="330" y="35" font-family="'SF Pro Display', sans-serif" font-size="28" font-weight="bold" fill="#EEEEEE" text-anchor="middle" opacity="0">
+      Validation Error
+      <animate attributeName="opacity" from="0" to="1" begin="1s" dur="0.5s" fill="freeze"/>
+    </text>
+
+    <!-- Plot area -->
+    <g transform="translate(60, 100)">
+      <!-- Axes -->
+      <line x1="0" y1="550" x2="540" y2="550" stroke="#444444" stroke-width="3"/>
+      <line x1="0" y1="0" x2="0" y2="550" stroke="#444444" stroke-width="3"/>
+      <text x="270" y="590" font-family="sans-serif" font-size="22" fill="#EEEEEE" text-anchor="middle">Tree Depth</text>
+      <text x="-30" y="275" font-family="sans-serif" font-size="22" fill="#EEEEEE" text-anchor="middle" transform="rotate(-90 -30 275)">Error</text>
+
+      <!-- Tick marks -->
+      <text x="27" y="570" font-family="monospace" font-size="16" fill="#888888" text-anchor="middle">1</text>
+      <text x="135" y="570" font-family="monospace" font-size="16" fill="#888888" text-anchor="middle">5</text>
+      <text x="270" y="570" font-family="monospace" font-size="16" fill="#888888" text-anchor="middle">10</text>
+      <text x="405" y="570" font-family="monospace" font-size="16" fill="#888888" text-anchor="middle">15</text>
+      <text x="540" y="570" font-family="monospace" font-size="16" fill="#888888" text-anchor="middle">20</text>
+
+      <!-- U-shaped validation curve -->
+      <path id="validationCurve" d="M 27,120 Q 100,110 135,80 T 270,100 T 540,250"
+            fill="none" stroke="#FC6255" stroke-width="4" opacity="0" stroke-dasharray="800" stroke-dashoffset="800">
+        <animate attributeName="stroke-dashoffset" from="800" to="0" begin="14s" dur="3s" fill="freeze"/>
+        <animate attributeName="opacity" from="0" to="1" begin="14s" dur="0.3s" fill="freeze"/>
+      </path>
+
+      <!-- Optimal point marker -->
+      <line id="optimalLine" x1="135" y1="0" x2="135" y2="550" stroke="#FFFF00" stroke-width="3" stroke-dasharray="8,4" opacity="0">
+        <animate attributeName="opacity" from="0" to="0.7" begin="17s" dur="0.5s" fill="freeze"/>
+      </line>
+      <circle cx="135" cy="80" r="12" fill="#FFFF00" opacity="0" filter="url(#glow)">
+        <animate attributeName="opacity" from="0" to="1" begin="17s" dur="0.5s" fill="freeze"/>
+        <animate attributeName="r" values="12;16;12" begin="17.5s" dur="1.5s" repeatCount="indefinite"/>
+      </circle>
+      <text x="135" y="50" font-family="sans-serif" font-size="48" fill="#FFFF00" text-anchor="middle" opacity="0">
+        ★
+        <animate attributeName="opacity" from="0" to="1" begin="17s" dur="0.5s" fill="freeze"/>
+      </text>
+
+      <!-- Current depth indicator (moving dot) -->
+      <circle r="10" fill="#29ABCA" filter="url(#glow)" opacity="0">
+        <animate attributeName="opacity" from="0" to="1" begin="14s" dur="0.3s" fill="freeze"/>
+        <animate attributeName="cx" values="27;27;135;135;270;270;540" begin="14s" dur="6s" fill="freeze"/>
+        <animate attributeName="cy" values="120;120;80;80;100;100;250" begin="14s" dur="6s" fill="freeze"/>
+      </circle>
+
+      <!-- Shaded regions -->
+      <rect x="0" y="0" width="90" height="550" fill="#FC6255" opacity="0">
+        <animate attributeName="opacity" from="0" to="0.08" begin="17.5s" dur="0.5s" fill="freeze"/>
+      </rect>
+      <text x="45" y="30" font-family="sans-serif" font-size="18" fill="#FC6255" text-anchor="middle" opacity="0">
+        Underfit
+        <animate attributeName="opacity" from="0" to="1" begin="18s" dur="0.5s" fill="freeze"/>
+      </text>
+
+      <rect x="90" y="0" width="180" height="550" fill="#27AE60" opacity="0">
+        <animate attributeName="opacity" from="0" to="0.08" begin="17.5s" dur="0.5s" fill="freeze"/>
+      </rect>
+      <text x="180" y="30" font-family="sans-serif" font-size="18" fill="#27AE60" text-anchor="middle" font-weight="bold" opacity="0">
+        Optimal
+        <animate attributeName="opacity" from="0" to="1" begin="18s" dur="0.5s" fill="freeze"/>
+      </text>
+
+      <rect x="270" y="0" width="270" height="550" fill="#29ABCA" opacity="0">
+        <animate attributeName="opacity" from="0" to="0.08" begin="17.5s" dur="0.5s" fill="freeze"/>
+      </rect>
+      <text x="405" y="30" font-family="sans-serif" font-size="18" fill="#29ABCA" text-anchor="middle" opacity="0">
+        Overfit
+        <animate attributeName="opacity" from="0" to="1" begin="18s" dur="0.5s" fill="freeze"/>
+      </text>
+    </g>
+  </g>
+
+  <!-- Summary insight -->
+  <g id="summary" transform="translate(960, 960)" opacity="0">
+    <rect x="-460" y="-55" width="920" height="100" fill="#1A1A1A" opacity="0.95" rx="10" stroke="#27AE60" stroke-width="3"/>
+    <text x="0" y="-10" font-family="'SF Pro Display', sans-serif" font-size="32" fill="#27AE60" text-anchor="middle" font-weight="bold">
+      Optimal Depth ≈ 5 | Balances complexity and generalization
+    </text>
+    <text x="0" y="25" font-family="sans-serif" font-size="22" fill="#888888" text-anchor="middle">
+      Too shallow = high bias | Too deep = high variance
+    </text>
+    <animate attributeName="opacity" from="0" to="1" begin="18.5s" dur="0.8s" fill="freeze"/>
+  </g>
+
+  <!-- 3Blue1Brown watermark -->
+  <g id="watermark" opacity="0.3">
+    <text x="100" y="1050" font-family="'SF Pro Display', sans-serif" font-size="18" fill="#666666">
+      3B1B-Style Visualization
+    </text>
+  </g>
+</svg>

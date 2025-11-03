@@ -1,0 +1,386 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1080" width="1920" height="1080">
+  <title>Random Forest Ensemble - 3Blue1Brown Style</title>
+  <desc>Visualization of how Random Forest combines multiple decision trees trained on bootstrap samples to create robust predictions through averaging</desc>
+
+  <defs>
+    <!-- 3Blue1Brown color palette -->
+    <linearGradient id="blueGlow" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#29ABCA;stop-opacity:0.4"/>
+      <stop offset="100%" style="stop-color:#29ABCA;stop-opacity:0"/>
+    </linearGradient>
+
+    <linearGradient id="greenGlow" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#27AE60;stop-opacity:0.4"/>
+      <stop offset="100%" style="stop-color:#27AE60;stop-opacity:0"/>
+    </linearGradient>
+
+    <linearGradient id="orangeGlow" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#FF9500;stop-opacity:0.4"/>
+      <stop offset="100%" style="stop-color:#FF9500;stop-opacity:0"/>
+    </linearGradient>
+
+    <linearGradient id="purpleGlow" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#A06FD1;stop-opacity:0.4"/>
+      <stop offset="100%" style="stop-color:#A06FD1;stop-opacity:0"/>
+    </linearGradient>
+
+    <linearGradient id="ensembleGlow" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#29ABCA;stop-opacity:0.8"/>
+      <stop offset="100%" style="stop-color:#27AE60;stop-opacity:0.8"/>
+    </linearGradient>
+
+    <!-- Glow filter -->
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="4" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+
+    <!-- Strong glow for ensemble -->
+    <filter id="strongGlow">
+      <feGaussianBlur stdDeviation="6" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+
+    <!-- Flash effect -->
+    <filter id="flash">
+      <feGaussianBlur stdDeviation="3" result="blur"/>
+      <feComponentTransfer>
+        <feFuncA type="discrete" tableValues="1"/>
+      </feComponentTransfer>
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1920" height="1080" fill="#111111"/>
+
+  <!-- Title -->
+  <g id="title" opacity="0">
+    <text x="960" y="80" font-family="'SF Pro Display', 'Lato', sans-serif" font-size="72" font-weight="bold" fill="#FFFFFF" text-anchor="middle">
+      Random Forest Ensemble
+    </text>
+    <text x="960" y="130" font-family="'SF Pro Display', sans-serif" font-size="36" fill="#888888" text-anchor="middle">
+      Bootstrap Aggregating for Robust Predictions
+    </text>
+    <animate attributeName="opacity" from="0" to="1" begin="0s" dur="0.8s" fill="freeze"/>
+  </g>
+
+  <!-- Original Dataset (top center) -->
+  <g id="originalData" transform="translate(760, 180)" opacity="0">
+    <rect x="0" y="0" width="400" height="280" fill="#1A1A1A" rx="10" stroke="#444444" stroke-width="2"/>
+    <text x="200" y="25" font-family="'SF Pro Display', sans-serif" font-size="28" font-weight="bold" fill="#EEEEEE" text-anchor="middle">
+      Original Dataset
+    </text>
+
+    <!-- Axes -->
+    <line x1="40" y1="240" x2="360" y2="240" stroke="#444444" stroke-width="2"/>
+    <line x1="40" y1="60" x2="40" y2="240" stroke="#444444" stroke-width="2"/>
+    <text x="200" y="265" font-family="sans-serif" font-size="18" fill="#888888" text-anchor="middle">Temperature (°C)</text>
+    <text x="25" y="150" font-family="sans-serif" font-size="18" fill="#888888" text-anchor="middle" transform="rotate(-90 25 150)">CV Risk</text>
+
+    <!-- Data points - Red (high risk) -->
+    <circle cx="80" cy="90" r="6" fill="#FC6255" opacity="0.8"/>
+    <circle cx="100" cy="100" r="6" fill="#FC6255" opacity="0.8"/>
+    <circle cx="90" cy="110" r="6" fill="#FC6255" opacity="0.8"/>
+    <circle cx="110" cy="85" r="6" fill="#FC6255" opacity="0.8"/>
+    <circle cx="270" cy="95" r="6" fill="#FC6255" opacity="0.8"/>
+    <circle cx="290" cy="105" r="6" fill="#FC6255" opacity="0.8"/>
+    <circle cx="280" cy="115" r="6" fill="#FC6255" opacity="0.8"/>
+    <circle cx="300" cy="90" r="6" fill="#FC6255" opacity="0.8"/>
+
+    <!-- Data points - Blue (low risk) -->
+    <circle cx="150" cy="180" r="6" fill="#29ABCA" opacity="0.8"/>
+    <circle cx="170" cy="190" r="6" fill="#29ABCA" opacity="0.8"/>
+    <circle cx="160" cy="200" r="6" fill="#29ABCA" opacity="0.8"/>
+    <circle cx="180" cy="175" r="6" fill="#29ABCA" opacity="0.8"/>
+    <circle cx="220" cy="185" r="6" fill="#29ABCA" opacity="0.8"/>
+    <circle cx="240" cy="195" r="6" fill="#29ABCA" opacity="0.8"/>
+    <circle cx="230" cy="205" r="6" fill="#29ABCA" opacity="0.8"/>
+    <circle cx="250" cy="180" r="6" fill="#29ABCA" opacity="0.8"/>
+
+    <animate attributeName="opacity" from="0" to="1" begin="1s" dur="0.8s" fill="freeze"/>
+  </g>
+
+  <!-- Four Bootstrap Sample Panels (2x2 grid) -->
+  <!-- Top Left: Bootstrap Sample 1 (Blue boundary) -->
+  <g id="bootstrap1" transform="translate(60, 500)" opacity="0">
+    <rect x="0" y="0" width="420" height="300" fill="#1A1A1A" rx="8" stroke="#29ABCA" stroke-width="2"/>
+    <text x="210" y="25" font-family="'SF Pro Display', sans-serif" font-size="24" font-weight="bold" fill="#29ABCA" text-anchor="middle">
+      Bootstrap Sample 1
+    </text>
+
+    <!-- Axes -->
+    <line x1="40" y1="260" x2="380" y2="260" stroke="#333333" stroke-width="1"/>
+    <line x1="40" y1="60" x2="40" y2="260" stroke="#333333" stroke-width="1"/>
+
+    <!-- Bootstrap points (with duplicates shown by flashing) -->
+    <g id="bs1Points" opacity="0">
+      <circle cx="80" cy="100" r="5" fill="#FC6255" opacity="0.7">
+        <animate attributeName="opacity" values="0.7;1;0.7" begin="3s" dur="0.5s" repeatCount="2"/>
+      </circle>
+      <circle cx="95" cy="105" r="5" fill="#FC6255" opacity="0.7"/>
+      <circle cx="270" cy="100" r="5" fill="#FC6255" opacity="0.7">
+        <animate attributeName="opacity" values="0.7;1;0.7" begin="3s" dur="0.5s" repeatCount="2"/>
+      </circle>
+      <circle cx="285" cy="110" r="5" fill="#FC6255" opacity="0.7"/>
+      <circle cx="160" cy="200" r="5" fill="#29ABCA" opacity="0.7"/>
+      <circle cx="175" cy="210" r="5" fill="#29ABCA" opacity="0.7">
+        <animate attributeName="opacity" values="0.7;1;0.7" begin="3s" dur="0.5s" repeatCount="2"/>
+      </circle>
+      <circle cx="230" cy="205" r="5" fill="#29ABCA" opacity="0.7"/>
+      <circle cx="245" cy="200" r="5" fill="#29ABCA" opacity="0.7"/>
+      <animate attributeName="opacity" from="0" to="1" begin="3s" dur="0.6s" fill="freeze"/>
+    </g>
+
+    <!-- Decision boundary (Blue, semi-transparent) -->
+    <path id="boundary1" d="M 40,180 L 150,185 Q 200,190 250,180 L 380,175"
+          fill="none" stroke="#29ABCA" stroke-width="3" opacity="0" stroke-dasharray="800" stroke-dashoffset="800">
+      <animate attributeName="stroke-dashoffset" from="800" to="0" begin="5s" dur="1.5s" fill="freeze"/>
+      <animate attributeName="opacity" from="0" to="0.6" begin="5s" dur="0.3s" fill="freeze"/>
+    </path>
+
+    <animate attributeName="opacity" from="0" to="1" begin="2.5s" dur="0.5s" fill="freeze"/>
+  </g>
+
+  <!-- Top Right: Bootstrap Sample 2 (Green boundary) -->
+  <g id="bootstrap2" transform="translate(520, 500)" opacity="0">
+    <rect x="0" y="0" width="420" height="300" fill="#1A1A1A" rx="8" stroke="#27AE60" stroke-width="2"/>
+    <text x="210" y="25" font-family="'SF Pro Display', sans-serif" font-size="24" font-weight="bold" fill="#27AE60" text-anchor="middle">
+      Bootstrap Sample 2
+    </text>
+
+    <!-- Axes -->
+    <line x1="40" y1="260" x2="380" y2="260" stroke="#333333" stroke-width="1"/>
+    <line x1="40" y1="60" x2="40" y2="260" stroke="#333333" stroke-width="1"/>
+
+    <!-- Bootstrap points -->
+    <g id="bs2Points" opacity="0">
+      <circle cx="85" cy="95" r="5" fill="#FC6255" opacity="0.7"/>
+      <circle cx="100" cy="105" r="5" fill="#FC6255" opacity="0.7">
+        <animate attributeName="opacity" values="0.7;1;0.7" begin="6.5s" dur="0.5s" repeatCount="2"/>
+      </circle>
+      <circle cx="275" cy="95" r="5" fill="#FC6255" opacity="0.7"/>
+      <circle cx="290" cy="115" r="5" fill="#FC6255" opacity="0.7">
+        <animate attributeName="opacity" values="0.7;1;0.7" begin="6.5s" dur="0.5s" repeatCount="2"/>
+      </circle>
+      <circle cx="155" cy="195" r="5" fill="#29ABCA" opacity="0.7"/>
+      <circle cx="170" cy="205" r="5" fill="#29ABCA" opacity="0.7"/>
+      <circle cx="225" cy="200" r="5" fill="#29ABCA" opacity="0.7">
+        <animate attributeName="opacity" values="0.7;1;0.7" begin="6.5s" dur="0.5s" repeatCount="2"/>
+      </circle>
+      <circle cx="240" cy="195" r="5" fill="#29ABCA" opacity="0.7"/>
+      <animate attributeName="opacity" from="0" to="1" begin="6.5s" dur="0.6s" fill="freeze"/>
+    </g>
+
+    <!-- Decision boundary (Green, semi-transparent) -->
+    <path id="boundary2" d="M 40,175 L 140,182 Q 210,188 280,178 L 380,170"
+          fill="none" stroke="#27AE60" stroke-width="3" opacity="0" stroke-dasharray="800" stroke-dashoffset="800">
+      <animate attributeName="stroke-dashoffset" from="800" to="0" begin="8s" dur="1.5s" fill="freeze"/>
+      <animate attributeName="opacity" from="0" to="0.6" begin="8s" dur="0.3s" fill="freeze"/>
+    </path>
+
+    <animate attributeName="opacity" from="0" to="1" begin="6s" dur="0.5s" fill="freeze"/>
+  </g>
+
+  <!-- Bottom Left: Bootstrap Sample 3 (Orange boundary) -->
+  <g id="bootstrap3" transform="translate(980, 500)" opacity="0">
+    <rect x="0" y="0" width="420" height="300" fill="#1A1A1A" rx="8" stroke="#FF9500" stroke-width="2"/>
+    <text x="210" y="25" font-family="'SF Pro Display', sans-serif" font-size="24" font-weight="bold" fill="#FF9500" text-anchor="middle">
+      Bootstrap Sample 3
+    </text>
+
+    <!-- Axes -->
+    <line x1="40" y1="260" x2="380" y2="260" stroke="#333333" stroke-width="1"/>
+    <line x1="40" y1="60" x2="40" y2="260" stroke="#333333" stroke-width="1"/>
+
+    <!-- Bootstrap points -->
+    <g id="bs3Points" opacity="0">
+      <circle cx="90" cy="90" r="5" fill="#FC6255" opacity="0.7">
+        <animate attributeName="opacity" values="0.7;1;0.7" begin="6.5s" dur="0.5s" repeatCount="2"/>
+      </circle>
+      <circle cx="105" cy="100" r="5" fill="#FC6255" opacity="0.7"/>
+      <circle cx="280" cy="100" r="5" fill="#FC6255" opacity="0.7"/>
+      <circle cx="295" cy="110" r="5" fill="#FC6255" opacity="0.7">
+        <animate attributeName="opacity" values="0.7;1;0.7" begin="6.5s" dur="0.5s" repeatCount="2"/>
+      </circle>
+      <circle cx="165" cy="190" r="5" fill="#29ABCA" opacity="0.7"/>
+      <circle cx="180" cy="200" r="5" fill="#29ABCA" opacity="0.7"/>
+      <circle cx="235" cy="195" r="5" fill="#29ABCA" opacity="0.7"/>
+      <circle cx="250" cy="190" r="5" fill="#29ABCA" opacity="0.7">
+        <animate attributeName="opacity" values="0.7;1;0.7" begin="6.5s" dur="0.5s" repeatCount="2"/>
+      </circle>
+      <animate attributeName="opacity" from="0" to="1" begin="6.5s" dur="0.6s" fill="freeze"/>
+    </g>
+
+    <!-- Decision boundary (Orange, semi-transparent) -->
+    <path id="boundary3" d="M 40,178 L 145,183 Q 205,192 265,180 L 380,173"
+          fill="none" stroke="#FF9500" stroke-width="3" opacity="0" stroke-dasharray="800" stroke-dashoffset="800">
+      <animate attributeName="stroke-dashoffset" from="800" to="0" begin="8s" dur="1.5s" fill="freeze"/>
+      <animate attributeName="opacity" from="0" to="0.6" begin="8s" dur="0.3s" fill="freeze"/>
+    </path>
+
+    <animate attributeName="opacity" from="0" to="1" begin="6s" dur="0.5s" fill="freeze"/>
+  </g>
+
+  <!-- Bottom Right: Bootstrap Sample 4 (Purple boundary) -->
+  <g id="bootstrap4" transform="translate(1440, 500)" opacity="0">
+    <rect x="0" y="0" width="420" height="300" fill="#1A1A1A" rx="8" stroke="#A06FD1" stroke-width="2"/>
+    <text x="210" y="25" font-family="'SF Pro Display', sans-serif" font-size="24" font-weight="bold" fill="#A06FD1" text-anchor="middle">
+      Bootstrap Sample 4
+    </text>
+
+    <!-- Axes -->
+    <line x1="40" y1="260" x2="380" y2="260" stroke="#333333" stroke-width="1"/>
+    <line x1="40" y1="60" x2="40" y2="260" stroke="#333333" stroke-width="1"/>
+
+    <!-- Bootstrap points -->
+    <g id="bs4Points" opacity="0">
+      <circle cx="75" cy="98" r="5" fill="#FC6255" opacity="0.7"/>
+      <circle cx="90" cy="108" r="5" fill="#FC6255" opacity="0.7"/>
+      <circle cx="265" cy="93" r="5" fill="#FC6255" opacity="0.7">
+        <animate attributeName="opacity" values="0.7;1;0.7" begin="6.5s" dur="0.5s" repeatCount="2"/>
+      </circle>
+      <circle cx="280" cy="113" r="5" fill="#FC6255" opacity="0.7">
+        <animate attributeName="opacity" values="0.7;1;0.7" begin="6.5s" dur="0.5s" repeatCount="2"/>
+      </circle>
+      <circle cx="150" cy="198" r="5" fill="#29ABCA" opacity="0.7">
+        <animate attributeName="opacity" values="0.7;1;0.7" begin="6.5s" dur="0.5s" repeatCount="2"/>
+      </circle>
+      <circle cx="165" cy="208" r="5" fill="#29ABCA" opacity="0.7"/>
+      <circle cx="220" cy="203" r="5" fill="#29ABCA" opacity="0.7"/>
+      <circle cx="235" cy="198" r="5" fill="#29ABCA" opacity="0.7"/>
+      <animate attributeName="opacity" from="0" to="1" begin="6.5s" dur="0.6s" fill="freeze"/>
+    </g>
+
+    <!-- Decision boundary (Purple, semi-transparent) -->
+    <path id="boundary4" d="M 40,182 L 155,186 Q 210,193 270,182 L 380,176"
+          fill="none" stroke="#A06FD1" stroke-width="3" opacity="0" stroke-dasharray="800" stroke-dashoffset="800">
+      <animate attributeName="stroke-dashoffset" from="800" to="0" begin="8s" dur="1.5s" fill="freeze"/>
+      <animate attributeName="opacity" from="0" to="0.6" begin="8s" dur="0.3s" fill="freeze"/>
+    </path>
+
+    <animate attributeName="opacity" from="0" to="1" begin="6s" dur="0.5s" fill="freeze"/>
+  </g>
+
+  <!-- Averaging process overlay -->
+  <g id="averaging" transform="translate(760, 180)" opacity="0">
+    <rect x="0" y="0" width="400" height="280" fill="#111111" opacity="0.95" rx="10" stroke="#29ABCA" stroke-width="3"/>
+    <text x="200" y="35" font-family="'SF Pro Display', sans-serif" font-size="32" font-weight="bold" fill="#29ABCA" text-anchor="middle">
+      Ensemble Average
+    </text>
+
+    <!-- Axes -->
+    <line x1="40" y1="240" x2="360" y2="240" stroke="#444444" stroke-width="2"/>
+    <line x1="40" y1="60" x2="40" y2="240" stroke="#444444" stroke-width="2"/>
+
+    <!-- All original data points -->
+    <circle cx="80" cy="90" r="5" fill="#FC6255" opacity="0.6"/>
+    <circle cx="100" cy="100" r="5" fill="#FC6255" opacity="0.6"/>
+    <circle cx="90" cy="110" r="5" fill="#FC6255" opacity="0.6"/>
+    <circle cx="110" cy="85" r="5" fill="#FC6255" opacity="0.6"/>
+    <circle cx="270" cy="95" r="5" fill="#FC6255" opacity="0.6"/>
+    <circle cx="290" cy="105" r="5" fill="#FC6255" opacity="0.6"/>
+    <circle cx="280" cy="115" r="5" fill="#FC6255" opacity="0.6"/>
+    <circle cx="300" cy="90" r="5" fill="#FC6255" opacity="0.6"/>
+    <circle cx="150" cy="180" r="5" fill="#29ABCA" opacity="0.6"/>
+    <circle cx="170" cy="190" r="5" fill="#29ABCA" opacity="0.6"/>
+    <circle cx="160" cy="200" r="5" fill="#29ABCA" opacity="0.6"/>
+    <circle cx="180" cy="175" r="5" fill="#29ABCA" opacity="0.6"/>
+    <circle cx="220" cy="185" r="5" fill="#29ABCA" opacity="0.6"/>
+    <circle cx="240" cy="195" r="5" fill="#29ABCA" opacity="0.6"/>
+    <circle cx="230" cy="205" r="5" fill="#29ABCA" opacity="0.6"/>
+    <circle cx="250" cy="180" r="5" fill="#29ABCA" opacity="0.6"/>
+
+    <!-- Ensemble boundary (thick, glowing, cyan-green gradient) -->
+    <path id="ensembleBoundary" d="M 40,180 L 150,184 Q 200,190 250,180 L 360,176"
+          fill="none" stroke="url(#ensembleGlow)" stroke-width="6" opacity="0"
+          filter="url(#strongGlow)" stroke-dasharray="1000" stroke-dashoffset="1000">
+      <animate attributeName="stroke-dashoffset" from="1000" to="0" begin="13s" dur="2s" fill="freeze"/>
+      <animate attributeName="opacity" from="0" to="1" begin="13s" dur="0.5s" fill="freeze"/>
+      <animate attributeName="opacity" values="1;0.7;1" begin="15s" dur="2s" repeatCount="indefinite"/>
+    </path>
+
+    <text x="200" y="260" font-family="sans-serif" font-size="20" fill="#27AE60" text-anchor="middle" opacity="0">
+      Smooth, Robust Prediction
+      <animate attributeName="opacity" from="0" to="1" begin="15s" dur="0.8s" fill="freeze"/>
+    </text>
+
+    <animate attributeName="opacity" from="0" to="1" begin="10s" dur="1s" fill="freeze"/>
+  </g>
+
+  <!-- Formula -->
+  <g id="formula" transform="translate(960, 950)" opacity="0">
+    <rect x="-380" y="-50" width="760" height="90" fill="#1A1A1A" opacity="0.95" rx="10" stroke="#444444" stroke-width="2"/>
+    <text x="0" y="0" font-family="'SF Pro Display', sans-serif" font-size="44" fill="#EEEEEE" text-anchor="middle">
+      <tspan font-style="italic">F</tspan><tspan baseline-shift="sub" font-size="30">ensemble</tspan>(<tspan font-style="italic">x</tspan>) =
+      <tspan fill="#29ABCA">(1/B)</tspan> <tspan fill="#EEEEEE">Σ</tspan> <tspan font-style="italic">T</tspan><tspan baseline-shift="sub" font-size="30">i</tspan>(<tspan font-style="italic">x</tspan>)
+    </text>
+    <text x="0" y="35" font-family="sans-serif" font-size="24" fill="#888888" text-anchor="middle">
+      Average of B=4 bootstrap-trained trees
+    </text>
+    <animate attributeName="opacity" from="0" to="1" begin="16s" dur="0.8s" fill="freeze"/>
+  </g>
+
+  <!-- Side comparison boxes -->
+  <g id="comparison" transform="translate(1600, 180)" opacity="0">
+    <!-- Single Tree (wiggly) -->
+    <g id="singleTree">
+      <rect x="0" y="0" width="260" height="120" fill="#1A1A1A" rx="8" stroke="#FC6255" stroke-width="2"/>
+      <text x="130" y="25" font-family="sans-serif" font-size="20" font-weight="bold" fill="#FC6255" text-anchor="middle">
+        Single Tree
+      </text>
+      <path d="M 20,70 Q 50,50 80,75 T 140,65 T 200,80 L 240,60"
+            fill="none" stroke="#FC6255" stroke-width="3" opacity="0.7"/>
+      <text x="130" y="105" font-family="sans-serif" font-size="16" fill="#888888" text-anchor="middle">
+        High Variance
+      </text>
+    </g>
+
+    <!-- Ensemble (smooth) -->
+    <g id="ensemble" transform="translate(0, 150)">
+      <rect x="0" y="0" width="260" height="120" fill="#1A1A1A" rx="8" stroke="#27AE60" stroke-width="2"/>
+      <text x="130" y="25" font-family="sans-serif" font-size="20" font-weight="bold" fill="#27AE60" text-anchor="middle">
+        Ensemble
+      </text>
+      <path d="M 20,70 Q 80,68 140,70 T 240,68"
+            fill="none" stroke="#27AE60" stroke-width="4" opacity="0.9" filter="url(#glow)"/>
+      <text x="130" y="105" font-family="sans-serif" font-size="16" fill="#888888" text-anchor="middle">
+        Low Variance ✓
+      </text>
+    </g>
+
+    <animate attributeName="opacity" from="0" to="1" begin="17s" dur="0.8s" fill="freeze"/>
+  </g>
+
+  <!-- Variance reduction annotation -->
+  <g id="varianceNote" transform="translate(60, 850)" opacity="0">
+    <text x="0" y="0" font-family="'SF Pro Display', sans-serif" font-size="32" fill="#27AE60" font-weight="bold">
+      Variance Reduction: ~75%
+    </text>
+    <text x="0" y="35" font-family="sans-serif" font-size="22" fill="#888888">
+      Bootstrap + Averaging = Robust predictions
+    </text>
+    <animate attributeName="opacity" from="0" to="1" begin="18s" dur="0.8s" fill="freeze"/>
+  </g>
+
+  <!-- Animation labels -->
+  <g id="animationLabels" opacity="0">
+    <text x="960" y="480" font-family="'SF Pro Display', sans-serif" font-size="28" fill="#FFFF00" text-anchor="middle">
+      ↓ Bootstrap Sampling with Replacement ↓
+    </text>
+    <animate attributeName="opacity" values="0;1;1;0" begin="2s" dur="5s" fill="freeze"/>
+  </g>
+
+  <!-- 3Blue1Brown watermark -->
+  <g id="watermark" opacity="0.3">
+    <text x="100" y="1050" font-family="'SF Pro Display', sans-serif" font-size="18" fill="#666666">
+      3B1B-Style Visualization
+    </text>
+  </g>
+</svg>

@@ -1,0 +1,556 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+     viewBox="0 0 1920 1080" width="1920" height="1080">
+
+  <defs>
+    <!-- Gradients -->
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#1a1a2e;stop-opacity:1"/>
+      <stop offset="100%" style="stop-color:#16213e;stop-opacity:1"/>
+    </linearGradient>
+
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="4" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1920" height="1080" fill="url(#bgGrad)"/>
+
+  <!-- Title -->
+  <g id="title-section">
+    <text x="960" y="55" font-family="'Helvetica Neue', Arial, sans-serif"
+          font-size="44" font-weight="300" fill="#ECF0F1" text-anchor="middle">
+      Hyperparameter Tuning: Regularization Strength
+    </text>
+    <text x="960" y="92" font-family="'Helvetica Neue', Arial, sans-serif"
+          font-size="20" font-weight="300" fill="#95A5A6" text-anchor="middle">
+      How λ (lambda) controls model complexity and prevents overfitting
+    </text>
+  </g>
+
+  <!-- Main content split into 3 sections -->
+
+  <!-- LEFT: Regression Fit Visualization -->
+  <g id="regression-fit" transform="translate(100, 140)">
+    <rect x="0" y="0" width="520" height="700" rx="10" fill="#2C3E50" opacity="0.3"
+          stroke="#3498DB" stroke-width="2"/>
+
+    <text x="260" y="35" font-family="'Helvetica Neue', Arial, sans-serif"
+          font-size="20" fill="#3498DB" text-anchor="middle" font-weight="500">
+      Model Fit
+    </text>
+
+    <!-- Lambda display -->
+    <g transform="translate(260, 70)">
+      <text x="0" y="0" font-family="'Helvetica Neue', Arial, sans-serif"
+            font-size="18" fill="#ECF0F1" text-anchor="middle" font-weight="500">
+        λ = <tspan id="lambda-display" fill="#F39C12" font-size="24">
+          <set attributeName="textContent" to="0" begin="0s"/>
+          <set attributeName="textContent" to="0.01" begin="4s"/>
+          <set attributeName="textContent" to="1" begin="8s"/>
+          <set attributeName="textContent" to="10" begin="12s"/>
+          <set attributeName="textContent" to="100" begin="16s"/>
+        </tspan>
+      </text>
+      <text x="0" y="25" font-family="'Helvetica Neue', Arial, sans-serif"
+            font-size="13" fill="#95A5A6" text-anchor="middle">
+        (regularization strength)
+      </text>
+    </g>
+
+    <!-- Scatter plot with regression line -->
+    <g transform="translate(30, 130)">
+      <rect x="0" y="0" width="460" height="460" fill="#1a1a2e" stroke="#ECF0F1" stroke-width="1"/>
+
+      <!-- Data points (with some noise) -->
+      <g id="data-points" fill="#3498DB" opacity="0.7">
+        <circle cx="50" cy="380" r="7"/>
+        <circle cx="80" cy="360" r="7"/>
+        <circle cx="110" cy="340" r="7"/>
+        <circle cx="140" cy="300" r="7"/>
+        <circle cx="170" cy="280" r="7"/>
+        <circle cx="200" cy="250" r="7"/>
+        <circle cx="230" cy="220" r="7"/>
+        <circle cx="260" cy="200" r="7"/>
+        <circle cx="290" cy="170" r="7"/>
+        <circle cx="320" cy="150" r="7"/>
+        <circle cx="350" cy="120" r="7"/>
+        <circle cx="380" cy="100" r="7"/>
+        <circle cx="410" cy="80" r="7"/>
+
+        <!-- Noisy outliers -->
+        <circle cx="100" cy="420" r="7" opacity="0.5"/>
+        <circle cx="240" cy="310" r="7" opacity="0.5"/>
+        <circle cx="370" cy="200" r="7" opacity="0.5"/>
+      </g>
+
+      <!-- λ = 0: Overfit (wiggly line fitting noise) -->
+      <g id="fit-lambda-0" opacity="0">
+        <path d="M 50,380 Q 80,350 110,340 T 140,290 Q 170,270 200,250 Q 220,235 240,310 Q 260,200 290,170 Q 320,145 350,120 Q 380,95 410,80"
+              fill="none" stroke="#E74C3C" stroke-width="4" stroke-linecap="round"/>
+        <text x="230" y="440" font-family="'Helvetica Neue', Arial, sans-serif"
+              font-size="16" fill="#E74C3C" text-anchor="middle" font-weight="600">
+          OVERFIT
+        </text>
+
+        <animate attributeName="opacity"
+                 values="1;1;0;0;0;0"
+                 keyTimes="0;0.2;0.25;0.4;0.6;1"
+                 dur="20s"
+                 repeatCount="indefinite"/>
+      </g>
+
+      <!-- λ = 0.01: Still quite flexible -->
+      <g id="fit-lambda-001" opacity="0">
+        <path d="M 50,380 Q 100,350 150,300 Q 200,240 250,200 Q 300,160 350,120 Q 380,95 410,80"
+              fill="none" stroke="#E67E22" stroke-width="4" stroke-linecap="round"/>
+        <text x="230" y="440" font-family="'Helvetica Neue', Arial, sans-serif"
+              font-size="16" fill="#E67E22" text-anchor="middle" font-weight="600">
+          Still flexible
+        </text>
+
+        <animate attributeName="opacity"
+                 values="0;0;1;1;0;0"
+                 keyTimes="0;0.2;0.25;0.4;0.45;1"
+                 dur="20s"
+                 repeatCount="indefinite"/>
+      </g>
+
+      <!-- λ = 1: Good balance (optimal) -->
+      <g id="fit-lambda-1" opacity="0">
+        <path d="M 50,380 L 410,80"
+              fill="none" stroke="#27AE60" stroke-width="5" stroke-linecap="round"
+              filter="url(#glow)"/>
+        <text x="230" y="440" font-family="'Helvetica Neue', Arial, sans-serif"
+              font-size="18" fill="#27AE60" text-anchor="middle" font-weight="700">
+          OPTIMAL ★
+        </text>
+
+        <animate attributeName="opacity"
+                 values="0;0;0;0;1;1;0;0"
+                 keyTimes="0;0.4;0.45;0.5;0.55;0.6;0.65;1"
+                 dur="20s"
+                 repeatCount="indefinite"/>
+      </g>
+
+      <!-- λ = 10: Starting to underfit -->
+      <g id="fit-lambda-10" opacity="0">
+        <path d="M 50,350 L 410,150"
+              fill="none" stroke="#F39C12" stroke-width="4" stroke-linecap="round"/>
+        <text x="230" y="440" font-family="'Helvetica Neue', Arial, sans-serif"
+              font-size="16" fill="#F39C12" text-anchor="middle" font-weight="600">
+          Too simple
+        </text>
+
+        <animate attributeName="opacity"
+                 values="0;0;0;0;0;0;1;1;0;0"
+                 keyTimes="0;0.55;0.6;0.65;0.7;0.75;0.8;0.85;0.9;1"
+                 dur="20s"
+                 repeatCount="indefinite"/>
+      </g>
+
+      <!-- λ = 100: Severe underfit (flat line) -->
+      <g id="fit-lambda-100" opacity="0">
+        <path d="M 50,250 L 410,250"
+              fill="none" stroke="#E74C3C" stroke-width="4" stroke-linecap="round"/>
+        <text x="230" y="440" font-family="'Helvetica Neue', Arial, sans-serif"
+              font-size="16" fill="#E74C3C" text-anchor="middle" font-weight="600">
+          UNDERFIT
+        </text>
+
+        <animate attributeName="opacity"
+                 values="0;0;0;0;0;0;0;0;1;1"
+                 keyTimes="0;0.7;0.75;0.8;0.85;0.9;0.92;0.95;0.97;1"
+                 dur="20s"
+                 repeatCount="indefinite"/>
+      </g>
+
+      <!-- Axes labels -->
+      <text x="230" y="485" font-family="'Helvetica Neue', Arial, sans-serif"
+            font-size="14" fill="#95A5A6" text-anchor="middle">Feature (x)</text>
+      <text x="-15" y="230" font-family="'Helvetica Neue', Arial, sans-serif"
+            font-size="14" fill="#95A5A6" text-anchor="middle"
+            transform="rotate(-90, -15, 230)">Target (y)</text>
+    </g>
+
+    <!-- Status message -->
+    <g transform="translate(260, 625)">
+      <text x="0" y="0" font-family="'Helvetica Neue', Arial, sans-serif"
+            font-size="14" fill="#ECF0F1" text-anchor="middle">
+        <tspan id="status-msg">
+          <set attributeName="textContent" to="No regularization: Complex model" begin="0s"/>
+          <set attributeName="textContent" to="Weak regularization: Still flexible" begin="4s"/>
+          <set attributeName="textContent" to="Moderate regularization: Balanced" begin="8s"/>
+          <set attributeName="textContent" to="Strong regularization: Simplifying" begin="12s"/>
+          <set attributeName="textContent" to="Too strong: Ignoring data" begin="16s"/>
+        </tspan>
+      </text>
+    </g>
+  </g>
+
+  <!-- CENTER: Coefficient Shrinkage -->
+  <g id="coefficient-shrinkage" transform="translate(680, 140)">
+    <rect x="0" y="0" width="560" height="700" rx="10" fill="#2C3E50" opacity="0.3"
+          stroke="#F39C12" stroke-width="2"/>
+
+    <text x="280" y="35" font-family="'Helvetica Neue', Arial, sans-serif"
+          font-size="20" fill="#F39C12" text-anchor="middle" font-weight="500">
+      Coefficient Magnitudes
+    </text>
+
+    <text x="280" y="65" font-family="'Helvetica Neue', Arial, sans-serif"
+          font-size="15" fill="#95A5A6" text-anchor="middle">
+      As λ increases, coefficients shrink toward zero
+    </text>
+
+    <!-- Bar chart of coefficients -->
+    <g transform="translate(50, 110)">
+      <!-- Axes -->
+      <line x1="0" y1="0" x2="0" y2="500" stroke="#ECF0F1" stroke-width="2"/>
+      <line x1="0" y1="250" x2="460" y2="250" stroke="#ECF0F1" stroke-width="2"/>
+
+      <!-- Y-axis labels -->
+      <text x="-15" y="10" font-family="'Helvetica Neue', Arial, sans-serif"
+            font-size="12" fill="#95A5A6" text-anchor="end">+2</text>
+      <text x="-15" y="130" font-family="'Helvetica Neue', Arial, sans-serif"
+            font-size="12" fill="#95A5A6" text-anchor="end">+1</text>
+      <text x="-15" y="255" font-family="'Helvetica Neue', Arial, sans-serif"
+            font-size="12" fill="#95A5A6" text-anchor="end">0</text>
+      <text x="-15" y="375" font-family="'Helvetica Neue', Arial, sans-serif"
+            font-size="12" fill="#95A5A6" text-anchor="end">-1</text>
+      <text x="-15" y="495" font-family="'Helvetica Neue', Arial, sans-serif"
+            font-size="12" fill="#95A5A6" text-anchor="end">-2</text>
+
+      <!-- X-axis labels (coefficient names) -->
+      <g transform="translate(0, 520)" font-family="'Helvetica Neue', Arial, sans-serif"
+         font-size="12" fill="#95A5A6">
+        <text x="40" y="0" text-anchor="middle">β₁</text>
+        <text x="100" y="0" text-anchor="middle">β₂</text>
+        <text x="160" y="0" text-anchor="middle">β₃</text>
+        <text x="220" y="0" text-anchor="middle">β₄</text>
+        <text x="280" y="0" text-anchor="middle">β₅</text>
+        <text x="340" y="0" text-anchor="middle">β₆</text>
+        <text x="400" y="0" text-anchor="middle">β₇</text>
+      </g>
+
+      <!-- Coefficient bars (animated shrinkage) -->
+      <!-- β₁ -->
+      <rect x="25" y="250" width="30" height="0" fill="#3498DB">
+        <animate attributeName="y"
+                 values="70;95;130;185;245;245"
+                 keyTimes="0;0.2;0.4;0.6;0.8;1"
+                 dur="20s"
+                 repeatCount="indefinite"/>
+        <animate attributeName="height"
+                 values="180;155;120;65;5;5"
+                 keyTimes="0;0.2;0.4;0.6;0.8;1"
+                 dur="20s"
+                 repeatCount="indefinite"/>
+      </rect>
+
+      <!-- β₂ -->
+      <rect x="85" y="250" width="30" height="0" fill="#E74C3C">
+        <animate attributeName="height"
+                 values="140;115;85;45;5;5"
+                 keyTimes="0;0.2;0.4;0.6;0.8;1"
+                 dur="20s"
+                 repeatCount="indefinite"/>
+      </rect>
+
+      <!-- β₃ -->
+      <rect x="145" y="250" width="30" height="0" fill="#27AE60">
+        <animate attributeName="y"
+                 values="110;130;160;200;245;245"
+                 keyTimes="0;0.2;0.4;0.6;0.8;1"
+                 dur="20s"
+                 repeatCount="indefinite"/>
+        <animate attributeName="height"
+                 values="140;120;90;50;5;5"
+                 keyTimes="0;0.2;0.4;0.6;0.8;1"
+                 dur="20s"
+                 repeatCount="indefinite"/>
+      </rect>
+
+      <!-- β₄ -->
+      <rect x="205" y="250" width="30" height="0" fill="#F39C12">
+        <animate attributeName="height"
+                 values="90;75;55;30;5;5"
+                 keyTimes="0;0.2;0.4;0.6;0.8;1"
+                 dur="20s"
+                 repeatCount="indefinite"/>
+      </rect>
+
+      <!-- β₅ -->
+      <rect x="265" y="250" width="30" height="0" fill="#9B59B6">
+        <animate attributeName="y"
+                 values="150;170;190;220;245;245"
+                 keyTimes="0;0.2;0.4;0.6;0.8;1"
+                 dur="20s"
+                 repeatCount="indefinite"/>
+        <animate attributeName="height"
+                 values="100;80;60;30;5;5"
+                 keyTimes="0;0.2;0.4;0.6;0.8;1"
+                 dur="20s"
+                 repeatCount="indefinite"/>
+      </rect>
+
+      <!-- β₆ -->
+      <rect x="325" y="250" width="30" height="0" fill="#E67E22">
+        <animate attributeName="height"
+                 values="70;55;40;20;5;5"
+                 keyTimes="0;0.2;0.4;0.6;0.8;1"
+                 dur="20s"
+                 repeatCount="indefinite"/>
+      </rect>
+
+      <!-- β₇ -->
+      <rect x="385" y="250" width="30" height="0" fill="#16A085">
+        <animate attributeName="y"
+                 values="190;205;220;235;245;245"
+                 keyTimes="0;0.2;0.4;0.6;0.8;1"
+                 dur="20s"
+                 repeatCount="indefinite"/>
+        <animate attributeName="height"
+                 values="60;45;30;15;5;5"
+                 keyTimes="0;0.2;0.4;0.6;0.8;1"
+                 dur="20s"
+                 repeatCount="indefinite"/>
+      </rect>
+
+      <!-- Axis title -->
+      <text x="230" y="560" font-family="'Helvetica Neue', Arial, sans-serif"
+            font-size="14" fill="#ECF0F1" text-anchor="middle">
+        Coefficient Value
+      </text>
+    </g>
+
+    <!-- Formula display -->
+    <g transform="translate(280, 650)">
+      <text x="0" y="0" font-family="'Courier New', monospace"
+            font-size="14" fill="#F39C12" text-anchor="middle">
+        Loss = MSE + λ · ||β||²
+      </text>
+      <text x="0" y="22" font-family="'Helvetica Neue', Arial, sans-serif"
+            font-size="12" fill="#95A5A6" text-anchor="middle">
+        (L2 regularization / Ridge)
+      </text>
+    </g>
+  </g>
+
+  <!-- RIGHT: Validation Curve -->
+  <g id="validation-curve" transform="translate(1300, 140)">
+    <rect x="0" y="0" width="520" height="700" rx="10" fill="#2C3E50" opacity="0.3"
+          stroke="#27AE60" stroke-width="2"/>
+
+    <text x="260" y="35" font-family="'Helvetica Neue', Arial, sans-serif"
+          font-size="20" fill="#27AE60" text-anchor="middle" font-weight="500">
+      Error vs. Regularization
+    </text>
+
+    <g transform="translate(50, 90)">
+      <!-- Axes -->
+      <line x1="0" y1="0" x2="0" y2="500" stroke="#ECF0F1" stroke-width="2"/>
+      <line x1="0" y1="500" x2="420" y2="500" stroke="#ECF0F1" stroke-width="2"/>
+
+      <!-- Y-axis labels -->
+      <text x="-15" y="10" font-family="'Helvetica Neue', Arial, sans-serif"
+            font-size="13" fill="#95A5A6" text-anchor="end">High</text>
+      <text x="-15" y="255" font-family="'Helvetica Neue', Arial, sans-serif"
+            font-size="13" fill="#95A5A6" text-anchor="end">Med</text>
+      <text x="-15" y="500" font-family="'Helvetica Neue', Arial, sans-serif"
+            font-size="13" fill="#95A5A6" text-anchor="end">Low</text>
+
+      <!-- X-axis labels (log scale) -->
+      <text x="42" y="525" font-family="'Helvetica Neue', Arial, sans-serif"
+            font-size="13" fill="#95A5A6" text-anchor="middle">0</text>
+      <text x="126" y="525" font-family="'Helvetica Neue', Arial, sans-serif"
+            font-size="13" fill="#95A5A6" text-anchor="middle">0.01</text>
+      <text x="210" y="525" font-family="'Helvetica Neue', Arial, sans-serif"
+            font-size="13" fill="#95A5A6" text-anchor="middle">1</text>
+      <text x="294" y="525" font-family="'Helvetica Neue', Arial, sans-serif"
+            font-size="13" fill="#95A5A6" text-anchor="middle">10</text>
+      <text x="378" y="525" font-family="'Helvetica Neue', Arial, sans-serif"
+            font-size="13" fill="#95A5A6" text-anchor="middle">100</text>
+
+      <!-- Axis titles -->
+      <text x="210" y="555" font-family="'Helvetica Neue', Arial, sans-serif"
+            font-size="16" fill="#ECF0F1" text-anchor="middle" font-weight="500">
+        Regularization Strength (λ)
+      </text>
+      <text x="-45" y="250" font-family="'Helvetica Neue', Arial, sans-serif"
+            font-size="16" fill="#ECF0F1" text-anchor="middle" font-weight="500"
+            transform="rotate(-90, -45, 250)">
+        Error
+      </text>
+
+      <!-- Training error curve (increasing with λ) -->
+      <path d="M 42,190 L 126,220 L 210,280 L 294,360 L 378,420"
+            fill="none" stroke="#3498DB" stroke-width="4" stroke-linecap="round"
+            opacity="0.8">
+        <animate attributeName="stroke-dasharray"
+                 values="0,600;600,0"
+                 dur="5s"
+                 fill="freeze"/>
+      </path>
+
+      <!-- Validation error curve (U-shaped, lower at optimal λ) -->
+      <path d="M 42,150 L 126,110 L 210,90 L 294,220 L 378,380"
+            fill="none" stroke="#27AE60" stroke-width="5" stroke-linecap="round"
+            filter="url(#glow)">
+        <animate attributeName="stroke-dasharray"
+                 values="0,600;600,0"
+                 dur="6s"
+                 begin="1s"
+                 fill="freeze"/>
+      </path>
+
+      <!-- Optimal point marker -->
+      <g opacity="0">
+        <circle cx="210" cy="90" r="12" fill="#F1C40F" stroke="#FFFFFF" stroke-width="3"/>
+        <text x="210" y="-20" font-size="50" text-anchor="middle" fill="#F1C40F">★</text>
+        <text x="210" y="-35" font-family="'Helvetica Neue', Arial, sans-serif"
+              font-size="16" fill="#F1C40F" text-anchor="middle" font-weight="600">
+          OPTIMAL λ
+        </text>
+
+        <animate attributeName="opacity"
+                 values="0;0;0;1;1;1;1"
+                 keyTimes="0;0.35;0.4;0.45;0.6;0.8;1"
+                 dur="20s"
+                 repeatCount="indefinite"/>
+      </g>
+
+      <!-- Animated marker showing current position -->
+      <circle r="10" fill="#FFFFFF" stroke="#F39C12" stroke-width="3" filter="url(#glow)">
+        <animate attributeName="cx"
+                 values="42;126;210;294;378"
+                 keyTimes="0;0.2;0.4;0.6;0.8"
+                 dur="20s"
+                 repeatCount="indefinite"/>
+        <animate attributeName="cy"
+                 values="150;110;90;220;380"
+                 keyTimes="0;0.2;0.4;0.6;0.8"
+                 dur="20s"
+                 repeatCount="indefinite"/>
+      </circle>
+
+      <!-- Legend -->
+      <g transform="translate(240, 30)">
+        <line x1="0" y1="0" x2="40" y2="0" stroke="#3498DB" stroke-width="4"/>
+        <text x="50" y="5" font-family="'Helvetica Neue', Arial, sans-serif"
+              font-size="13" fill="#ECF0F1">Train Error</text>
+
+        <line x1="0" y1="25" x2="40" y2="25" stroke="#27AE60" stroke-width="4"/>
+        <text x="50" y="30" font-family="'Helvetica Neue', Arial, sans-serif"
+              font-size="13" fill="#ECF0F1">Val Error</text>
+      </g>
+
+      <!-- Region annotations -->
+      <g opacity="0">
+        <rect x="10" y="430" width="70" height="50" rx="5" fill="#E74C3C" opacity="0.9"/>
+        <text x="45" y="450" font-family="'Helvetica Neue', Arial, sans-serif"
+              font-size="11" fill="#FFFFFF" text-anchor="middle">Low λ</text>
+        <text x="45" y="465" font-family="'Helvetica Neue', Arial, sans-serif"
+              font-size="11" fill="#FFFFFF" text-anchor="middle">Overfit</text>
+
+        <animate attributeName="opacity"
+                 values="0;0;1;1;1;1"
+                 keyTimes="0;0.05;0.1;0.3;0.6;1"
+                 dur="20s"
+                 repeatCount="indefinite"/>
+      </g>
+
+      <g opacity="0">
+        <rect x="340" y="430" width="70" height="50" rx="5" fill="#E74C3C" opacity="0.9"/>
+        <text x="375" y="450" font-family="'Helvetica Neue', Arial, sans-serif"
+              font-size="11" fill="#FFFFFF" text-anchor="middle">High λ</text>
+        <text x="375" y="465" font-family="'Helvetica Neue', Arial, sans-serif"
+              font-size="11" fill="#FFFFFF" text-anchor="middle">Underfit</text>
+
+        <animate attributeName="opacity"
+                 values="0;0;0;0;0;0;0;1;1;1"
+                 keyTimes="0;0.6;0.65;0.7;0.75;0.8;0.85;0.9;0.95;1"
+                 dur="20s"
+                 repeatCount="indefinite"/>
+      </g>
+    </g>
+  </g>
+
+  <!-- Bottom insight panel -->
+  <g id="bottom-panel" transform="translate(960, 880)">
+    <rect x="-860" y="0" width="1720" height="180" rx="10" fill="#34495E" opacity="0.9"
+          stroke="#3498DB" stroke-width="2"/>
+
+    <text x="0" y="35" font-family="'Helvetica Neue', Arial, sans-serif"
+          font-size="24" fill="#3498DB" text-anchor="middle" font-weight="600">
+      Key Takeaway: Regularization Controls Complexity
+    </text>
+
+    <g transform="translate(0, 65)">
+      <!-- Three columns -->
+      <g transform="translate(-500, 0)">
+        <text x="0" y="0" font-family="'Helvetica Neue', Arial, sans-serif"
+              font-size="16" fill="#E74C3C" text-anchor="middle" font-weight="600">
+          λ = 0 (No Reg)
+        </text>
+        <text x="0" y="25" font-family="'Helvetica Neue', Arial, sans-serif"
+              font-size="14" fill="#ECF0F1" text-anchor="middle">
+          Large coefficients
+        </text>
+        <text x="0" y="47" font-family="'Helvetica Neue', Arial, sans-serif"
+              font-size="14" fill="#ECF0F1" text-anchor="middle">
+          Complex model
+        </text>
+        <text x="0" y="69" font-family="'Helvetica Neue', Arial, sans-serif"
+              font-size="14" fill="#E74C3C" text-anchor="middle" font-weight="500">
+          Overfits
+        </text>
+      </g>
+
+      <g transform="translate(0, 0)">
+        <text x="0" y="0" font-family="'Helvetica Neue', Arial, sans-serif"
+              font-size="16" fill="#27AE60" text-anchor="middle" font-weight="600">
+          λ = Optimal
+        </text>
+        <text x="0" y="25" font-family="'Helvetica Neue', Arial, sans-serif"
+              font-size="14" fill="#ECF0F1" text-anchor="middle">
+          Moderate coefficients
+        </text>
+        <text x="0" y="47" font-family="'Helvetica Neue', Arial, sans-serif"
+              font-size="14" fill="#ECF0F1" text-anchor="middle">
+          Balanced model
+        </text>
+        <text x="0" y="69" font-family="'Helvetica Neue', Arial, sans-serif"
+              font-size="14" fill="#27AE60" text-anchor="middle" font-weight="500">
+          Best generalization
+        </text>
+        <text x="0" y="-30" font-size="40" text-anchor="middle" fill="#F1C40F">★</text>
+      </g>
+
+      <g transform="translate(500, 0)">
+        <text x="0" y="0" font-family="'Helvetica Neue', Arial, sans-serif"
+              font-size="16" fill="#E74C3C" text-anchor="middle" font-weight="600">
+          λ = Very Large
+        </text>
+        <text x="0" y="25" font-family="'Helvetica Neue', Arial, sans-serif"
+              font-size="14" fill="#ECF0F1" text-anchor="middle">
+          Tiny coefficients
+        </text>
+        <text x="0" y="47" font-family="'Helvetica Neue', Arial, sans-serif"
+              font-size="14" fill="#ECF0F1" text-anchor="middle">
+          Too simple
+        </text>
+        <text x="0" y="69" font-family="'Helvetica Neue', Arial, sans-serif"
+              font-size="14" fill="#E74C3C" text-anchor="middle" font-weight="500">
+          Underfits
+        </text>
+      </g>
+    </g>
+  </g>
+
+</svg>

@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ML Animation Gallery - Original vs 3Blue1Brown Style</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            color: #eee;
+            padding: 40px 20px;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1800px;
+            margin: 0 auto;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 60px;
+            padding-bottom: 30px;
+            border-bottom: 2px solid #29ABCA;
+        }
+
+        h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+            background: linear-gradient(135deg, #29ABCA, #FC6255);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .subtitle {
+            font-size: 1.2rem;
+            color: #bbb;
+            margin-bottom: 20px;
+        }
+
+        .tabs {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+
+        .tab {
+            padding: 12px 30px;
+            background: rgba(41, 171, 202, 0.1);
+            border: 2px solid #29ABCA;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+        }
+
+        .tab:hover {
+            background: rgba(41, 171, 202, 0.2);
+            transform: translateY(-2px);
+        }
+
+        .tab.active {
+            background: #29ABCA;
+            color: #111;
+            font-weight: 600;
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        .comparison-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+            gap: 40px;
+            margin-bottom: 60px;
+        }
+
+        .animation-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 16px;
+            padding: 25px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .animation-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(41, 171, 202, 0.3);
+            border-color: #29ABCA;
+        }
+
+        .animation-title {
+            font-size: 1.4rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: #29ABCA;
+        }
+
+        .animation-description {
+            font-size: 0.95rem;
+            color: #ccc;
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+
+        .animation-container {
+            width: 100%;
+            height: 400px;
+            background: #111;
+            border-radius: 12px;
+            overflow: hidden;
+            border: 2px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .animation-container object {
+            width: 100%;
+            height: 100%;
+        }
+
+        .style-badge {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .badge-original {
+            background: rgba(252, 98, 85, 0.2);
+            color: #FC6255;
+            border: 1px solid #FC6255;
+        }
+
+        .badge-3b1b {
+            background: rgba(41, 171, 202, 0.2);
+            color: #29ABCA;
+            border: 1px solid #29ABCA;
+        }
+
+        .section-title {
+            font-size: 2rem;
+            font-weight: 600;
+            margin: 60px 0 30px;
+            text-align: center;
+            color: #29ABCA;
+        }
+
+        .feature-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin: 40px 0;
+        }
+
+        .feature-card {
+            background: rgba(41, 171, 202, 0.1);
+            border: 1px solid #29ABCA;
+            border-radius: 12px;
+            padding: 20px;
+        }
+
+        .feature-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #29ABCA;
+            margin-bottom: 10px;
+        }
+
+        .feature-text {
+            font-size: 0.95rem;
+            color: #ccc;
+            line-height: 1.6;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 80px;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #888;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>ML Animation Gallery</h1>
+            <p class="subtitle">Original Designs vs 3Blue1Brown-Inspired Styling</p>
+        </header>
+
+        <div class="tabs">
+            <div class="tab active" onclick="showTab('all')">All Animations</div>
+            <div class="tab" onclick="showTab('original')">Original Style</div>
+            <div class="tab" onclick="showTab('3b1b')">3B1B Style</div>
+            <div class="tab" onclick="showTab('comparison')">Side-by-Side</div>
+        </div>
+
+        <!-- All Animations Tab -->
+        <div id="all" class="tab-content active">
+            <h2 class="section-title">Complete Collection</h2>
+            <div class="comparison-grid">
+                <!-- Gradient Descent -->
+                <div class="animation-card">
+                    <span class="style-badge badge-original">Original</span>
+                    <h3 class="animation-title">Gradient Descent</h3>
+                    <p class="animation-description">Shows gradient descent optimization with local vs global minima scenarios.</p>
+                    <div class="animation-container">
+                        <object data="gradient_descent_animation.svg" type="image/svg+xml"></object>
+                    </div>
+                </div>
+                <div class="animation-card">
+                    <span class="style-badge badge-3b1b">3B1B Style</span>
+                    <h3 class="animation-title">Gradient Descent Enhanced</h3>
+                    <p class="animation-description">Dark theme, glowing effects, smooth gradients, professional typography.</p>
+                    <div class="animation-container">
+                        <object data="gradient_descent_3b1b_style.svg" type="image/svg+xml"></object>
+                    </div>
+                </div>
+
+                <!-- Neural Network -->
+                <div class="animation-card">
+                    <span class="style-badge badge-3b1b">3B1B Style</span>
+                    <h3 class="animation-title">Neural Network Training</h3>
+                    <p class="animation-description">Forward/backward pass with glowing nodes and real-time loss updates.</p>
+                    <div class="animation-container">
+                        <object data="neural_network_3b1b_style.svg" type="image/svg+xml"></object>
+                    </div>
+                </div>
+
+                <!-- Decision Tree -->
+                <div class="animation-card">
+                    <span class="style-badge badge-original">Original</span>
+                    <h3 class="animation-title">Decision Tree Building</h3>
+                    <p class="animation-description">Recursive partitioning with Gini impurity calculations.</p>
+                    <div class="animation-container">
+                        <object data="decision_tree_building.svg" type="image/svg+xml"></object>
+                    </div>
+                </div>
+                <div class="animation-card">
+                    <span class="style-badge badge-3b1b">3B1B Style</span>
+                    <h3 class="animation-title">Decision Tree Enhanced</h3>
+                    <p class="animation-description">Dark theme with color-coded purity regions and formula overlays.</p>
+                    <div class="animation-container">
+                        <object data="decision_tree_3b1b_style.svg" type="image/svg+xml"></object>
+                    </div>
+                </div>
+
+                <!-- Gradient Boosting -->
+                <div class="animation-card">
+                    <span class="style-badge badge-original">Original</span>
+                    <h3 class="animation-title">Gradient Boosting</h3>
+                    <p class="animation-description">Sequential error correction with residual visualization.</p>
+                    <div class="animation-container">
+                        <object data="gradient_boosting_sequence.svg" type="image/svg+xml"></object>
+                    </div>
+                </div>
+                <div class="animation-card">
+                    <span class="style-badge badge-3b1b">3B1B Style</span>
+                    <h3 class="animation-title">Gradient Boosting Enhanced</h3>
+                    <p class="animation-description">Professional dashboard with three-panel layout and smooth transitions.</p>
+                    <div class="animation-container">
+                        <object data="gradient_boosting_3b1b_style.svg" type="image/svg+xml"></object>
+                    </div>
+                </div>
+
+                <!-- Double Descent -->
+                <div class="animation-card">
+                    <span class="style-badge badge-original">Original</span>
+                    <h3 class="animation-title">Double Descent</h3>
+                    <p class="animation-description">Modern ML phenomenon showing U-curve breakdown.</p>
+                    <div class="animation-container">
+                        <object data="double_descent_phenomenon.svg" type="image/svg+xml"></object>
+                    </div>
+                </div>
+                <div class="animation-card">
+                    <span class="style-badge badge-3b1b">3B1B Style</span>
+                    <h3 class="animation-title">Double Descent Enhanced</h3>
+                    <p class="animation-description">Professional plot with regime backgrounds and inset examples.</p>
+                    <div class="animation-container">
+                        <object data="double_descent_3b1b_style.svg" type="image/svg+xml"></object>
+                    </div>
+                </div>
+
+                <!-- Random Forest -->
+                <div class="animation-card">
+                    <span class="style-badge badge-original">Original</span>
+                    <h3 class="animation-title">Random Forest Ensemble</h3>
+                    <p class="animation-description">Multiple trees averaging to create robust predictions.</p>
+                    <div class="animation-container">
+                        <object data="random_forest_ensemble.svg" type="image/svg+xml"></object>
+                    </div>
+                </div>
+                <div class="animation-card">
+                    <span class="style-badge badge-3b1b">3B1B Style</span>
+                    <h3 class="animation-title">Random Forest Enhanced</h3>
+                    <p class="animation-description">4-panel bootstrap sampling with ensemble averaging and variance reduction.</p>
+                    <div class="animation-container">
+                        <object data="random_forest_ensemble_3b1b_style.svg" type="image/svg+xml"></object>
+                    </div>
+                </div>
+
+                <!-- Backpropagation -->
+                <div class="animation-card">
+                    <span class="style-badge badge-original">Original</span>
+                    <h3 class="animation-title">Backpropagation</h3>
+                    <p class="animation-description">Forward and backward gradient flow through network layers.</p>
+                    <div class="animation-container">
+                        <object data="backpropagation_flow.svg" type="image/svg+xml"></object>
+                    </div>
+                </div>
+                <div class="animation-card">
+                    <span class="style-badge badge-3b1b">3B1B Style</span>
+                    <h3 class="animation-title">Backpropagation Enhanced</h3>
+                    <p class="animation-description">Blue forward wave, red backward gradients, weight updates with loss curve.</p>
+                    <div class="animation-container">
+                        <object data="backpropagation_flow_3b1b_style.svg" type="image/svg+xml"></object>
+                    </div>
+                </div>
+
+                <!-- Bias-Variance -->
+                <div class="animation-card">
+                    <span class="style-badge badge-original">Original</span>
+                    <h3 class="animation-title">Bias-Variance Tradeoff</h3>
+                    <p class="animation-description">Finding optimal model complexity to balance bias and variance.</p>
+                    <div class="animation-container">
+                        <object data="bias_variance_tradeoff.svg" type="image/svg+xml"></object>
+                    </div>
+                </div>
+                <div class="animation-card">
+                    <span class="style-badge badge-3b1b">3B1B Style</span>
+                    <h3 class="animation-title">Bias-Variance Enhanced</h3>
+                    <p class="animation-description">Complexity slider with underfit/optimal/overfit models and U-shaped validation curve.</p>
+                    <div class="animation-container">
+                        <object data="bias_variance_tradeoff_3b1b_style.svg" type="image/svg+xml"></object>
+                    </div>
+                </div>
+
+                <!-- Learning Rate -->
+                <div class="animation-card">
+                    <span class="style-badge badge-original">Original</span>
+                    <h3 class="animation-title">Learning Rate Effect</h3>
+                    <p class="animation-description">How learning rate affects gradient descent convergence.</p>
+                    <div class="animation-container">
+                        <object data="learning_rate_effect.svg" type="image/svg+xml"></object>
+                    </div>
+                </div>
+                <div class="animation-card">
+                    <span class="style-badge badge-3b1b">3B1B Style</span>
+                    <h3 class="animation-title">Learning Rate Enhanced</h3>
+                    <p class="animation-description">Three parallel descents: too small (cyan), optimal (green), too large (red).</p>
+                    <div class="animation-container">
+                        <object data="learning_rate_effect_3b1b_style.svg" type="image/svg+xml"></object>
+                    </div>
+                </div>
+
+                <!-- Feature Importance -->
+                <div class="animation-card">
+                    <span class="style-badge badge-original">Original</span>
+                    <h3 class="animation-title">Feature Importance</h3>
+                    <p class="animation-description">Feature ranking accumulation across Random Forest trees.</p>
+                    <div class="animation-container">
+                        <object data="feature_importance_buildup.svg" type="image/svg+xml"></object>
+                    </div>
+                </div>
+                <div class="animation-card">
+                    <span class="style-badge badge-3b1b">3B1B Style</span>
+                    <h3 class="animation-title">Feature Importance Enhanced</h3>
+                    <p class="animation-description">Growing bars with gradient colors, tree counter, and top 3 stars.</p>
+                    <div class="animation-container">
+                        <object data="feature_importance_buildup_3b1b_style.svg" type="image/svg+xml"></object>
+                    </div>
+                </div>
+
+                <!-- Tree Depth -->
+                <div class="animation-card">
+                    <span class="style-badge badge-original">Original</span>
+                    <h3 class="animation-title">Tree Depth Tuning</h3>
+                    <p class="animation-description">Hyperparameter optimization for decision tree depth.</p>
+                    <div class="animation-container">
+                        <object data="hyperparameter_tuning_tree_depth.svg" type="image/svg+xml"></object>
+                    </div>
+                </div>
+                <div class="animation-card">
+                    <span class="style-badge badge-3b1b">3B1B Style</span>
+                    <h3 class="animation-title">Tree Depth Enhanced</h3>
+                    <p class="animation-description">Three panels: tree structure, decision boundary, validation curve with optimal depth marked.</p>
+                    <div class="animation-container">
+                        <object data="hyperparameter_tuning_tree_depth_3b1b_style.svg" type="image/svg+xml"></object>
+                    </div>
+                </div>
+
+                <!-- Regularization -->
+                <div class="animation-card">
+                    <span class="style-badge badge-original">Original</span>
+                    <h3 class="animation-title">Regularization Tuning</h3>
+                    <p class="animation-description">Shows coefficient shrinkage with increasing regularization strength.</p>
+                    <div class="animation-container">
+                        <object data="hyperparameter_tuning_regularization.svg" type="image/svg+xml"></object>
+                    </div>
+                </div>
+                <div class="animation-card">
+                    <span class="style-badge badge-3b1b">3B1B Style</span>
+                    <h3 class="animation-title">Regularization Enhanced</h3>
+                    <p class="animation-description">Coefficient shrinkage bars, regression fits, U-shaped validation curve with log scale.</p>
+                    <div class="animation-container">
+                        <object data="hyperparameter_tuning_regularization_3b1b_style.svg" type="image/svg+xml"></object>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 3B1B Style Features -->
+        <h2 class="section-title">3Blue1Brown Style Features</h2>
+        <div class="feature-list">
+            <div class="feature-card">
+                <div class="feature-title">🎨 Dark Theme</div>
+                <div class="feature-text">Background #111111 with high contrast white text (18.6:1 ratio)</div>
+            </div>
+            <div class="feature-card">
+                <div class="feature-title">🌈 Semantic Colors</div>
+                <div class="feature-text">Blue for positive/correct, red for negative/error, yellow for emphasis</div>
+            </div>
+            <div class="feature-card">
+                <div class="feature-title">✨ Glowing Effects</div>
+                <div class="feature-text">Gaussian blur filters for subtle emphasis on key elements</div>
+            </div>
+            <div class="feature-card">
+                <div class="feature-title">📐 Proper LaTeX</div>
+                <div class="feature-text">Professional mathematical notation with subscripts and Greek letters</div>
+            </div>
+            <div class="feature-card">
+                <div class="feature-title">🎭 Smooth Easing</div>
+                <div class="feature-text">Non-linear transitions with cubic bezier curves for natural motion</div>
+            </div>
+            <div class="feature-card">
+                <div class="feature-title">📏 Generous Spacing</div>
+                <div class="feature-text">50-100px margins, proper visual hierarchy, not cramped</div>
+            </div>
+        </div>
+
+        <footer>
+            <p>ML Animation Gallery • Created with SVG/SMIL • Inspired by 3Blue1Brown</p>
+            <p style="margin-top: 10px; font-size: 0.85rem;">Based on analysis of Grant Sanderson's manim repository</p>
+        </footer>
+    </div>
+
+    <script>
+        function showTab(tabName) {
+            // Remove active class from all tabs and content
+            document.querySelectorAll('.tab').forEach(tab => tab.classList.remove('active'));
+            document.querySelectorAll('.tab-content').forEach(content => content.classList.remove('active'));
+
+            // Add active class to selected tab
+            event.target.classList.add('active');
+
+            // Show corresponding content
+            document.getElementById(tabName).classList.add('active');
+        }
+    </script>
+</body>
+</html>

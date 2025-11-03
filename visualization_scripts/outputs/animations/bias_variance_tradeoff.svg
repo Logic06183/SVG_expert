@@ -1,0 +1,458 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+     viewBox="0 0 1920 1080" width="1920" height="1080">
+
+  <defs>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+
+    <filter id="shadow">
+      <feGaussianBlur in="SourceAlpha" stdDeviation="2"/>
+      <feOffset dx="1" dy="1"/>
+      <feMerge>
+        <feMergeNode/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+
+    <radialGradient id="dataPoint">
+      <stop offset="0%" style="stop-color:#ECF0F1;stop-opacity:1"/>
+      <stop offset="100%" style="stop-color:#BDC3C7;stop-opacity:0.9"/>
+    </radialGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1920" height="1080" fill="#1a1a2e"/>
+
+  <!-- Title -->
+  <g id="title">
+    <text x="960" y="55" font-family="'Helvetica Neue', Arial, sans-serif"
+          font-size="42" font-weight="300" fill="#ECF0F1" text-anchor="middle">
+      Bias-Variance Tradeoff: Finding the Goldilocks Zone
+    </text>
+    <text x="960" y="90" font-family="'Helvetica Neue', Arial, sans-serif"
+          font-size="18" font-weight="300" fill="#95A5A6" text-anchor="middle">
+      Total Error = Bias² + Variance + Irreducible Error
+    </text>
+  </g>
+
+  <!-- Main scatter plot area -->
+  <g id="main-plot" transform="translate(250, 180)">
+    <rect x="0" y="0" width="900" height="550" rx="8"
+          fill="#2C3E50" opacity="0.2" stroke="#3498DB" stroke-width="2"/>
+
+    <text x="450" y="30" font-family="'Helvetica Neue', Arial, sans-serif"
+          font-size="22" fill="#ECF0F1" text-anchor="middle" font-weight="500">
+      Temperature → CV Risk Relationship
+    </text>
+
+    <!-- Plot area -->
+    <g transform="translate(70, 80)">
+      <!-- Axes -->
+      <line x1="0" y1="400" x2="760" y2="400" stroke="#ECF0F1" stroke-width="2"/>
+      <line x1="0" y1="0" x2="0" y2="400" stroke="#ECF0F1" stroke-width="2"/>
+
+      <!-- Labels -->
+      <text x="380" y="440" font-family="'Helvetica Neue', Arial, sans-serif"
+            font-size="16" fill="#ECF0F1" text-anchor="middle">
+        Temperature (°C)
+      </text>
+
+      <text x="-40" y="200" font-family="'Helvetica Neue', Arial, sans-serif"
+            font-size="16" fill="#ECF0F1" text-anchor="middle"
+            transform="rotate(-90, -40, 200)">
+        CV Risk
+      </text>
+
+      <!-- Tick marks -->
+      <text x="0" y="420" font-size="12" fill="#95A5A6" text-anchor="middle">15</text>
+      <text x="190" y="420" font-size="12" fill="#95A5A6" text-anchor="middle">22</text>
+      <text x="380" y="420" font-size="12" fill="#95A5A6" text-anchor="middle">29</text>
+      <text x="570" y="420" font-size="12" fill="#95A5A6" text-anchor="middle">36</text>
+      <text x="760" y="420" font-size="12" fill="#95A5A6" text-anchor="middle">43</text>
+
+      <!-- Data points (scattered around true relationship) -->
+      <g id="data-points">
+        <circle cx="50" cy="320" r="6" fill="url(#dataPoint)" opacity="0.8"/>
+        <circle cx="90" cy="300" r="6" fill="url(#dataPoint)" opacity="0.8"/>
+        <circle cx="130" cy="285" r="6" fill="url(#dataPoint)" opacity="0.8"/>
+        <circle cx="170" cy="275" r="6" fill="url(#dataPoint)" opacity="0.8"/>
+        <circle cx="210" cy="260" r="6" fill="url(#dataPoint)" opacity="0.8"/>
+        <circle cx="250" cy="240" r="6" fill="url(#dataPoint)" opacity="0.8"/>
+        <circle cx="290" cy="220" r="6" fill="url(#dataPoint)" opacity="0.8"/>
+        <circle cx="330" cy="195" r="6" fill="url(#dataPoint)" opacity="0.8"/>
+        <circle cx="370" cy="170" r="6" fill="url(#dataPoint)" opacity="0.8"/>
+        <circle cx="410" cy="145" r="6" fill="url(#dataPoint)" opacity="0.8"/>
+        <circle cx="450" cy="120" r="6" fill="url(#dataPoint)" opacity="0.8"/>
+        <circle cx="490" cy="100" r="6" fill="url(#dataPoint)" opacity="0.8"/>
+        <circle cx="530" cy="85" r="6" fill="url(#dataPoint)" opacity="0.8"/>
+        <circle cx="570" cy="75" r="6" fill="url(#dataPoint)" opacity="0.8"/>
+        <circle cx="610" cy="70" r="6" fill="url(#dataPoint)" opacity="0.8"/>
+        <circle cx="650" cy="68" r="6" fill="url(#dataPoint)" opacity="0.8"/>
+        <circle cx="690" cy="70" r="6" fill="url(#dataPoint)" opacity="0.8"/>
+        <circle cx="730" cy="75" r="6" fill="url(#dataPoint)" opacity="0.8"/>
+
+        <!-- Additional scattered points -->
+        <circle cx="100" cy="310" r="6" fill="url(#dataPoint)" opacity="0.8"/>
+        <circle cx="150" cy="290" r="6" fill="url(#dataPoint)" opacity="0.8"/>
+        <circle cx="270" cy="235" r="6" fill="url(#dataPoint)" opacity="0.8"/>
+        <circle cx="350" cy="180" r="6" fill="url(#dataPoint)" opacity="0.8"/>
+        <circle cx="430" cy="135" r="6" fill="url(#dataPoint)" opacity="0.8"/>
+        <circle cx="510" cy="95" r="6" fill="url(#dataPoint)" opacity="0.8"/>
+        <circle cx="590" cy="78" r="6" fill="url(#dataPoint)" opacity="0.8"/>
+        <circle cx="670" cy="72" r="6" fill="url(#dataPoint)" opacity="0.8"/>
+      </g>
+
+      <!-- True underlying relationship (dashed gray) -->
+      <path d="M 0,330 Q 200,280 380,180 T 620,70 Q 690,68 760,72"
+            fill="none" stroke="#7F8C8D" stroke-width="2" stroke-dasharray="8,4"
+            opacity="0.6"/>
+
+      <text x="680" y="50" font-family="'Helvetica Neue', Arial, sans-serif"
+            font-size="12" fill="#7F8C8D">True Function</text>
+
+      <!-- UNDERFIT: Simple linear model (high bias) -->
+      <g id="underfit-line" opacity="0">
+        <path d="M 0,340 L 760,50"
+              fill="none" stroke="#E74C3C" stroke-width="4" filter="url(#glow)"/>
+        <text x="700" y="100" font-family="'Helvetica Neue', Arial, sans-serif"
+              font-size="14" fill="#E74C3C" font-weight="600">
+          Underfit (High Bias)
+        </text>
+
+        <animate attributeName="opacity"
+                 values="1;1;0;0;0;0;1"
+                 keyTimes="0;0.3;0.33;0.6;0.63;0.95;1"
+                 dur="18s"
+                 repeatCount="indefinite"/>
+      </g>
+
+      <!-- OPTIMAL: Good polynomial fit -->
+      <g id="optimal-curve" opacity="0">
+        <path d="M 0,330 Q 200,280 380,180 T 620,70 Q 690,68 760,72"
+              fill="none" stroke="#27AE60" stroke-width="4" filter="url(#glow)"/>
+        <text x="680" y="100" font-family="'Helvetica Neue', Arial, sans-serif"
+              font-size="14" fill="#27AE60" font-weight="600">
+          Optimal Fit
+        </text>
+
+        <animate attributeName="opacity"
+                 values="0;0;1;1;0;0;0"
+                 keyTimes="0;0.33;0.36;0.6;0.63;0.95;1"
+                 dur="18s"
+                 repeatCount="indefinite"/>
+      </g>
+
+      <!-- OVERFIT: Wiggly curve through every point (high variance) -->
+      <g id="overfit-curve" opacity="0">
+        <path d="M 50,320 L 90,300 L 100,310 L 130,285 L 150,290 L 170,275
+                 L 210,260 L 250,240 L 270,235 L 290,220 L 330,195 L 350,180
+                 L 370,170 L 410,145 L 430,135 L 450,120 L 490,100 L 510,95
+                 L 530,85 L 570,75 L 590,78 L 610,70 L 650,68 L 670,72 L 690,70 L 730,75"
+              fill="none" stroke="#9B59B6" stroke-width="4" filter="url(#glow)"/>
+        <text x="680" y="100" font-family="'Helvetica Neue', Arial, sans-serif"
+              font-size="14" fill="#9B59B6" font-weight="600">
+          Overfit (High Variance)
+        </text>
+
+        <animate attributeName="opacity"
+                 values="0;0;0;0;1;1;0"
+                 keyTimes="0;0.6;0.63;0.66;0.69;0.95;1"
+                 dur="18s"
+                 repeatCount="indefinite"/>
+      </g>
+    </g>
+  </g>
+
+  <!-- Model complexity slider visualization -->
+  <g id="complexity-slider" transform="translate(250, 780)">
+    <rect x="0" y="0" width="900" height="120" rx="8"
+          fill="#2C3E50" opacity="0.3" stroke="#F39C12" stroke-width="2"/>
+
+    <text x="450" y="30" font-family="'Helvetica Neue', Arial, sans-serif"
+          font-size="20" fill="#F39C12" text-anchor="middle" font-weight="500">
+      Model Complexity
+    </text>
+
+    <!-- Slider track -->
+    <g transform="translate(100, 55)">
+      <line x1="0" y1="0" x2="700" y2="0" stroke="#ECF0F1" stroke-width="4"/>
+
+      <!-- Labels -->
+      <text x="0" y="35" font-family="'Helvetica Neue', Arial, sans-serif"
+            font-size="14" fill="#E74C3C" text-anchor="middle">
+        Simple
+      </text>
+      <text x="350" y="35" font-family="'Helvetica Neue', Arial, sans-serif"
+            font-size="14" fill="#27AE60" text-anchor="middle">
+        Just Right
+      </text>
+      <text x="700" y="35" font-family="'Helvetica Neue', Arial, sans-serif"
+            font-size="14" fill="#9B59B6" text-anchor="middle">
+        Complex
+      </text>
+
+      <!-- Animated slider position -->
+      <circle r="18" fill="#F39C12" stroke="#FFFFFF" stroke-width="3"
+              filter="url(#glow)">
+        <animate attributeName="cx"
+                 values="0;0;350;350;700;700;0"
+                 keyTimes="0;0.3;0.33;0.6;0.63;0.95;1"
+                 dur="18s"
+                 repeatCount="indefinite"/>
+      </circle>
+    </g>
+  </g>
+
+  <!-- Error decomposition graphs (right panel) -->
+  <g id="error-graphs" transform="translate(1220, 180)">
+    <rect x="0" y="0" width="650" height="720" rx="8"
+          fill="#2C3E50" opacity="0.3" stroke="#E67E22" stroke-width="2"/>
+
+    <text x="325" y="35" font-family="'Helvetica Neue', Arial, sans-serif"
+          font-size="22" fill="#ECF0F1" text-anchor="middle" font-weight="500">
+      Error Analysis
+    </text>
+
+    <!-- Training Error graph -->
+    <g transform="translate(50, 80)">
+      <text x="275" y="0" font-family="'Helvetica Neue', Arial, sans-serif"
+            font-size="18" fill="#3498DB" text-anchor="middle" font-weight="500">
+        Training Error
+      </text>
+
+      <!-- Graph area -->
+      <g transform="translate(0, 20)">
+        <rect x="0" y="0" width="550" height="150" fill="#1a1a2e" opacity="0.5"
+              stroke="#3498DB" stroke-width="1"/>
+
+        <!-- Axes -->
+        <line x1="0" y1="140" x2="550" y2="140" stroke="#ECF0F1" stroke-width="1"/>
+        <line x1="0" y1="0" x2="0" y2="140" stroke="#ECF0F1" stroke-width="1"/>
+
+        <text x="275" y="165" font-size="12" fill="#95A5A6" text-anchor="middle">
+          Model Complexity →
+        </text>
+
+        <text x="-10" y="70" font-size="12" fill="#95A5A6" text-anchor="end"
+              transform="rotate(-90, -10, 70)">Error</text>
+
+        <!-- Training error curve (decreases monotonically) -->
+        <path d="M 0,20 Q 137.5,30 275,60 T 550,130"
+              fill="none" stroke="#3498DB" stroke-width="3" stroke-linecap="round"/>
+
+        <!-- Animated position marker -->
+        <circle r="8" fill="#3498DB" filter="url(#glow)">
+          <animate attributeName="cx"
+                   values="0;0;275;275;550;550;0"
+                   keyTimes="0;0.3;0.33;0.6;0.63;0.95;1"
+                   dur="18s"
+                   repeatCount="indefinite"/>
+          <animate attributeName="cy"
+                   values="20;20;60;60;130;130;20"
+                   keyTimes="0;0.3;0.33;0.6;0.63;0.95;1"
+                   dur="18s"
+                   repeatCount="indefinite"/>
+        </circle>
+
+        <!-- Zone markers -->
+        <text x="70" y="55" font-size="11" fill="#E74C3C" opacity="0">
+          High error
+          <animate attributeName="opacity"
+                   values="0.8;0.8;0;0;0;0;0.8"
+                   keyTimes="0;0.3;0.33;0.6;0.63;0.95;1"
+                   dur="18s"
+                   repeatCount="indefinite"/>
+        </text>
+
+        <text x="480" y="115" font-size="11" fill="#27AE60" opacity="0">
+          Low error
+          <animate attributeName="opacity"
+                   values="0;0;0;0;0.8;0.8;0"
+                   keyTimes="0;0.6;0.63;0.66;0.69;0.95;1"
+                   dur="18s"
+                   repeatCount="indefinite"/>
+        </text>
+      </g>
+    </g>
+
+    <!-- Validation Error graph -->
+    <g transform="translate(50, 280)">
+      <text x="275" y="0" font-family="'Helvetica Neue', Arial, sans-serif"
+            font-size="18" fill="#E74C3C" text-anchor="middle" font-weight="500">
+        Validation Error (Test Error)
+      </text>
+
+      <g transform="translate(0, 20)">
+        <rect x="0" y="0" width="550" height="150" fill="#1a1a2e" opacity="0.5"
+              stroke="#E74C3C" stroke-width="1"/>
+
+        <!-- Axes -->
+        <line x1="0" y1="140" x2="550" y2="140" stroke="#ECF0F1" stroke-width="1"/>
+        <line x1="0" y1="0" x2="0" y2="140" stroke="#ECF0F1" stroke-width="1"/>
+
+        <text x="275" y="165" font-size="12" fill="#95A5A6" text-anchor="middle">
+          Model Complexity →
+        </text>
+
+        <text x="-10" y="70" font-size="12" fill="#95A5A6" text-anchor="end"
+              transform="rotate(-90, -10, 70)">Error</text>
+
+        <!-- Validation error curve (U-shaped) -->
+        <path d="M 0,30 Q 137.5,50 275,55 T 550,110"
+              fill="none" stroke="#E74C3C" stroke-width="3" stroke-linecap="round"/>
+
+        <!-- Optimal point marker (vertical line) -->
+        <line x1="275" y1="0" x2="275" y2="140" stroke="#27AE60" stroke-width="2"
+              stroke-dasharray="5,5" opacity="0.7"/>
+
+        <text x="275" y="15" font-family="'Helvetica Neue', Arial, sans-serif"
+              font-size="12" fill="#27AE60" text-anchor="middle" font-weight="600">
+          Optimal ↓
+        </text>
+
+        <!-- Animated position marker -->
+        <circle r="8" fill="#E74C3C" filter="url(#glow)">
+          <animate attributeName="cx"
+                   values="0;0;275;275;550;550;0"
+                   keyTimes="0;0.3;0.33;0.6;0.63;0.95;1"
+                   dur="18s"
+                   repeatCount="indefinite"/>
+          <animate attributeName="cy"
+                   values="30;30;55;55;110;110;30"
+                   keyTimes="0;0.3;0.33;0.6;0.63;0.95;1"
+                   dur="18s"
+                   repeatCount="indefinite"/>
+        </circle>
+
+        <!-- Zone labels -->
+        <text x="70" y="50" font-size="11" fill="#E74C3C" opacity="0">
+          Underfit
+          <animate attributeName="opacity"
+                   values="0.8;0.8;0;0;0;0;0.8"
+                   keyTimes="0;0.3;0.33;0.6;0.63;0.95;1"
+                   dur="18s"
+                   repeatCount="indefinite"/>
+        </text>
+
+        <text x="480" y="95" font-size="11" fill="#9B59B6" opacity="0">
+          Overfit
+          <animate attributeName="opacity"
+                   values="0;0;0;0;0.8;0.8;0"
+                   keyTimes="0;0.6;0.63;0.66;0.69;0.95;1"
+                   dur="18s"
+                   repeatCount="indefinite"/>
+        </text>
+      </g>
+    </g>
+
+    <!-- Bias-Variance decomposition -->
+    <g transform="translate(50, 480)">
+      <text x="275" y="0" font-family="'Helvetica Neue', Arial, sans-serif"
+            font-size="18" fill="#F39C12" text-anchor="middle" font-weight="500">
+        Bias vs. Variance
+      </text>
+
+      <g transform="translate(0, 20)">
+        <rect x="0" y="0" width="550" height="150" fill="#1a1a2e" opacity="0.5"
+              stroke="#F39C12" stroke-width="1"/>
+
+        <!-- Axes -->
+        <line x1="0" y1="140" x2="550" y2="140" stroke="#ECF0F1" stroke-width="1"/>
+        <line x1="0" y1="0" x2="0" y2="140" stroke="#ECF0F1" stroke-width="1"/>
+
+        <text x="275" y="165" font-size="12" fill="#95A5A6" text-anchor="middle">
+          Model Complexity →
+        </text>
+
+        <!-- Bias curve (decreasing) -->
+        <path d="M 0,20 Q 137.5,35 275,60 T 550,120"
+              fill="none" stroke="#E74C3C" stroke-width="3" stroke-linecap="round"
+              opacity="0.7"/>
+
+        <text x="50" y="35" font-size="12" fill="#E74C3C" font-weight="600">
+          Bias²
+        </text>
+
+        <!-- Variance curve (increasing) -->
+        <path d="M 0,120 Q 137.5,100 275,60 T 550,20"
+              fill="none" stroke="#3498DB" stroke-width="3" stroke-linecap="round"
+              opacity="0.7"/>
+
+        <text x="480" y="35" font-size="12" fill="#3498DB" font-weight="600">
+          Variance
+        </text>
+
+        <!-- Optimal crossover point -->
+        <circle cx="275" cy="60" r="10" fill="#27AE60" stroke="#FFFFFF"
+                stroke-width="2" filter="url(#glow)"/>
+
+        <line x1="275" y1="0" x2="275" y2="140" stroke="#27AE60" stroke-width="2"
+              stroke-dasharray="5,5" opacity="0.5"/>
+      </g>
+    </g>
+  </g>
+
+  <!-- Bottom teaching moment -->
+  <g id="teaching-moment" transform="translate(200, 950)">
+    <rect x="0" y="0" width="1520" height="100" rx="10" fill="#27AE60" opacity="0">
+      <animate attributeName="opacity"
+               values="0;0;0;0;0.9;0.9;0"
+               keyTimes="0;0.3;0.33;0.36;0.4;0.9;1"
+               dur="18s"
+               repeatCount="indefinite"/>
+    </rect>
+
+    <text x="760" y="35" font-family="'Helvetica Neue', Arial, sans-serif"
+          font-size="24" fill="#FFFFFF" text-anchor="middle" font-weight="500"
+          opacity="0">
+      Sweet Spot: Balance Bias and Variance
+      <animate attributeName="opacity"
+               values="0;0;0;0;1;1;0"
+               keyTimes="0;0.3;0.33;0.36;0.4;0.9;1"
+               dur="18s"
+               repeatCount="indefinite"/>
+    </text>
+
+    <text x="760" y="62" font-family="'Helvetica Neue', Arial, sans-serif"
+          font-size="16" fill="#ECF0F1" text-anchor="middle"
+          opacity="0">
+      Too simple → High Bias (Underfit) | Too complex → High Variance (Overfit)
+      <animate attributeName="opacity"
+               values="0;0;0;0;1;1;0"
+               keyTimes="0;0.3;0.33;0.36;0.4;0.9;1"
+               dur="18s"
+               repeatCount="indefinite"/>
+    </text>
+
+    <text x="760" y="85" font-family="'Courier New', monospace"
+          font-size="14" fill="#ECF0F1" text-anchor="middle"
+          opacity="0">
+      Use cross-validation to find optimal complexity
+      <animate attributeName="opacity"
+               values="0;0;0;0;1;1;0"
+               keyTimes="0;0.3;0.33;0.36;0.4;0.9;1"
+               dur="18s"
+               repeatCount="indefinite"/>
+    </text>
+  </g>
+
+  <!-- Phase indicator -->
+  <g id="phase-indicator" transform="translate(100, 140)">
+    <rect x="0" y="0" width="550" height="50" rx="8" fill="#34495E" opacity="0.9"/>
+    <text x="275" y="33" font-family="'Helvetica Neue', Arial, sans-serif"
+          font-size="18" fill="#F39C12" text-anchor="middle" font-weight="500">
+      <tspan id="phase-text">
+        <set attributeName="textContent" to="State 1: UNDERFIT - Model too simple" begin="0s"/>
+        <set attributeName="textContent" to="State 2: OPTIMAL - Goldilocks zone!" begin="6s"/>
+        <set attributeName="textContent" to="State 3: OVERFIT - Model too complex" begin="11.3s"/>
+      </tspan>
+    </text>
+  </g>
+
+</svg>

@@ -1,0 +1,502 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+     viewBox="0 0 1920 1080" width="1920" height="1080">
+
+  <defs>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+
+    <filter id="shadow">
+      <feGaussianBlur in="SourceAlpha" stdDeviation="2"/>
+      <feOffset dx="1" dy="1"/>
+      <feMerge>
+        <feMergeNode/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+
+    <linearGradient id="barGrad1" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#E74C3C;stop-opacity:0.8"/>
+      <stop offset="100%" style="stop-color:#C0392B;stop-opacity:0.9"/>
+    </linearGradient>
+
+    <linearGradient id="barGrad2" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#3498DB;stop-opacity:0.8"/>
+      <stop offset="100%" style="stop-color:#2874A6;stop-opacity:0.9"/>
+    </linearGradient>
+
+    <linearGradient id="barGrad3" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#F39C12;stop-opacity:0.8"/>
+      <stop offset="100%" style="stop-color:#E67E22;stop-opacity:0.9"/>
+    </linearGradient>
+
+    <linearGradient id="barGrad4" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#9B59B6;stop-opacity:0.8"/>
+      <stop offset="100%" style="stop-color:#8E44AD;stop-opacity:0.9"/>
+    </linearGradient>
+
+    <linearGradient id="barGrad5" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#1ABC9C;stop-opacity:0.8"/>
+      <stop offset="100%" style="stop-color:#16A085;stop-opacity:0.9"/>
+    </linearGradient>
+
+    <linearGradient id="barGrad6" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#95A5A6;stop-opacity:0.8"/>
+      <stop offset="100%" style="stop-color:#7F8C8D;stop-opacity:0.9"/>
+    </linearGradient>
+
+    <linearGradient id="barGrad7" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#34495E;stop-opacity:0.8"/>
+      <stop offset="100%" style="stop-color:#2C3E50;stop-opacity:0.9"/>
+    </linearGradient>
+
+    <linearGradient id="barGrad8" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#F1C40F;stop-opacity:0.8"/>
+      <stop offset="100%" style="stop-color:#F39C12;stop-opacity:0.9"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1920" height="1080" fill="#1a1a2e"/>
+
+  <!-- Title -->
+  <g id="title">
+    <text x="960" y="55" font-family="'Helvetica Neue', Arial, sans-serif"
+          font-size="42" font-weight="300" fill="#ECF0F1" text-anchor="middle">
+      Feature Importance: Accumulation Across Trees
+    </text>
+    <text x="960" y="90" font-family="'Helvetica Neue', Arial, sans-serif"
+          font-size="18" font-weight="300" fill="#95A5A6" text-anchor="middle">
+      Random Forest (100 trees) - Which features matter most for prediction?
+    </text>
+  </g>
+
+  <!-- Main bar chart area -->
+  <g id="bar-chart" transform="translate(200, 180)">
+    <rect x="0" y="0" width="1300" height="750" rx="10"
+          fill="#2C3E50" opacity="0.2" stroke="#3498DB" stroke-width="2"/>
+
+    <text x="650" y="35" font-family="'Helvetica Neue', Arial, sans-serif"
+          font-size="22" fill="#ECF0F1" text-anchor="middle" font-weight="500">
+      Feature Importance Scores
+    </text>
+
+    <!-- Chart area -->
+    <g transform="translate(280, 80)">
+      <!-- Y-axis labels (feature names) -->
+      <text x="-10" y="55" font-family="'Helvetica Neue', Arial, sans-serif"
+            font-size="18" fill="#ECF0F1" text-anchor="end" font-weight="500">
+        Temperature (max)
+      </text>
+      <text x="-10" y="130" font-family="'Helvetica Neue', Arial, sans-serif"
+            font-size="18" fill="#ECF0F1" text-anchor="end" font-weight="500">
+        Humidity
+      </text>
+      <text x="-10" y="205" font-family="'Helvetica Neue', Arial, sans-serif"
+            font-size="18" fill="#ECF0F1" text-anchor="end" font-weight="500">
+        PM2.5
+      </text>
+      <text x="-10" y="280" font-family="'Helvetica Neue', Arial, sans-serif"
+            font-size="18" fill="#ECF0F1" text-anchor="end" font-weight="500">
+        Ozone (O₃)
+      </text>
+      <text x="-10" y="355" font-family="'Helvetica Neue', Arial, sans-serif"
+            font-size="18" fill="#ECF0F1" text-anchor="end" font-weight="500">
+        NO₂
+      </text>
+      <text x="-10" y="430" font-family="'Helvetica Neue', Arial, sans-serif"
+            font-size="18" fill="#ECF0F1" text-anchor="end" font-weight="500">
+        SO₂
+      </text>
+      <text x="-10" y="505" font-family="'Helvetica Neue', Arial, sans-serif"
+            font-size="18" fill="#ECF0F1" text-anchor="end" font-weight="500">
+        Wind Speed
+      </text>
+      <text x="-10" y="580" font-family="'Helvetica Neue', Arial, sans-serif"
+            font-size="18" fill="#ECF0F1" text-anchor="end" font-weight="500">
+        Pressure
+      </text>
+
+      <!-- X-axis -->
+      <line x1="0" y1="610" x2="900" y2="610" stroke="#ECF0F1" stroke-width="2"/>
+      <text x="450" y="645" font-family="'Helvetica Neue', Arial, sans-serif"
+            font-size="16" fill="#95A5A6" text-anchor="middle">
+        Importance Score (cumulative)
+      </text>
+
+      <!-- Grid lines -->
+      <g opacity="0.2">
+        <line x1="180" y1="0" x2="180" y2="610" stroke="#ECF0F1" stroke-width="1"/>
+        <line x1="360" y1="0" x2="360" y2="610" stroke="#ECF0F1" stroke-width="1"/>
+        <line x1="540" y1="0" x2="540" y2="610" stroke="#ECF0F1" stroke-width="1"/>
+        <line x1="720" y1="0" x2="720" y2="610" stroke="#ECF0F1" stroke-width="1"/>
+        <line x1="900" y1="0" x2="900" y2="610" stroke="#ECF0F1" stroke-width="1"/>
+      </g>
+
+      <!-- X-axis tick labels -->
+      <text x="0" y="630" font-size="12" fill="#95A5A6" text-anchor="middle">0</text>
+      <text x="180" y="630" font-size="12" fill="#95A5A6" text-anchor="middle">0.2</text>
+      <text x="360" y="630" font-size="12" fill="#95A5A6" text-anchor="middle">0.4</text>
+      <text x="540" y="630" font-size="12" fill="#95A5A6" text-anchor="middle">0.6</text>
+      <text x="720" y="630" font-size="12" fill="#95A5A6" text-anchor="middle">0.8</text>
+      <text x="900" y="630" font-size="12" fill="#95A5A6" text-anchor="middle">1.0</text>
+
+      <!-- Bar backgrounds (gray) -->
+      <rect x="0" y="35" width="900" height="35" fill="#34495E" opacity="0.3" rx="3"/>
+      <rect x="0" y="110" width="900" height="35" fill="#34495E" opacity="0.3" rx="3"/>
+      <rect x="0" y="185" width="900" height="35" fill="#34495E" opacity="0.3" rx="3"/>
+      <rect x="0" y="260" width="900" height="35" fill="#34495E" opacity="0.3" rx="3"/>
+      <rect x="0" y="335" width="900" height="35" fill="#34495E" opacity="0.3" rx="3"/>
+      <rect x="0" y="410" width="900" height="35" fill="#34495E" opacity="0.3" rx="3"/>
+      <rect x="0" y="485" width="900" height="35" fill="#34495E" opacity="0.3" rx="3"/>
+      <rect x="0" y="560" width="900" height="35" fill="#34495E" opacity="0.3" rx="3"/>
+
+      <!-- Animated bars growing from left -->
+      <!-- Bar 1: Temperature (highest importance - grows to 810) -->
+      <rect x="0" y="35" width="0" height="35" fill="url(#barGrad1)" rx="3"
+            filter="url(#glow)">
+        <animate attributeName="width"
+                 values="0;45;90;180;270;360;450;540;630;720;810;810"
+                 keyTimes="0;0.05;0.1;0.2;0.3;0.4;0.5;0.6;0.7;0.8;0.9;1"
+                 dur="12s"
+                 repeatCount="indefinite"/>
+      </rect>
+
+      <!-- Bar 2: Humidity (second highest - grows to 648) -->
+      <rect x="0" y="110" width="0" height="35" fill="url(#barGrad2)" rx="3"
+            filter="url(#glow)">
+        <animate attributeName="width"
+                 values="0;36;72;144;216;288;360;432;504;576;648;648"
+                 keyTimes="0;0.05;0.1;0.2;0.3;0.4;0.5;0.6;0.7;0.8;0.9;1"
+                 dur="12s"
+                 repeatCount="indefinite"/>
+      </rect>
+
+      <!-- Bar 3: PM2.5 (third - grows to 522) -->
+      <rect x="0" y="185" width="0" height="35" fill="url(#barGrad3)" rx="3"
+            filter="url(#glow)">
+        <animate attributeName="width"
+                 values="0;29;58;116;174;232;290;348;406;464;522;522"
+                 keyTimes="0;0.05;0.1;0.2;0.3;0.4;0.5;0.6;0.7;0.8;0.9;1"
+                 dur="12s"
+                 repeatCount="indefinite"/>
+      </rect>
+
+      <!-- Bar 4: Ozone (grows to 414) -->
+      <rect x="0" y="260" width="0" height="35" fill="url(#barGrad4)" rx="3"
+            filter="url(#glow)">
+        <animate attributeName="width"
+                 values="0;23;46;92;138;184;230;276;322;368;414;414"
+                 keyTimes="0;0.05;0.1;0.2;0.3;0.4;0.5;0.6;0.7;0.8;0.9;1"
+                 dur="12s"
+                 repeatCount="indefinite"/>
+      </rect>
+
+      <!-- Bar 5: NO2 (grows to 306) -->
+      <rect x="0" y="335" width="0" height="35" fill="url(#barGrad5)" rx="3"
+            filter="url(#glow)">
+        <animate attributeName="width"
+                 values="0;17;34;68;102;136;170;204;238;272;306;306"
+                 keyTimes="0;0.05;0.1;0.2;0.3;0.4;0.5;0.6;0.7;0.8;0.9;1"
+                 dur="12s"
+                 repeatCount="indefinite"/>
+      </rect>
+
+      <!-- Bar 6: SO2 (grows to 216) -->
+      <rect x="0" y="410" width="0" height="35" fill="url(#barGrad6)" rx="3"
+            filter="url(#glow)">
+        <animate attributeName="width"
+                 values="0;12;24;48;72;96;120;144;168;192;216;216"
+                 keyTimes="0;0.05;0.1;0.2;0.3;0.4;0.5;0.6;0.7;0.8;0.9;1"
+                 dur="12s"
+                 repeatCount="indefinite"/>
+      </rect>
+
+      <!-- Bar 7: Wind Speed (grows to 144) -->
+      <rect x="0" y="485" width="0" height="35" fill="url(#barGrad7)" rx="3"
+            filter="url(#glow)">
+        <animate attributeName="width"
+                 values="0;8;16;32;48;64;80;96;112;128;144;144"
+                 keyTimes="0;0.05;0.1;0.2;0.3;0.4;0.5;0.6;0.7;0.8;0.9;1"
+                 dur="12s"
+                 repeatCount="indefinite"/>
+      </rect>
+
+      <!-- Bar 8: Pressure (grows to 90) -->
+      <rect x="0" y="560" width="0" height="35" fill="url(#barGrad8)" rx="3"
+            filter="url(#glow)">
+        <animate attributeName="width"
+                 values="0;5;10;20;30;40;50;60;70;80;90;90"
+                 keyTimes="0;0.05;0.1;0.2;0.3;0.4;0.5;0.6;0.7;0.8;0.9;1"
+                 dur="12s"
+                 repeatCount="indefinite"/>
+      </rect>
+
+      <!-- Value labels at end of bars (animated) -->
+      <text x="820" y="57" font-family="'Courier New', monospace"
+            font-size="16" fill="#E74C3C" font-weight="600" opacity="0">
+        0.90
+        <animate attributeName="opacity"
+                 values="0;0;0;0;0;0;0;0;0;0;1;1"
+                 keyTimes="0;0.1;0.2;0.3;0.4;0.5;0.6;0.7;0.8;0.9;0.95;1"
+                 dur="12s"
+                 repeatCount="indefinite"/>
+      </text>
+
+      <text x="658" y="132" font-family="'Courier New', monospace"
+            font-size="16" fill="#3498DB" font-weight="600" opacity="0">
+        0.72
+        <animate attributeName="opacity"
+                 values="0;0;0;0;0;0;0;0;0;0;1;1"
+                 keyTimes="0;0.1;0.2;0.3;0.4;0.5;0.6;0.7;0.8;0.9;0.95;1"
+                 dur="12s"
+                 repeatCount="indefinite"/>
+      </text>
+
+      <text x="532" y="207" font-family="'Courier New', monospace"
+            font-size="16" fill="#F39C12" font-weight="600" opacity="0">
+        0.58
+        <animate attributeName="opacity"
+                 values="0;0;0;0;0;0;0;0;0;0;1;1"
+                 keyTimes="0;0.1;0.2;0.3;0.4;0.5;0.6;0.7;0.8;0.9;0.95;1"
+                 dur="12s"
+                 repeatCount="indefinite"/>
+      </text>
+
+      <text x="424" y="282" font-family="'Courier New', monospace"
+            font-size="16" fill="#9B59B6" font-weight="600" opacity="0">
+        0.46
+        <animate attributeName="opacity"
+                 values="0;0;0;0;0;0;0;0;0;0;1;1"
+                 keyTimes="0;0.1;0.2;0.3;0.4;0.5;0.6;0.7;0.8;0.9;0.95;1"
+                 dur="12s"
+                 repeatCount="indefinite"/>
+      </text>
+
+      <text x="316" y="357" font-family="'Courier New', monospace"
+            font-size="16" fill="#1ABC9C" font-weight="600" opacity="0">
+        0.34
+        <animate attributeName="opacity"
+                 values="0;0;0;0;0;0;0;0;0;0;1;1"
+                 keyTimes="0;0.1;0.2;0.3;0.4;0.5;0.6;0.7;0.8;0.9;0.95;1"
+                 dur="12s"
+                 repeatCount="indefinite"/>
+      </text>
+
+      <text x="226" y="432" font-family="'Courier New', monospace"
+            font-size="16" fill="#95A5A6" font-weight="600" opacity="0">
+        0.24
+        <animate attributeName="opacity"
+                 values="0;0;0;0;0;0;0;0;0;0;1;1"
+                 keyTimes="0;0.1;0.2;0.3;0.4;0.5;0.6;0.7;0.8;0.9;0.95;1"
+                 dur="12s"
+                 repeatCount="indefinite"/>
+      </text>
+
+      <text x="154" y="507" font-family="'Courier New', monospace"
+            font-size="16" fill="#7F8C8D" font-weight="600" opacity="0">
+        0.16
+        <animate attributeName="opacity"
+                 values="0;0;0;0;0;0;0;0;0;0;1;1"
+                 keyTimes="0;0.1;0.2;0.3;0.4;0.5;0.6;0.7;0.8;0.9;0.95;1"
+                 dur="12s"
+                 repeatCount="indefinite"/>
+      </text>
+
+      <text x="100" y="582" font-family="'Courier New', monospace"
+            font-size="16" fill="#F1C40F" font-weight="600" opacity="0">
+        0.10
+        <animate attributeName="opacity"
+                 values="0;0;0;0;0;0;0;0;0;0;1;1"
+                 keyTimes="0;0.1;0.2;0.3;0.4;0.5;0.6;0.7;0.8;0.9;0.95;1"
+                 dur="12s"
+                 repeatCount="indefinite"/>
+      </text>
+    </g>
+  </g>
+
+  <!-- Tree counter panel -->
+  <g id="tree-counter" transform="translate(1550, 180)">
+    <rect x="0" y="0" width="320" height="200" rx="10"
+          fill="#2C3E50" opacity="0.5" stroke="#F39C12" stroke-width="3"/>
+
+    <text x="160" y="35" font-family="'Helvetica Neue', Arial, sans-serif"
+          font-size="20" fill="#ECF0F1" text-anchor="middle" font-weight="500">
+      Trees Added
+    </text>
+
+    <text x="160" y="110" font-family="'Courier New', monospace"
+          font-size="64" fill="#F39C12" text-anchor="middle" font-weight="700">
+      <tspan id="tree-count">
+        <animate attributeName="textContent"
+                 values="1;10;20;30;40;50;60;70;80;90;100"
+                 keyTimes="0;0.1;0.2;0.3;0.4;0.5;0.6;0.7;0.8;0.9;1"
+                 dur="12s"
+                 repeatCount="indefinite"/>
+      </tspan>
+    </text>
+
+    <text x="160" y="150" font-family="'Helvetica Neue', Arial, sans-serif"
+          font-size="16" fill="#95A5A6" text-anchor="middle">
+      / 100 total
+    </text>
+
+    <text x="160" y="180" font-family="'Helvetica Neue', Arial, sans-serif"
+          font-size="14" fill="#52C77B" text-anchor="middle" opacity="0">
+      ✓ Complete
+      <animate attributeName="opacity"
+               values="0;0;0;0;0;0;0;0;0;0;1;1"
+               keyTimes="0;0.1;0.2;0.3;0.4;0.5;0.6;0.7;0.8;0.9;0.95;1"
+               dur="12s"
+               repeatCount="indefinite"/>
+    </text>
+  </g>
+
+  <!-- Algorithm explanation panel -->
+  <g id="algo-panel" transform="translate(1550, 420)">
+    <rect x="0" y="0" width="320" height="510" rx="10"
+          fill="#2C3E50" opacity="0.5" stroke="#3498DB" stroke-width="2"/>
+
+    <text x="160" y="30" font-family="'Helvetica Neue', Arial, sans-serif"
+          font-size="18" fill="#3498DB" text-anchor="middle" font-weight="500">
+      How It Works
+    </text>
+
+    <g transform="translate(20, 60)">
+      <!-- Step 1 -->
+      <circle cx="0" cy="0" r="12" fill="#E74C3C"/>
+      <text x="20" y="5" font-family="'Helvetica Neue', Arial, sans-serif"
+            font-size="14" fill="#ECF0F1">
+        <tspan x="20" dy="0">Each tree makes</tspan>
+        <tspan x="20" dy="18">splits on features</tspan>
+      </text>
+
+      <!-- Step 2 -->
+      <circle cx="0" cy="80" r="12" fill="#3498DB"/>
+      <text x="20" y="85" font-family="'Helvetica Neue', Arial, sans-serif"
+            font-size="14" fill="#ECF0F1">
+        <tspan x="20" dy="0">Some features used</tspan>
+        <tspan x="20" dy="18">more often (better</tspan>
+        <tspan x="20" dy="18">predictors)</tspan>
+      </text>
+
+      <!-- Step 3 -->
+      <circle cx="0" cy="180" r="12" fill="#F39C12"/>
+      <text x="20" y="185" font-family="'Helvetica Neue', Arial, sans-serif"
+            font-size="14" fill="#ECF0F1">
+        <tspan x="20" dy="0">Accumulate splits</tspan>
+        <tspan x="20" dy="18">weighted by info</tspan>
+        <tspan x="20" dy="18">gain</tspan>
+      </text>
+
+      <!-- Step 4 -->
+      <circle cx="0" cy="280" r="12" fill="#27AE60"/>
+      <text x="20" y="285" font-family="'Helvetica Neue', Arial, sans-serif"
+            font-size="14" fill="#ECF0F1">
+        <tspan x="20" dy="0">After 100 trees,</tspan>
+        <tspan x="20" dy="18">clear ranking</tspan>
+        <tspan x="20" dy="18">emerges</tspan>
+      </text>
+
+      <!-- Formula -->
+      <g transform="translate(-10, 360)">
+        <rect x="0" y="0" width="300" height="100" rx="6" fill="#34495E" opacity="0.8"/>
+        <text x="150" y="25" font-family="'Helvetica Neue', Arial, sans-serif"
+              font-size="14" fill="#F39C12" text-anchor="middle" font-weight="600">
+          Importance Formula
+        </text>
+        <text x="150" y="55" font-family="'Courier New', monospace"
+              font-size="11" fill="#ECF0F1" text-anchor="middle">
+          Σ (info gain from
+        </text>
+        <text x="150" y="72" font-family="'Courier New', monospace"
+              font-size="11" fill="#ECF0F1" text-anchor="middle">
+          splits on feature i)
+        </text>
+        <text x="150" y="89" font-family="'Courier New', monospace"
+              font-size="11" fill="#ECF0F1" text-anchor="middle">
+          / total trees
+        </text>
+      </g>
+    </g>
+  </g>
+
+  <!-- Bottom teaching moment -->
+  <g id="teaching-moment" transform="translate(200, 975)">
+    <rect x="0" y="0" width="1300" height="85" rx="10" fill="#27AE60" opacity="0">
+      <animate attributeName="opacity"
+               values="0;0;0;0;0;0;0;0;0;0;0.95;0.95"
+               keyTimes="0;0.1;0.2;0.3;0.4;0.5;0.6;0.7;0.8;0.9;0.95;1"
+               dur="12s"
+               repeatCount="indefinite"/>
+    </rect>
+
+    <text x="650" y="30" font-family="'Helvetica Neue', Arial, sans-serif"
+          font-size="22" fill="#FFFFFF" text-anchor="middle" font-weight="500"
+          opacity="0">
+      Clear Winner: Temperature is Most Important for CV Risk
+      <animate attributeName="opacity"
+               values="0;0;0;0;0;0;0;0;0;0;1;1"
+               keyTimes="0;0.1;0.2;0.3;0.4;0.5;0.6;0.7;0.8;0.9;0.95;1"
+               dur="12s"
+               repeatCount="indefinite"/>
+    </text>
+
+    <text x="650" y="55" font-family="'Helvetica Neue', Arial, sans-serif"
+          font-size="15" fill="#ECF0F1" text-anchor="middle"
+          opacity="0">
+      Feature importance helps identify which variables drive predictions
+      <animate attributeName="opacity"
+               values="0;0;0;0;0;0;0;0;0;0;1;1"
+               keyTimes="0;0.1;0.2;0.3;0.4;0.5;0.6;0.7;0.8;0.9;0.95;1"
+               dur="12s"
+               repeatCount="indefinite"/>
+    </text>
+
+    <text x="650" y="75" font-family="'Courier New', monospace"
+          font-size="13" fill="#ECF0F1" text-anchor="middle"
+          opacity="0">
+      Use for feature selection, model interpretation, and domain insight
+      <animate attributeName="opacity"
+               values="0;0;0;0;0;0;0;0;0;0;1;1"
+               keyTimes="0;0.1;0.2;0.3;0.4;0.5;0.6;0.7;0.8;0.9;0.95;1"
+               dur="12s"
+               repeatCount="indefinite"/>
+    </text>
+  </g>
+
+  <!-- Progress indicator -->
+  <g id="progress-bar" transform="translate(200, 145)">
+    <rect x="0" y="0" width="1300" height="12" rx="6" fill="#34495E" opacity="0.5"/>
+    <rect x="0" y="0" width="0" height="12" rx="6" fill="#F39C12">
+      <animate attributeName="width"
+               values="0;130;260;390;520;650;780;910;1040;1170;1300;1300"
+               keyTimes="0;0.1;0.2;0.3;0.4;0.5;0.6;0.7;0.8;0.9;0.95;1"
+               dur="12s"
+               repeatCount="indefinite"/>
+    </rect>
+
+    <text x="650" y="-5" font-family="'Helvetica Neue', Arial, sans-serif"
+          font-size="14" fill="#F39C12" text-anchor="middle" font-weight="500">
+      <tspan id="progress-text">
+        <set attributeName="textContent" to="Building forest: 1/100 trees" begin="0s"/>
+        <set attributeName="textContent" to="Building forest: 10/100 trees" begin="1.2s"/>
+        <set attributeName="textContent" to="Building forest: 20/100 trees" begin="2.4s"/>
+        <set attributeName="textContent" to="Building forest: 30/100 trees" begin="3.6s"/>
+        <set attributeName="textContent" to="Building forest: 40/100 trees" begin="4.8s"/>
+        <set attributeName="textContent" to="Building forest: 50/100 trees" begin="6s"/>
+        <set attributeName="textContent" to="Building forest: 60/100 trees" begin="7.2s"/>
+        <set attributeName="textContent" to="Building forest: 70/100 trees" begin="8.4s"/>
+        <set attributeName="textContent" to="Building forest: 80/100 trees" begin="9.6s"/>
+        <set attributeName="textContent" to="Building forest: 90/100 trees" begin="10.8s"/>
+        <set attributeName="textContent" to="Complete! Feature ranking stable" begin="11.4s"/>
+      </tspan>
+    </text>
+  </g>
+
+</svg>

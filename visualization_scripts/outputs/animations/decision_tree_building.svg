@@ -1,0 +1,555 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+     viewBox="0 0 1920 1080" width="1920" height="1080">
+
+  <defs>
+    <!-- Filters and gradients -->
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+
+    <filter id="shadow">
+      <feGaussianBlur in="SourceAlpha" stdDeviation="2"/>
+      <feOffset dx="1" dy="1"/>
+      <feMerge>
+        <feMergeNode/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+
+    <linearGradient id="redGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#E74C3C;stop-opacity:0.6"/>
+      <stop offset="100%" style="stop-color:#C0392B;stop-opacity:0.7"/>
+    </linearGradient>
+
+    <linearGradient id="blueGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#3498DB;stop-opacity:0.6"/>
+      <stop offset="100%" style="stop-color:#2874A6;stop-opacity:0.7"/>
+    </linearGradient>
+
+    <linearGradient id="mixedGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#9B59B6;stop-opacity:0.4"/>
+      <stop offset="100%" style="stop-color:#8E44AD;stop-opacity:0.5"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1920" height="1080" fill="#1a1a2e"/>
+
+  <!-- Title -->
+  <g id="title">
+    <text x="960" y="55" font-family="'Helvetica Neue', Arial, sans-serif"
+          font-size="42" font-weight="300" fill="#ECF0F1" text-anchor="middle">
+      Decision Tree: Recursive Partitioning
+    </text>
+    <text x="960" y="90" font-family="'Helvetica Neue', Arial, sans-serif"
+          font-size="18" font-weight="300" fill="#95A5A6" text-anchor="middle">
+      Minimize Gini Impurity: G = 1 - Σpᵢ² where pᵢ = proportion of class i
+    </text>
+  </g>
+
+  <!-- Main scatter plot area -->
+  <g id="scatter-plot" transform="translate(100, 150)">
+    <!-- Plot background -->
+    <rect x="0" y="0" width="800" height="700" rx="8"
+          fill="#2C3E50" opacity="0.2" stroke="#3498DB" stroke-width="2"/>
+
+    <!-- Axes -->
+    <line x1="50" y1="650" x2="750" y2="650" stroke="#ECF0F1" stroke-width="2"/>
+    <line x1="50" y1="50" x2="50" y2="650" stroke="#ECF0F1" stroke-width="2"/>
+
+    <!-- Axis labels -->
+    <text x="400" y="690" font-family="'Helvetica Neue', Arial, sans-serif"
+          font-size="18" fill="#ECF0F1" text-anchor="middle">
+      Temperature (°C)
+    </text>
+    <text x="20" y="350" font-family="'Helvetica Neue', Arial, sans-serif"
+          font-size="18" fill="#ECF0F1" text-anchor="middle"
+          transform="rotate(-90, 20, 350)">
+      Humidity (%)
+    </text>
+
+    <!-- Axis ticks and labels -->
+    <g id="x-ticks">
+      <text x="110" y="670" font-size="12" fill="#95A5A6" text-anchor="middle">20</text>
+      <text x="250" y="670" font-size="12" fill="#95A5A6" text-anchor="middle">25</text>
+      <text x="390" y="670" font-size="12" fill="#95A5A6" text-anchor="middle">30</text>
+      <text x="530" y="670" font-size="12" fill="#95A5A6" text-anchor="middle">35</text>
+      <text x="670" y="670" font-size="12" fill="#95A5A6" text-anchor="middle">40</text>
+    </g>
+
+    <g id="y-ticks">
+      <text x="35" y="655" font-size="12" fill="#95A5A6" text-anchor="end">20</text>
+      <text x="35" y="535" font-size="12" fill="#95A5A6" text-anchor="end">35</text>
+      <text x="35" y="415" font-size="12" fill="#95A5A6" text-anchor="end">50</text>
+      <text x="35" y="295" font-size="12" fill="#95A5A6" text-anchor="end">65</text>
+      <text x="35" y="175" font-size="12" fill="#95A5A6" text-anchor="end">80</text>
+      <text x="35" y="55" font-size="12" fill="#95A5A6" text-anchor="end">95</text>
+    </g>
+
+    <!-- Data points - Red = CV admission (positive class), Blue = No admission (negative) -->
+    <!-- We'll place them strategically so splits make sense -->
+    <g id="data-points">
+      <!-- High temp, high humidity → mostly RED (admissions) -->
+      <circle cx="580" cy="120" r="7" fill="#E74C3C" opacity="0.9"/>
+      <circle cx="620" cy="150" r="7" fill="#E74C3C" opacity="0.9"/>
+      <circle cx="650" cy="180" r="7" fill="#E74C3C" opacity="0.9"/>
+      <circle cx="690" cy="140" r="7" fill="#E74C3C" opacity="0.9"/>
+      <circle cx="700" cy="200" r="7" fill="#E74C3C" opacity="0.9"/>
+      <circle cx="640" cy="240" r="7" fill="#E74C3C" opacity="0.9"/>
+      <circle cx="680" cy="280" r="7" fill="#E74C3C" opacity="0.9"/>
+      <circle cx="590" cy="200" r="7" fill="#E74C3C" opacity="0.9"/>
+
+      <!-- High temp, low humidity → mostly RED -->
+      <circle cx="620" cy="480" r="7" fill="#E74C3C" opacity="0.9"/>
+      <circle cx="660" cy="520" r="7" fill="#E74C3C" opacity="0.9"/>
+      <circle cx="700" cy="560" r="7" fill="#E74C3C" opacity="0.9"/>
+      <circle cx="580" cy="500" r="7" fill="#E74C3C" opacity="0.9"/>
+
+      <!-- Some BLUE in high temp region (false negatives, adds impurity) -->
+      <circle cx="610" cy="360" r="7" fill="#3498DB" opacity="0.9"/>
+      <circle cx="650" cy="400" r="7" fill="#3498DB" opacity="0.9"/>
+
+      <!-- Low temp, high humidity → mixed -->
+      <circle cx="180" cy="100" r="7" fill="#3498DB" opacity="0.9"/>
+      <circle cx="220" cy="140" r="7" fill="#3498DB" opacity="0.9"/>
+      <circle cx="260" cy="120" r="7" fill="#3498DB" opacity="0.9"/>
+      <circle cx="200" cy="180" r="7" fill="#E74C3C" opacity="0.9"/>
+      <circle cx="240" cy="200" r="7" fill="#3498DB" opacity="0.9"/>
+      <circle cx="300" cy="160" r="7" fill="#3498DB" opacity="0.9"/>
+
+      <!-- Low temp, medium-high humidity → mostly BLUE -->
+      <circle cx="180" cy="280" r="7" fill="#3498DB" opacity="0.9"/>
+      <circle cx="220" cy="320" r="7" fill="#3498DB" opacity="0.9"/>
+      <circle cx="260" cy="300" r="7" fill="#3498DB" opacity="0.9"/>
+      <circle cx="300" cy="340" r="7" fill="#3498DB" opacity="0.9"/>
+      <circle cx="200" cy="380" r="7" fill="#3498DB" opacity="0.9"/>
+      <circle cx="240" cy="420" r="7" fill="#3498DB" opacity="0.9"/>
+
+      <!-- Low temp, low humidity → BLUE -->
+      <circle cx="120" cy="500" r="7" fill="#3498DB" opacity="0.9"/>
+      <circle cx="160" cy="540" r="7" fill="#3498DB" opacity="0.9"/>
+      <circle cx="200" cy="520" r="7" fill="#3498DB" opacity="0.9"/>
+      <circle cx="240" cy="560" r="7" fill="#3498DB" opacity="0.9"/>
+      <circle cx="280" cy="580" r="7" fill="#3498DB" opacity="0.9"/>
+      <circle cx="320" cy="540" r="7" fill="#3498DB" opacity="0.9"/>
+
+      <!-- Medium temp → very mixed -->
+      <circle cx="380" cy="180" r="7" fill="#3498DB" opacity="0.9"/>
+      <circle cx="420" cy="220" r="7" fill="#E74C3C" opacity="0.9"/>
+      <circle cx="460" cy="200" r="7" fill="#3498DB" opacity="0.9"/>
+      <circle cx="400" cy="280" r="7" fill="#E74C3C" opacity="0.9"/>
+      <circle cx="440" cy="320" r="7" fill="#3498DB" opacity="0.9"/>
+      <circle cx="480" cy="360" r="7" fill="#E74C3C" opacity="0.9"/>
+      <circle cx="420" cy="420" r="7" fill="#3498DB" opacity="0.9"/>
+      <circle cx="460" cy="480" r="7" fill="#E74C3C" opacity="0.9"/>
+      <circle cx="380" cy="520" r="7" fill="#3498DB" opacity="0.9"/>
+      <circle cx="500" cy="400" r="7" fill="#E74C3C" opacity="0.9"/>
+    </g>
+
+    <!-- Split lines (animated) -->
+    <g id="split-lines">
+      <!-- First split: Temperature = 32°C (x = 490) -->
+      <line id="split1" x1="490" y1="50" x2="490" y2="650"
+            stroke="#F39C12" stroke-width="4" stroke-dasharray="10,5" opacity="0">
+        <animate attributeName="opacity"
+                 values="0;0;1;1;1;1"
+                 keyTimes="0;0.15;0.2;0.7;0.95;1"
+                 dur="20s"
+                 repeatCount="indefinite"/>
+      </line>
+
+      <!-- Split label -->
+      <g opacity="0">
+        <rect x="410" y="20" width="160" height="35" rx="5" fill="#F39C12" opacity="0.9"/>
+        <text x="490" y="43" font-family="'Helvetica Neue', Arial, sans-serif"
+              font-size="14" fill="#FFFFFF" text-anchor="middle" font-weight="500">
+          Temp &gt; 32°C?
+        </text>
+        <animate attributeName="opacity"
+                 values="0;0;1;1;1;1"
+                 keyTimes="0;0.15;0.2;0.7;0.95;1"
+                 dur="20s"
+                 repeatCount="indefinite"/>
+      </g>
+
+      <!-- Second split: Left region, Humidity = 60% (y = 350) -->
+      <line id="split2" x1="50" y1="350" x2="490" y2="350"
+            stroke="#E67E22" stroke-width="3" stroke-dasharray="8,4" opacity="0">
+        <animate attributeName="opacity"
+                 values="0;0;0;1;1;1"
+                 keyTimes="0;0.3;0.35;0.4;0.95;1"
+                 dur="20s"
+                 repeatCount="indefinite"/>
+      </line>
+
+      <g opacity="0">
+        <rect x="210" y="320" width="160" height="35" rx="5" fill="#E67E22" opacity="0.9"/>
+        <text x="290" y="343" font-family="'Helvetica Neue', Arial, sans-serif"
+              font-size="14" fill="#FFFFFF" text-anchor="middle" font-weight="500">
+          Humidity &lt; 60%?
+        </text>
+        <animate attributeName="opacity"
+                 values="0;0;0;1;1;1"
+                 keyTimes="0;0.3;0.35;0.4;0.95;1"
+                 dur="20s"
+                 repeatCount="indefinite"/>
+      </g>
+
+      <!-- Third split: Right region, Humidity = 40% (y = 410) -->
+      <line id="split3" x1="490" y1="410" x2="750" y2="410"
+            stroke="#E67E22" stroke-width="3" stroke-dasharray="8,4" opacity="0">
+        <animate attributeName="opacity"
+                 values="0;0;0;0;1;1"
+                 keyTimes="0;0.5;0.55;0.6;0.95;1"
+                 dur="20s"
+                 repeatCount="indefinite"/>
+      </line>
+
+      <g opacity="0">
+        <rect x="560" y="380" width="160" height="35" rx="5" fill="#E67E22" opacity="0.9"/>
+        <text x="640" y="403" font-family="'Helvetica Neue', Arial, sans-serif"
+              font-size="14" fill="#FFFFFF" text-anchor="middle" font-weight="500">
+          Humidity &lt; 40%?
+        </text>
+        <animate attributeName="opacity"
+                 values="0;0;0;0;1;1"
+                 keyTimes="0;0.5;0.55;0.6;0.95;1"
+                 dur="20s"
+                 repeatCount="indefinite"/>
+      </g>
+    </g>
+
+    <!-- Region highlighting (showing impurity reduction) -->
+    <g id="region-highlights">
+      <!-- Initial: whole region mixed (purple) -->
+      <rect x="50" y="50" width="700" height="600" fill="url(#mixedGrad)" opacity="0">
+        <animate attributeName="opacity"
+                 values="0.4;0.4;0;0"
+                 keyTimes="0;0.15;0.2;1"
+                 dur="20s"
+                 repeatCount="indefinite"/>
+      </rect>
+
+      <!-- After first split: left region more blue, right more red -->
+      <rect x="50" y="50" width="440" height="600" fill="url(#blueGrad)" opacity="0">
+        <animate attributeName="opacity"
+                 values="0;0;0.3;0.3;0;0"
+                 keyTimes="0;0.2;0.25;0.35;0.4;1"
+                 dur="20s"
+                 repeatCount="indefinite"/>
+      </rect>
+
+      <rect x="490" y="50" width="260" height="600" fill="url(#redGrad)" opacity="0">
+        <animate attributeName="opacity"
+                 values="0;0;0.4;0.4;0;0"
+                 keyTimes="0;0.2;0.25;0.35;0.4;1"
+                 dur="20s"
+                 repeatCount="indefinite"/>
+      </rect>
+
+      <!-- After second split: left-top (high humidity) -->
+      <rect x="50" y="50" width="440" height="300" fill="url(#blueGrad)" opacity="0">
+        <animate attributeName="opacity"
+                 values="0;0;0;0.5;0.5;0;0"
+                 keyTimes="0;0.35;0.4;0.45;0.55;0.6;1"
+                 dur="20s"
+                 repeatCount="indefinite"/>
+      </rect>
+
+      <!-- Left-bottom (low humidity) - also blue but different intensity -->
+      <rect x="50" y="350" width="440" height="300" fill="url(#blueGrad)" opacity="0">
+        <animate attributeName="opacity"
+                 values="0;0;0;0.6;0.6;0;0"
+                 keyTimes="0;0.35;0.4;0.45;0.55;0.6;1"
+                 dur="20s"
+                 repeatCount="indefinite"/>
+      </rect>
+
+      <!-- After third split: right-top (very high humidity) - red -->
+      <rect x="490" y="50" width="260" height="360" fill="url(#redGrad)" opacity="0">
+        <animate attributeName="opacity"
+                 values="0;0;0;0;0.7;0.7"
+                 keyTimes="0;0.55;0.6;0.65;0.7;1"
+                 dur="20s"
+                 repeatCount="indefinite"/>
+      </rect>
+
+      <!-- Right-bottom (low humidity, high temp) - also red -->
+      <rect x="490" y="410" width="260" height="240" fill="url(#redGrad)" opacity="0">
+        <animate attributeName="opacity"
+                 values="0;0;0;0;0.7;0.7"
+                 keyTimes="0;0.55;0.6;0.65;0.7;1"
+                 dur="20s"
+                 repeatCount="indefinite"/>
+      </rect>
+    </g>
+
+    <!-- Current region highlight box -->
+    <rect id="current-region" x="50" y="50" width="700" height="600"
+          fill="none" stroke="#F1C40F" stroke-width="4" opacity="0">
+      <animate attributeName="opacity"
+               values="0.8;0.8;0;0"
+               keyTimes="0;0.1;0.15;1"
+               dur="20s"
+               repeatCount="indefinite"/>
+    </rect>
+  </g>
+
+  <!-- Tree structure visualization -->
+  <g id="tree-structure" transform="translate(1000, 150)">
+    <rect x="0" y="0" width="800" height="700" rx="8"
+          fill="#2C3E50" opacity="0.2" stroke="#52C77B" stroke-width="2"/>
+
+    <text x="400" y="35" font-family="'Helvetica Neue', Arial, sans-serif"
+          font-size="22" fill="#ECF0F1" text-anchor="middle" font-weight="300">
+      Tree Structure
+    </text>
+
+    <!-- Root node -->
+    <g id="root-node" opacity="0">
+      <rect x="320" y="80" width="160" height="70" rx="8"
+            fill="#34495E" stroke="#F39C12" stroke-width="3"/>
+      <text x="400" y="105" font-family="'Helvetica Neue', Arial, sans-serif"
+            font-size="14" fill="#F39C12" text-anchor="middle" font-weight="500">
+        Temp &gt; 32°C?
+      </text>
+      <text x="400" y="130" font-family="'Courier New', monospace"
+            font-size="12" fill="#95A5A6" text-anchor="middle">
+        Gini = 0.48
+      </text>
+      <text x="400" y="145" font-family="'Courier New', monospace"
+            font-size="11" fill="#95A5A6" text-anchor="middle">
+        samples = 50
+      </text>
+
+      <animate attributeName="opacity"
+               values="0;0;1;1"
+               keyTimes="0;0.15;0.2;1"
+               dur="20s"
+               repeatCount="indefinite"/>
+    </g>
+
+    <!-- Edges from root -->
+    <g id="root-edges" opacity="0">
+      <!-- Left edge -->
+      <line x1="360" y1="150" x2="240" y2="230" stroke="#95A5A6" stroke-width="2"/>
+      <text x="290" y="185" font-size="12" fill="#ECF0F1">No</text>
+
+      <!-- Right edge -->
+      <line x1="440" y1="150" x2="560" y2="230" stroke="#95A5A6" stroke-width="2"/>
+      <text x="510" y="185" font-size="12" fill="#ECF0F1">Yes</text>
+
+      <animate attributeName="opacity"
+               values="0;0;1;1"
+               keyTimes="0;0.15;0.2;1"
+               dur="20s"
+               repeatCount="indefinite"/>
+    </g>
+
+    <!-- Left child node -->
+    <g id="left-node" opacity="0">
+      <rect x="140" y="240" width="200" height="70" rx="8"
+            fill="#34495E" stroke="#E67E22" stroke-width="3"/>
+      <text x="240" y="265" font-family="'Helvetica Neue', Arial, sans-serif"
+            font-size="14" fill="#E67E22" text-anchor="middle" font-weight="500">
+        Humidity &lt; 60%?
+      </text>
+      <text x="240" y="290" font-family="'Courier New', monospace"
+            font-size="12" fill="#95A5A6" text-anchor="middle">
+        Gini = 0.32
+      </text>
+      <text x="240" y="305" font-family="'Courier New', monospace"
+            font-size="11" fill="#95A5A6" text-anchor="middle">
+        samples = 28
+      </text>
+
+      <animate attributeName="opacity"
+               values="0;0;0;1;1"
+               keyTimes="0;0.3;0.35;0.4;1"
+               dur="20s"
+               repeatCount="indefinite"/>
+    </g>
+
+    <!-- Right child node -->
+    <g id="right-node" opacity="0">
+      <rect x="460" y="240" width="200" height="70" rx="8"
+            fill="#34495E" stroke="#E67E22" stroke-width="3"/>
+      <text x="560" y="265" font-family="'Helvetica Neue', Arial, sans-serif"
+            font-size="14" fill="#E67E22" text-anchor="middle" font-weight="500">
+        Humidity &lt; 40%?
+      </text>
+      <text x="560" y="290" font-family="'Courier New', monospace"
+            font-size="12" fill="#95A5A6" text-anchor="middle">
+        Gini = 0.22
+      </text>
+      <text x="560" y="305" font-family="'Courier New', monospace"
+            font-size="11" fill="#95A5A6" text-anchor="middle">
+        samples = 22
+      </text>
+
+      <animate attributeName="opacity"
+               values="0;0;0;0;1;1"
+               keyTimes="0;0.5;0.55;0.6;0.65;1"
+               dur="20s"
+               repeatCount="indefinite"/>
+    </g>
+
+    <!-- Leaf nodes -->
+    <!-- Left-left leaf -->
+    <g id="leaf-ll" opacity="0">
+      <line x1="200" y1="310" x2="120" y2="390" stroke="#95A5A6" stroke-width="2"/>
+      <rect x="60" y="400" width="120" height="60" rx="8"
+            fill="#3498DB" stroke="#52C77B" stroke-width="2"/>
+      <text x="120" y="425" font-family="'Helvetica Neue', Arial, sans-serif"
+            font-size="14" fill="#FFFFFF" text-anchor="middle" font-weight="600">
+        Predict: NO
+      </text>
+      <text x="120" y="445" font-family="'Courier New', monospace"
+            font-size="11" fill="#ECF0F1" text-anchor="middle">
+        Gini = 0.18
+      </text>
+
+      <animate attributeName="opacity"
+               values="0;0;0;1;1"
+               keyTimes="0;0.35;0.4;0.45;1"
+               dur="20s"
+               repeatCount="indefinite"/>
+    </g>
+
+    <!-- Left-right leaf -->
+    <g id="leaf-lr" opacity="0">
+      <line x1="280" y1="310" x2="360" y2="390" stroke="#95A5A6" stroke-width="2"/>
+      <rect x="300" y="400" width="120" height="60" rx="8"
+            fill="#3498DB" stroke="#52C77B" stroke-width="2"/>
+      <text x="360" y="425" font-family="'Helvetica Neue', Arial, sans-serif"
+            font-size="14" fill="#FFFFFF" text-anchor="middle" font-weight="600">
+        Predict: NO
+      </text>
+      <text x="360" y="445" font-family="'Courier New', monospace"
+            font-size="11" fill="#ECF0F1" text-anchor="middle">
+        Gini = 0.10
+      </text>
+
+      <animate attributeName="opacity"
+               values="0;0;0;1;1"
+               keyTimes="0;0.35;0.4;0.45;1"
+               dur="20s"
+               repeatCount="indefinite"/>
+    </g>
+
+    <!-- Right-left leaf -->
+    <g id="leaf-rl" opacity="0">
+      <line x1="520" y1="310" x2="480" y2="390" stroke="#95A5A6" stroke-width="2"/>
+      <rect x="420" y="400" width="120" height="60" rx="8"
+            fill="#E74C3C" stroke="#52C77B" stroke-width="2"/>
+      <text x="480" y="425" font-family="'Helvetica Neue', Arial, sans-serif"
+            font-size="14" fill="#FFFFFF" text-anchor="middle" font-weight="600">
+        Predict: YES
+      </text>
+      <text x="480" y="445" font-family="'Courier New', monospace"
+            font-size="11" fill="#ECF0F1" text-anchor="middle">
+        Gini = 0.08
+      </text>
+
+      <animate attributeName="opacity"
+               values="0;0;0;0;1;1"
+               keyTimes="0;0.55;0.6;0.65;0.7;1"
+               dur="20s"
+               repeatCount="indefinite"/>
+    </g>
+
+    <!-- Right-right leaf -->
+    <g id="leaf-rr" opacity="0">
+      <line x1="600" y1="310" x2="640" y2="390" stroke="#95A5A6" stroke-width="2"/>
+      <rect x="580" y="400" width="120" height="60" rx="8"
+            fill="#E74C3C" stroke="#52C77B" stroke-width="2"/>
+      <text x="640" y="425" font-family="'Helvetica Neue', Arial, sans-serif"
+            font-size="14" fill="#FFFFFF" text-anchor="middle" font-weight="600">
+        Predict: YES
+      </text>
+      <text x="640" y="445" font-family="'Courier New', monospace"
+            font-size="11" fill="#ECF0F1" text-anchor="middle">
+        Gini = 0.12
+      </text>
+
+      <animate attributeName="opacity"
+               values="0;0;0;0;1;1"
+               keyTimes="0;0.55;0.6;0.65;0.7;1"
+               dur="20s"
+               repeatCount="indefinite"/>
+    </g>
+
+    <!-- Impurity reduction annotation -->
+    <g id="impurity-note" opacity="0">
+      <rect x="50" y="550" width="700" height="100" rx="8" fill="#34495E" opacity="0.95"/>
+      <text x="400" y="585" font-family="'Helvetica Neue', Arial, sans-serif"
+            font-size="18" fill="#52C77B" text-anchor="middle" font-weight="500">
+        Impurity Decreases with Each Split
+      </text>
+      <text x="400" y="615" font-family="'Courier New', monospace"
+            font-size="14" fill="#ECF0F1" text-anchor="middle">
+        Root: 0.48 → Children: 0.32, 0.22 → Leaves: 0.18, 0.10, 0.08, 0.12
+      </text>
+
+      <animate attributeName="opacity"
+               values="0;0;0;0;1;1"
+               keyTimes="0;0.65;0.7;0.75;0.8;1"
+               dur="20s"
+               repeatCount="indefinite"/>
+    </g>
+  </g>
+
+  <!-- Bottom annotation: Key teaching moment -->
+  <g id="teaching-moment" transform="translate(100, 920)">
+    <rect x="0" y="0" width="1720" height="100" rx="10"
+          fill="#27AE60" opacity="0">
+      <animate attributeName="opacity"
+               values="0;0;0;0;0.95;0.95"
+               keyTimes="0;0.75;0.8;0.85;0.9;1"
+               dur="20s"
+               repeatCount="indefinite"/>
+    </rect>
+
+    <text x="860" y="40" font-family="'Helvetica Neue', Arial, sans-serif"
+          font-size="24" fill="#FFFFFF" text-anchor="middle" font-weight="500"
+          opacity="0">
+      Decision Boundary Learned Through Recursive Splitting
+      <animate attributeName="opacity"
+               values="0;0;0;0;1;1"
+               keyTimes="0;0.75;0.8;0.85;0.9;1"
+               dur="20s"
+               repeatCount="indefinite"/>
+    </text>
+
+    <text x="860" y="70" font-family="'Helvetica Neue', Arial, sans-serif"
+          font-size="16" fill="#ECF0F1" text-anchor="middle"
+          opacity="0">
+      Each split maximizes information gain = parent impurity - weighted child impurities
+      <animate attributeName="opacity"
+               values="0;0;0;0;1;1"
+               keyTimes="0;0.75;0.8;0.85;0.9;1"
+               dur="20s"
+               repeatCount="indefinite"/>
+    </text>
+  </g>
+
+  <!-- Progress indicator -->
+  <g id="progress" transform="translate(100, 880)">
+    <text x="0" y="0" font-family="'Helvetica Neue', Arial, sans-serif"
+          font-size="16" fill="#95A5A6">
+      Building tree: <tspan id="progress-text" fill="#F39C12" font-weight="500">
+        <set attributeName="textContent" to="Analyzing full dataset..." begin="0s"/>
+        <set attributeName="textContent" to="Split 1: Temperature threshold" begin="3s"/>
+        <set attributeName="textContent" to="Split 2: Left region - Humidity" begin="7s"/>
+        <set attributeName="textContent" to="Split 3: Right region - Humidity" begin="11s"/>
+        <set attributeName="textContent" to="Complete! 4 leaf nodes created" begin="15s"/>
+      </tspan>
+    </text>
+  </g>
+
+</svg>

@@ -1,0 +1,331 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1080" width="1920" height="1080">
+  <!-- 3Blue1Brown Style Gradient Boosting Animation -->
+  <defs>
+    <!-- Error color gradient (large to small errors) -->
+    <linearGradient id="errorGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#FC6255;stop-opacity:1"/>
+      <stop offset="50%" style="stop-color:#E0A856;stop-opacity:1"/>
+      <stop offset="100%" style="stop-color:#27AE60;stop-opacity:1"/>
+    </linearGradient>
+
+    <!-- Residual bar gradient -->
+    <linearGradient id="residualBar">
+      <stop offset="0%" style="stop-color:#FC6255;stop-opacity:0.8"/>
+      <stop offset="100%" style="stop-color:#FC6255;stop-opacity:0.4"/>
+    </linearGradient>
+
+    <!-- Glow effects -->
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+
+    <filter id="strongGlow">
+      <feGaussianBlur stdDeviation="5" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1920" height="1080" fill="#111111"/>
+
+  <!-- Title -->
+  <g id="title">
+    <text x="960" y="65" font-family="'SF Pro Display', 'Lato', sans-serif" font-size="60" font-weight="bold" fill="#FFFFFF" text-anchor="middle" opacity="0">
+      Gradient Boosting Sequence
+      <animate attributeName="opacity" from="0" to="1" begin="0s" dur="0.8s" fill="freeze"/>
+    </text>
+    <text x="960" y="105" font-family="'SF Pro Display', sans-serif" font-size="28" fill="#888888" text-anchor="middle" opacity="0">
+      Iteratively fitting residuals to reduce prediction error
+      <animate attributeName="opacity" from="0" to="1" begin="0.8s" dur="0.6s" fill="freeze"/>
+    </text>
+  </g>
+
+  <!-- Three-panel dashboard layout -->
+  <g id="mainDashboard">
+    <!-- TOP PANEL: Predictions vs True Values -->
+    <g id="topPanel" transform="translate(100, 150)">
+      <!-- Panel background -->
+      <rect x="0" y="0" width="1720" height="260" fill="#1A1A1A" stroke="#444444" stroke-width="2" rx="10" opacity="0">
+        <animate attributeName="opacity" from="0" to="1" begin="1s" dur="0.5s" fill="freeze"/>
+      </rect>
+
+      <!-- Panel title -->
+      <text x="860" y="35" font-family="'SF Pro Display', sans-serif" font-size="32" font-weight="bold" fill="#EEEEEE" text-anchor="middle" opacity="0">
+        Predictions vs True Values
+        <animate attributeName="opacity" from="0" to="1" begin="1.5s" dur="0.5s" fill="freeze"/>
+      </text>
+
+      <!-- Scatter plot axes -->
+      <g id="scatterAxes" stroke="#666666" stroke-width="2" opacity="0">
+        <line x1="80" y1="60" x2="80" y2="230"/>
+        <line x1="80" y1="230" x2="1640" y2="230"/>
+        <animate attributeName="opacity" from="0" to="1" begin="2s" dur="0.5s" fill="freeze"/>
+      </g>
+
+      <!-- Axis labels -->
+      <g id="scatterLabels" opacity="0">
+        <text x="860" y="255" font-family="'SF Pro Display', sans-serif" font-size="20" fill="#EEEEEE" text-anchor="middle">Sample Index</text>
+        <text x="40" y="145" font-family="'SF Pro Display', sans-serif" font-size="20" fill="#EEEEEE" text-anchor="middle" transform="rotate(-90, 40, 145)">Value</text>
+        <animate attributeName="opacity" from="0" to="1" begin="2.3s" dur="0.5s" fill="freeze"/>
+      </g>
+
+      <!-- True values (reference line) -->
+      <polyline points="100,150 180,120 260,180 340,140 420,100 500,160 580,130 660,170 740,110 820,150 900,190 980,140 1060,120 1140,160 1220,180 1300,130 1380,150 1460,140 1540,170 1620,150"
+                fill="none" stroke="#29ABCA" stroke-width="3" stroke-dasharray="5,3" opacity="0">
+        <animate attributeName="opacity" from="0" to="1" begin="2.5s" dur="0.5s" fill="freeze"/>
+      </polyline>
+      <text x="1640" y="150" font-family="'SF Pro Display', sans-serif" font-size="18" fill="#29ABCA" opacity="0">True<animate attributeName="opacity" from="0" to="1" begin="2.8s" dur="0.3s" fill="freeze"/></text>
+
+      <!-- Initial predictions (poor fit - red) -->
+      <g id="initialPredictions" opacity="0">
+        <circle cx="100" cy="140" r="6" fill="#FC6255" stroke="#CF5044" stroke-width="2"/>
+        <circle cx="180" cy="160" r="6" fill="#FC6255" stroke="#CF5044" stroke-width="2"/>
+        <circle cx="260" cy="140" r="6" fill="#FC6255" stroke="#CF5044" stroke-width="2"/>
+        <circle cx="340" cy="180" r="6" fill="#FC6255" stroke="#CF5044" stroke-width="2"/>
+        <circle cx="420" cy="150" r="6" fill="#FC6255" stroke="#CF5044" stroke-width="2"/>
+        <circle cx="500" cy="130" r="6" fill="#FC6255" stroke="#CF5044" stroke-width="2"/>
+        <circle cx="580" cy="170" r="6" fill="#FC6255" stroke="#CF5044" stroke-width="2"/>
+        <circle cx="660" cy="140" r="6" fill="#FC6255" stroke="#CF5044" stroke-width="2"/>
+        <circle cx="740" cy="160" r="6" fill="#FC6255" stroke="#CF5044" stroke-width="2"/>
+        <circle cx="820" cy="130" r="6" fill="#FC6255" stroke="#CF5044" stroke-width="2"/>
+        <circle cx="900" cy="170" r="6" fill="#FC6255" stroke="#CF5044" stroke-width="2"/>
+        <circle cx="980" cy="180" r="6" fill="#FC6255" stroke="#CF5044" stroke-width="2"/>
+        <circle cx="1060" cy="150" r="6" fill="#FC6255" stroke="#CF5044" stroke-width="2"/>
+        <circle cx="1140" cy="130" r="6" fill="#FC6255" stroke="#CF5044" stroke-width="2"/>
+        <circle cx="1220" cy="160" r="6" fill="#FC6255" stroke="#CF5044" stroke-width="2"/>
+        <circle cx="1300" cy="170" r="6" fill="#FC6255" stroke="#CF5044" stroke-width="2"/>
+        <circle cx="1380" cy="140" r="6" fill="#FC6255" stroke="#CF5044" stroke-width="2"/>
+        <circle cx="1460" cy="180" r="6" fill="#FC6255" stroke="#CF5044" stroke-width="2"/>
+        <circle cx="1540" cy="150" r="6" fill="#FC6255" stroke="#CF5044" stroke-width="2"/>
+        <circle cx="1620" cy="170" r="6" fill="#FC6255" stroke="#CF5044" stroke-width="2"/>
+        <animate attributeName="opacity" from="0" to="1" begin="3s" dur="0.5s" fill="freeze"/>
+      </g>
+
+      <!-- Improved predictions after boosting (green) -->
+      <g id="improvedPredictions" opacity="0">
+        <circle cx="100" cy="148" r="6" fill="#27AE60" stroke="#1E8449" stroke-width="2" filter="url(#glow)"/>
+        <circle cx="180" cy="122" r="6" fill="#27AE60" stroke="#1E8449" stroke-width="2" filter="url(#glow)"/>
+        <circle cx="260" cy="178" r="6" fill="#27AE60" stroke="#1E8449" stroke-width="2" filter="url(#glow)"/>
+        <circle cx="340" cy="142" r="6" fill="#27AE60" stroke="#1E8449" stroke-width="2" filter="url(#glow)"/>
+        <circle cx="420" cy="102" r="6" fill="#27AE60" stroke="#1E8449" stroke-width="2" filter="url(#glow)"/>
+        <circle cx="500" cy="158" r="6" fill="#27AE60" stroke="#1E8449" stroke-width="2" filter="url(#glow)"/>
+        <circle cx="580" cy="132" r="6" fill="#27AE60" stroke="#1E8449" stroke-width="2" filter="url(#glow)"/>
+        <circle cx="660" cy="168" r="6" fill="#27AE60" stroke="#1E8449" stroke-width="2" filter="url(#glow)"/>
+        <circle cx="740" cy="112" r="6" fill="#27AE60" stroke="#1E8449" stroke-width="2" filter="url(#glow)"/>
+        <circle cx="820" cy="148" r="6" fill="#27AE60" stroke="#1E8449" stroke-width="2" filter="url(#glow)"/>
+        <circle cx="900" cy="188" r="6" fill="#27AE60" stroke="#1E8449" stroke-width="2" filter="url(#glow)"/>
+        <circle cx="980" cy="138" r="6" fill="#27AE60" stroke="#1E8449" stroke-width="2" filter="url(#glow)"/>
+        <circle cx="1060" cy="118" r="6" fill="#27AE60" stroke="#1E8449" stroke-width="2" filter="url(#glow)"/>
+        <circle cx="1140" cy="158" r="6" fill="#27AE60" stroke="#1E8449" stroke-width="2" filter="url(#glow)"/>
+        <circle cx="1220" cy="178" r="6" fill="#27AE60" stroke="#1E8449" stroke-width="2" filter="url(#glow)"/>
+        <circle cx="1300" cy="132" r="6" fill="#27AE60" stroke="#1E8449" stroke-width="2" filter="url(#glow)"/>
+        <circle cx="1380" cy="152" r="6" fill="#27AE60" stroke="#1E8449" stroke-width="2" filter="url(#glow)"/>
+        <circle cx="1460" cy="142" r="6" fill="#27AE60" stroke="#1E8449" stroke-width="2" filter="url(#glow)"/>
+        <circle cx="1540" cy="168" r="6" fill="#27AE60" stroke="#1E8449" stroke-width="2" filter="url(#glow)"/>
+        <circle cx="1620" cy="148" r="6" fill="#27AE60" stroke="#1E8449" stroke-width="2" filter="url(#glow)"/>
+        <animate attributeName="opacity" from="0" to="1" begin="10s" dur="1s" fill="freeze"/>
+      </g>
+
+      <!-- Legend -->
+      <g id="topLegend" transform="translate(1450, 60)" opacity="0">
+        <circle cx="0" cy="0" r="5" fill="#29ABCA"/>
+        <text x="15" y="5" font-family="'SF Pro Display', sans-serif" font-size="16" fill="#EEEEEE">True</text>
+        <circle cx="0" cy="25" r="5" fill="#FC6255"/>
+        <text x="15" y="30" font-family="'SF Pro Display', sans-serif" font-size="16" fill="#EEEEEE">Initial</text>
+        <circle cx="0" cy="50" r="5" fill="#27AE60"/>
+        <text x="15" y="55" font-family="'SF Pro Display', sans-serif" font-size="16" fill="#EEEEEE">Boosted</text>
+        <animate attributeName="opacity" from="0" to="1" begin="3.5s" dur="0.5s" fill="freeze"/>
+      </g>
+    </g>
+
+    <!-- MIDDLE PANEL: Residual Plot -->
+    <g id="middlePanel" transform="translate(100, 440)">
+      <!-- Panel background -->
+      <rect x="0" y="0" width="1720" height="260" fill="#1A1A1A" stroke="#444444" stroke-width="2" rx="10" opacity="0">
+        <animate attributeName="opacity" from="0" to="1" begin="1s" dur="0.5s" fill="freeze"/>
+      </rect>
+
+      <!-- Panel title -->
+      <text x="860" y="35" font-family="'SF Pro Display', sans-serif" font-size="32" font-weight="bold" fill="#EEEEEE" text-anchor="middle" opacity="0">
+        Residuals (Error Magnitude)
+        <animate attributeName="opacity" from="0" to="1" begin="1.5s" dur="0.5s" fill="freeze"/>
+      </text>
+
+      <!-- Zero line -->
+      <line x1="80" y1="150" x2="1640" y2="150" stroke="#666666" stroke-width="2" stroke-dasharray="4,2" opacity="0">
+        <animate attributeName="opacity" from="0" to="0.5" begin="4s" dur="0.5s" fill="freeze"/>
+      </line>
+
+      <!-- Initial residual bars (large errors - red) -->
+      <g id="initialResiduals" opacity="0">
+        <rect x="90" y="130" width="35" height="20" fill="url(#residualBar)" rx="2"/>
+        <rect x="170" y="110" width="35" height="40" fill="url(#residualBar)" rx="2"/>
+        <rect x="250" y="90" width="35" height="60" fill="url(#residualBar)" rx="2"/>
+        <rect x="330" y="110" width="35" height="40" fill="url(#residualBar)" rx="2"/>
+        <rect x="410" y="100" width="35" height="50" fill="url(#residualBar)" rx="2"/>
+        <rect x="490" y="120" width="35" height="30" fill="url(#residualBar)" rx="2"/>
+        <rect x="570" y="110" width="35" height="40" fill="url(#residualBar)" rx="2"/>
+        <rect x="650" y="120" width="35" height="30" fill="url(#residualBar)" rx="2"/>
+        <rect x="730" y="100" width="35" height="50" fill="url(#residualBar)" rx="2"/>
+        <rect x="810" y="130" width="35" height="20" fill="url(#residualBar)" rx="2"/>
+        <rect x="890" y="110" width="35" height="40" fill="url(#residualBar)" rx="2"/>
+        <rect x="970" y="110" width="35" height="40" fill="url(#residualBar)" rx="2"/>
+        <rect x="1050" y="120" width="35" height="30" fill="url(#residualBar)" rx="2"/>
+        <rect x="1130" y="120" width="35" height="30" fill="url(#residualBar)" rx="2"/>
+        <rect x="1210" y="130" width="35" height="20" fill="url(#residualBar)" rx="2"/>
+        <rect x="1290" y="110" width="35" height="40" fill="url(#residualBar)" rx="2"/>
+        <rect x="1370" y="130" width="35" height="20" fill="url(#residualBar)" rx="2"/>
+        <rect x="1450" y="110" width="35" height="40" fill="url(#residualBar)" rx="2"/>
+        <rect x="1530" y="130" width="35" height="20" fill="url(#residualBar)" rx="2"/>
+        <rect x="1610" y="120" width="35" height="30" fill="url(#residualBar)" rx="2"/>
+        <animate attributeName="opacity" from="0" to="1" begin="4s" dur="0.5s" fill="freeze"/>
+      </g>
+
+      <!-- Shrinking residuals animation (fading to smaller bars) -->
+      <g id="shrinkingResiduals" opacity="0">
+        <rect x="90" y="145" width="35" height="5" fill="#E0A856" rx="2"/>
+        <rect x="170" y="142" width="35" height="8" fill="#E0A856" rx="2"/>
+        <rect x="250" y="148" width="35" height="2" fill="#27AE60" rx="2"/>
+        <rect x="330" y="148" width="35" height="2" fill="#27AE60" rx="2"/>
+        <rect x="410" y="148" width="35" height="2" fill="#27AE60" rx="2"/>
+        <rect x="490" y="148" width="35" height="2" fill="#27AE60" rx="2"/>
+        <rect x="570" y="148" width="35" height="2" fill="#27AE60" rx="2"/>
+        <rect x="650" y="148" width="35" height="2" fill="#27AE60" rx="2"/>
+        <rect x="730" y="148" width="35" height="2" fill="#27AE60" rx="2"/>
+        <rect x="810" y="148" width="35" height="2" fill="#27AE60" rx="2"/>
+        <rect x="890" y="148" width="35" height="2" fill="#27AE60" rx="2"/>
+        <rect x="970" y="148" width="35" height="2" fill="#27AE60" rx="2"/>
+        <rect x="1050" y="148" width="35" height="2" fill="#27AE60" rx="2"/>
+        <rect x="1130" y="148" width="35" height="2" fill="#27AE60" rx="2"/>
+        <rect x="1210" y="148" width="35" height="2" fill="#27AE60" rx="2"/>
+        <rect x="1290" y="148" width="35" height="2" fill="#27AE60" rx="2"/>
+        <rect x="1370" y="148" width="35" height="2" fill="#27AE60" rx="2"/>
+        <rect x="1450" y="148" width="35" height="2" fill="#27AE60" rx="2"/>
+        <rect x="1530" y="148" width="35" height="2" fill="#27AE60" rx="2"/>
+        <rect x="1610" y="148" width="35" height="2" fill="#27AE60" rx="2"/>
+        <animate attributeName="opacity" from="0" to="1" begin="10s" dur="1s" fill="freeze"/>
+      </g>
+
+      <!-- Axis labels -->
+      <text x="860" y="235" font-family="'SF Pro Display', sans-serif" font-size="20" fill="#EEEEEE" text-anchor="middle" opacity="0">
+        Sample Index
+        <animate attributeName="opacity" from="0" to="1" begin="4.3s" dur="0.3s" fill="freeze"/>
+      </text>
+      <text x="40" y="150" font-family="'SF Pro Display', sans-serif" font-size="20" fill="#EEEEEE" text-anchor="middle" transform="rotate(-90, 40, 150)" opacity="0">
+        Error
+        <animate attributeName="opacity" from="0" to="1" begin="4.3s" dur="0.3s" fill="freeze"/>
+      </text>
+    </g>
+
+    <!-- BOTTOM PANEL: Current Tree Being Fitted -->
+    <g id="bottomPanel" transform="translate(100, 730)">
+      <!-- Panel background -->
+      <rect x="0" y="0" width="1720" height="280" fill="#1A1A1A" stroke="#444444" stroke-width="2" rx="10" opacity="0">
+        <animate attributeName="opacity" from="0" to="1" begin="1s" dur="0.5s" fill="freeze"/>
+      </rect>
+
+      <!-- Panel title -->
+      <text x="860" y="35" font-family="'SF Pro Display', sans-serif" font-size="32" font-weight="bold" fill="#EEEEEE" text-anchor="middle" opacity="0">
+        Weak Learner (Tree m)
+        <animate attributeName="opacity" from="0" to="1" begin="1.5s" dur="0.5s" fill="freeze"/>
+      </text>
+
+      <!-- Simple decision tree visualization -->
+      <g id="weakLearner" transform="translate(860, 80)">
+        <!-- Root node -->
+        <rect x="-80" y="0" width="160" height="50" fill="#1C758A" stroke="#29ABCA" stroke-width="2" rx="5" opacity="0">
+          <animate attributeName="opacity" from="0" to="1" begin="5s" dur="0.5s" fill="freeze"/>
+        </rect>
+        <text x="0" y="25" font-family="'SF Mono', monospace" font-size="18" fill="#EEEEEE" text-anchor="middle" opacity="0">
+          Split on X₁
+          <animate attributeName="opacity" from="0" to="1" begin="5.3s" dur="0.3s" fill="freeze"/>
+        </text>
+        <text x="0" y="42" font-family="monospace" font-size="14" fill="#888888" text-anchor="middle" opacity="0">
+          depth=2
+          <animate attributeName="opacity" from="0" to="1" begin="5.6s" dur="0.3s" fill="freeze"/>
+        </text>
+
+        <!-- Edges -->
+        <g stroke="#666666" stroke-width="2" opacity="0">
+          <line x1="-40" y1="50" x2="-200" y2="100"/>
+          <line x1="40" y1="50" x2="200" y2="100"/>
+          <animate attributeName="opacity" from="0" to="1" begin="6s" dur="0.5s" fill="freeze"/>
+        </g>
+
+        <!-- Left child -->
+        <rect x="-270" y="100" width="140" height="45" fill="#1C758A" stroke="#29ABCA" stroke-width="2" rx="5" opacity="0">
+          <animate attributeName="opacity" from="0" to="1" begin="6.5s" dur="0.5s" fill="freeze"/>
+        </rect>
+        <text x="-200" y="128" font-family="'SF Mono', monospace" font-size="16" fill="#EEEEEE" text-anchor="middle" opacity="0">
+          Pred: -0.12
+          <animate attributeName="opacity" from="0" to="1" begin="7s" dur="0.3s" fill="freeze"/>
+        </text>
+
+        <!-- Right child -->
+        <rect x="130" y="100" width="140" height="45" fill="#1C758A" stroke="#29ABCA" stroke-width="2" rx="5" opacity="0">
+          <animate attributeName="opacity" from="0" to="1" begin="6.5s" dur="0.5s" fill="freeze"/>
+        </rect>
+        <text x="200" y="128" font-family="'SF Mono', monospace" font-size="16" fill="#EEEEEE" text-anchor="middle" opacity="0">
+          Pred: +0.08
+          <animate attributeName="opacity" from="0" to="1" begin="7s" dur="0.3s" fill="freeze"/>
+        </text>
+
+        <!-- Learning rate indicator -->
+        <g transform="translate(0, 170)" opacity="0">
+          <text x="0" y="0" font-family="'SF Pro Display', sans-serif" font-size="22" fill="#FFFF00" text-anchor="middle">
+            Learning rate η = 0.1
+          </text>
+          <animate attributeName="opacity" from="0" to="1" begin="8s" dur="0.5s" fill="freeze"/>
+        </g>
+      </g>
+
+      <!-- Iteration counter -->
+      <g id="iterationDisplay" transform="translate(1500, 120)" opacity="0">
+        <rect x="0" y="0" width="180" height="80" fill="#1A1A1A" stroke="#FFFF00" stroke-width="2" rx="8"/>
+        <text x="90" y="30" font-family="'SF Pro Display', sans-serif" font-size="20" fill="#EEEEEE" text-anchor="middle">
+          Iteration
+        </text>
+        <text x="90" y="60" font-family="'SF Mono', monospace" font-size="36" font-weight="bold" fill="#FFFF00" text-anchor="middle">
+          17
+        </text>
+        <animate attributeName="opacity" from="0" to="1" begin="5s" dur="0.5s" fill="freeze"/>
+      </g>
+    </g>
+  </g>
+
+  <!-- Formula overlay -->
+  <g id="formula" transform="translate(960, 1040)" opacity="0">
+    <text x="0" y="0" font-family="'SF Pro Display', sans-serif" font-size="38" fill="#EEEEEE" text-anchor="middle">
+      <tspan font-style="italic">F</tspan><tspan baseline-shift="sub" font-size="24">m</tspan> =
+      <tspan font-style="italic">F</tspan><tspan baseline-shift="sub" font-size="24">m−1</tspan> +
+      <tspan fill="#FFFF00">η</tspan> · <tspan font-style="italic" fill="#29ABCA">h</tspan><tspan baseline-shift="sub" font-size="24">m</tspan>
+    </text>
+    <animate attributeName="opacity" from="0" to="1" begin="8.5s" dur="0.8s" fill="freeze"/>
+  </g>
+
+  <!-- Progress indicator -->
+  <g id="progressBar" transform="translate(200, 1050)" opacity="0">
+    <text x="0" y="-10" font-family="'SF Pro Display', sans-serif" font-size="18" fill="#888888">Loss Reduction Progress:</text>
+    <rect x="0" y="0" width="600" height="20" fill="#333333" rx="10"/>
+    <rect x="0" y="0" width="0" height="20" fill="#27AE60" rx="10">
+      <animate attributeName="width" from="0" to="485" begin="4s" dur="7s" fill="freeze"/>
+    </rect>
+    <text x="620" y="15" font-family="'SF Mono', monospace" font-size="18" fill="#27AE60">81%</text>
+    <animate attributeName="opacity" from="0" to="1" begin="4s" dur="0.5s" fill="freeze"/>
+  </g>
+
+  <!-- 3Blue1Brown style watermark -->
+  <g id="watermark" opacity="0.3">
+    <text x="1680" y="1070" font-family="'SF Pro Display', sans-serif" font-size="18" fill="#666666" text-anchor="end">
+      3B1B-Style Gradient Boosting Visualization
+    </text>
+  </g>
+</svg>

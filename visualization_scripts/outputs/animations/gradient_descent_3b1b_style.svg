@@ -1,0 +1,255 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1080" width="1920" height="1080">
+  <!-- 3Blue1Brown Style Gradient Descent Animation -->
+  <!-- Dark background -->
+  <defs>
+    <!-- Color gradients matching 3B1B palette -->
+    <linearGradient id="lossGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#FC6255;stop-opacity:1">
+        <animate attributeName="stop-opacity" values="1;0.8;1" dur="3s" repeatCount="indefinite"/>
+      </stop>
+      <stop offset="50%" style="stop-color:#E07856;stop-opacity:1"/>
+      <stop offset="100%" style="stop-color:#29ABCA;stop-opacity:1">
+        <animate attributeName="stop-opacity" values="1;0.8;1" dur="3s" repeatCount="indefinite"/>
+      </stop>
+    </linearGradient>
+
+    <radialGradient id="glowBlue" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" style="stop-color:#29ABCA;stop-opacity:0.8"/>
+      <stop offset="100%" style="stop-color:#29ABCA;stop-opacity:0"/>
+    </radialGradient>
+
+    <radialGradient id="glowRed" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" style="stop-color:#FC6255;stop-opacity:0.8"/>
+      <stop offset="100%" style="stop-color:#FC6255;stop-opacity:0"/>
+    </radialGradient>
+
+    <!-- Motion blur filter -->
+    <filter id="motionBlur">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="2,0"/>
+    </filter>
+
+    <!-- Glow effect -->
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="4" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+
+    <!-- Arrow marker -->
+    <marker id="arrowBlue" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,6 L9,3 z" fill="#29ABCA"/>
+    </marker>
+
+    <marker id="arrowRed" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,6 L9,3 z" fill="#FC6255"/>
+    </marker>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1920" height="1080" fill="#111111"/>
+
+  <!-- Title -->
+  <g id="title" opacity="0">
+    <text x="960" y="80" font-family="'SF Pro Display', 'Lato', sans-serif" font-size="72" font-weight="bold" fill="#FFFFFF" text-anchor="middle">
+      Gradient Descent
+    </text>
+    <animate attributeName="opacity" from="0" to="1" begin="0s" dur="0.8s" fill="freeze"/>
+  </g>
+
+  <!-- Main container for dual comparison -->
+  <g id="mainContent">
+    <!-- LEFT PANEL: Local Minimum (Red - Stuck) -->
+    <g id="leftPanel" transform="translate(100, 150)">
+      <!-- Panel label -->
+      <text x="380" y="30" font-family="'SF Pro Display', sans-serif" font-size="48" fill="#FC6255" text-anchor="middle" opacity="0">
+        Local Minimum
+        <animate attributeName="opacity" from="0" to="1" begin="1s" dur="0.6s" fill="freeze"/>
+      </text>
+
+      <!-- 3D Contour plot -->
+      <g id="leftContour" transform="translate(0, 60)">
+        <!-- Contour levels (from high to low loss) -->
+        <ellipse cx="380" cy="300" rx="320" ry="180" fill="none" stroke="#FC6255" stroke-width="2" opacity="0.3"/>
+        <ellipse cx="380" cy="300" rx="260" ry="145" fill="none" stroke="#E07856" stroke-width="2" opacity="0.4"/>
+        <ellipse cx="380" cy="300" rx="200" ry="110" fill="none" stroke="#CF5044" stroke-width="2" opacity="0.5"/>
+        <ellipse cx="380" cy="300" rx="140" ry="75" fill="none" stroke="#B8423C" stroke-width="2" opacity="0.6"/>
+        <ellipse cx="380" cy="300" rx="80" ry="45" fill="none" stroke="#A13433" stroke-width="2.5" opacity="0.7"/>
+
+        <!-- Local minimum point (trap) -->
+        <circle cx="200" cy="200" r="40" fill="none" stroke="#FC6255" stroke-width="2" opacity="0.6"/>
+        <circle cx="200" cy="200" r="25" fill="none" stroke="#FC6255" stroke-width="2" opacity="0.7"/>
+        <circle cx="200" cy="200" r="12" fill="#FC6255" opacity="0.3"/>
+
+        <!-- Global minimum indicator (unreachable) -->
+        <circle cx="380" cy="300" r="8" fill="#29ABCA" opacity="0.3"/>
+        <text x="380" y="340" font-family="monospace" font-size="24" fill="#444444" text-anchor="middle">Global min</text>
+
+        <!-- Gradient vectors along the path -->
+        <g id="leftGradientVectors" opacity="0">
+          <line x1="180" y1="100" x2="195" y2="130" stroke="#FC6255" stroke-width="3" marker-end="url(#arrowRed)" opacity="0.7"/>
+          <line x1="190" y1="140" x2="198" y2="165" stroke="#FC6255" stroke-width="3" marker-end="url(#arrowRed)" opacity="0.7"/>
+          <line x1="199" y1="175" x2="200" y2="195" stroke="#FC6255" stroke-width="2" marker-end="url(#arrowRed)" opacity="0.6"/>
+          <animate attributeName="opacity" from="0" to="1" begin="3s" dur="0.5s" fill="freeze"/>
+        </g>
+
+        <!-- Ball with trail (descending to local min) -->
+        <g id="leftBall">
+          <!-- Motion trail -->
+          <path d="M 180,100 Q 185,120 190,140 T 195,165 T 198,185 T 200,200"
+                fill="none" stroke="#FC6255" stroke-width="3" opacity="0.4" stroke-dasharray="1500" stroke-dashoffset="1500">
+            <animate attributeName="stroke-dashoffset" from="1500" to="0" begin="2s" dur="3s" fill="freeze"/>
+          </path>
+
+          <!-- Ball with glow -->
+          <circle cx="0" cy="0" r="25" fill="url(#glowRed)" opacity="0">
+            <animate attributeName="opacity" from="0" to="0.6" begin="2s" dur="0.3s" fill="freeze"/>
+          </circle>
+          <circle cx="0" cy="0" r="12" fill="#FC6255" filter="url(#glow)" opacity="0">
+            <animate attributeName="opacity" from="0" to="1" begin="2s" dur="0.3s" fill="freeze"/>
+          </circle>
+
+          <!-- Ball position animation -->
+          <animateMotion dur="3s" begin="2s" fill="freeze" path="M 180,100 Q 185,120 190,140 T 195,165 T 198,185 T 200,200"/>
+        </g>
+
+        <!-- "STUCK!" indicator -->
+        <g id="leftStuckLabel" opacity="0">
+          <rect x="145" y="220" width="110" height="35" fill="#FC6255" opacity="0.2" rx="5"/>
+          <text x="200" y="245" font-family="'SF Pro Display', sans-serif" font-size="28" font-weight="bold" fill="#FC6255" text-anchor="middle">STUCK!</text>
+          <animate attributeName="opacity" from="0" to="1" begin="5.5s" dur="0.5s" fill="freeze"/>
+        </g>
+      </g>
+
+      <!-- Loss value display -->
+      <g id="leftLossDisplay" transform="translate(0, 550)">
+        <text x="380" y="0" font-family="'SF Pro Display', sans-serif" font-size="36" fill="#EEEEEE" text-anchor="middle">
+          Loss: <tspan font-family="'SF Mono', monospace" fill="#FC6255" font-size="42">0.347</tspan>
+        </text>
+        <text x="380" y="40" font-family="'SF Pro Display', sans-serif" font-size="28" fill="#888888" text-anchor="middle" opacity="0">
+          (suboptimal)
+          <animate attributeName="opacity" from="0" to="1" begin="5.5s" dur="0.5s" fill="freeze"/>
+        </text>
+      </g>
+    </g>
+
+    <!-- RIGHT PANEL: Global Minimum (Blue - Success) -->
+    <g id="rightPanel" transform="translate(1020, 150)">
+      <!-- Panel label -->
+      <text x="380" y="30" font-family="'SF Pro Display', sans-serif" font-size="48" fill="#29ABCA" text-anchor="middle" opacity="0">
+        Global Minimum
+        <animate attributeName="opacity" from="0" to="1" begin="1s" dur="0.6s" fill="freeze"/>
+      </text>
+
+      <!-- 3D Contour plot -->
+      <g id="rightContour" transform="translate(0, 60)">
+        <!-- Contour levels (smooth descent) -->
+        <ellipse cx="380" cy="300" rx="320" ry="180" fill="none" stroke="#FC6255" stroke-width="2" opacity="0.3"/>
+        <ellipse cx="380" cy="300" rx="260" ry="145" fill="none" stroke="#E07856" stroke-width="2" opacity="0.4"/>
+        <ellipse cx="380" cy="300" rx="200" ry="110" fill="none" stroke="#CF5044" stroke-width="2" opacity="0.5"/>
+        <ellipse cx="380" cy="300" rx="140" ry="75" fill="none" stroke="#4A9EBE" stroke-width="2" opacity="0.6"/>
+        <ellipse cx="380" cy="300" rx="80" ry="45" fill="none" stroke="#29ABCA" stroke-width="2.5" opacity="0.7"/>
+
+        <!-- Global minimum point -->
+        <circle cx="380" cy="300" r="8" fill="#29ABCA" opacity="0.8" filter="url(#glow)"/>
+        <text x="380" y="340" font-family="monospace" font-size="24" fill="#29ABCA" text-anchor="middle">Global min</text>
+
+        <!-- Gradient vectors along the path -->
+        <g id="rightGradientVectors" opacity="0">
+          <line x1="520" y1="140" x2="490" y2="175" stroke="#29ABCA" stroke-width="3" marker-end="url(#arrowBlue)" opacity="0.7"/>
+          <line x1="470" y1="200" x2="435" y2="230" stroke="#29ABCA" stroke-width="3" marker-end="url(#arrowBlue)" opacity="0.7"/>
+          <line x1="415" y1="255" x2="390" y2="280" stroke="#29ABCA" stroke-width="3" marker-end="url(#arrowBlue)" opacity="0.7"/>
+          <line x1="385" y1="290" x2="380" y2="298" stroke="#29ABCA" stroke-width="2" marker-end="url(#arrowBlue)" opacity="0.6"/>
+          <animate attributeName="opacity" from="0" to="1" begin="3s" dur="0.5s" fill="freeze"/>
+        </g>
+
+        <!-- Ball with trail (descending to global min) -->
+        <g id="rightBall">
+          <!-- Motion trail -->
+          <path d="M 550,120 Q 510,155 470,195 T 420,245 T 390,280 T 380,300"
+                fill="none" stroke="#29ABCA" stroke-width="3" opacity="0.4" stroke-dasharray="2000" stroke-dashoffset="2000">
+            <animate attributeName="stroke-dashoffset" from="2000" to="0" begin="2s" dur="4s" fill="freeze"/>
+          </path>
+
+          <!-- Ball with glow -->
+          <circle cx="0" cy="0" r="25" fill="url(#glowBlue)" opacity="0">
+            <animate attributeName="opacity" from="0" to="0.6" begin="2s" dur="0.3s" fill="freeze"/>
+          </circle>
+          <circle cx="0" cy="0" r="12" fill="#29ABCA" filter="url(#glow)" opacity="0">
+            <animate attributeName="opacity" from="0" to="1" begin="2s" dur="0.3s" fill="freeze"/>
+          </circle>
+
+          <!-- Ball position animation -->
+          <animateMotion dur="4s" begin="2s" fill="freeze" path="M 550,120 Q 510,155 470,195 T 420,245 T 390,280 T 380,300"/>
+        </g>
+
+        <!-- "SUCCESS!" indicator -->
+        <g id="rightSuccessLabel" opacity="0">
+          <rect x="305" y="320" width="150" height="35" fill="#29ABCA" opacity="0.2" rx="5"/>
+          <text x="380" y="345" font-family="'SF Pro Display', sans-serif" font-size="28" font-weight="bold" fill="#29ABCA" text-anchor="middle">SUCCESS!</text>
+          <animate attributeName="opacity" from="0" to="1" begin="6.5s" dur="0.5s" fill="freeze"/>
+        </g>
+      </g>
+
+      <!-- Loss value display -->
+      <g id="rightLossDisplay" transform="translate(0, 550)">
+        <text x="380" y="0" font-family="'SF Pro Display', sans-serif" font-size="36" fill="#EEEEEE" text-anchor="middle">
+          Loss: <tspan font-family="'SF Mono', monospace" fill="#29ABCA" font-size="42">0.001</tspan>
+        </text>
+        <text x="380" y="40" font-family="'SF Pro Display', sans-serif" font-size="28" fill="#888888" text-anchor="middle" opacity="0">
+          (optimal!)
+          <animate attributeName="opacity" from="0" to="1" begin="6.5s" dur="0.5s" fill="freeze"/>
+        </text>
+      </g>
+    </g>
+  </g>
+
+  <!-- Formula overlay -->
+  <g id="formula" transform="translate(960, 950)" opacity="0">
+    <rect x="-320" y="-50" width="640" height="90" fill="#1A1A1A" opacity="0.9" rx="10"/>
+    <text x="0" y="0" font-family="'SF Pro Display', sans-serif" font-size="48" fill="#EEEEEE" text-anchor="middle">
+      <tspan font-style="italic">θ</tspan><tspan baseline-shift="sub" font-size="32">new</tspan> =
+      <tspan font-style="italic">θ</tspan><tspan baseline-shift="sub" font-size="32">old</tspan> −
+      <tspan fill="#FFFF00">α</tspan><tspan fill="#29ABCA">∇</tspan><tspan font-style="italic">L</tspan>(<tspan font-style="italic">θ</tspan>)
+    </text>
+    <text x="0" y="35" font-family="'SF Pro Display', sans-serif" font-size="24" fill="#888888" text-anchor="middle">
+      Learning rate <tspan fill="#FFFF00">α</tspan> controls step size
+    </text>
+    <animate attributeName="opacity" from="0" to="1" begin="7s" dur="0.8s" fill="freeze"/>
+  </g>
+
+  <!-- Convergence comparison bars -->
+  <g id="convergenceComparison" transform="translate(960, 840)" opacity="0">
+    <!-- Left bar (stuck) -->
+    <rect x="-450" y="0" width="200" height="20" fill="#444444" rx="10"/>
+    <rect x="-450" y="0" width="120" height="20" fill="#FC6255" rx="10">
+      <animate attributeName="width" from="0" to="120" begin="8s" dur="1s" fill="freeze"/>
+    </rect>
+    <text x="-350" y="-10" font-family="sans-serif" font-size="18" fill="#FC6255" text-anchor="middle">60% to goal</text>
+
+    <!-- Right bar (success) -->
+    <rect x="250" y="0" width="200" height="20" fill="#444444" rx="10"/>
+    <rect x="250" y="0" width="198" height="20" fill="#29ABCA" rx="10">
+      <animate attributeName="width" from="0" to="198" begin="8s" dur="1.5s" fill="freeze"/>
+    </rect>
+    <text x="350" y="-10" font-family="sans-serif" font-size="18" fill="#29ABCA" text-anchor="middle">99% to goal</text>
+
+    <animate attributeName="opacity" from="0" to="1" begin="7.5s" dur="0.6s" fill="freeze"/>
+  </g>
+
+  <!-- Iteration counter (ambient animation) -->
+  <g id="iterationCounter" transform="translate(1820, 1000)" opacity="0">
+    <text x="0" y="0" font-family="'SF Mono', monospace" font-size="32" fill="#666666" text-anchor="end">
+      Iterations: <tspan id="iterCount" fill="#29ABCA">127</tspan>
+    </text>
+    <animate attributeName="opacity" from="0" to="0.7" begin="2s" dur="0.5s" fill="freeze"/>
+  </g>
+
+  <!-- 3Blue1Brown style watermark -->
+  <g id="watermark" opacity="0.3">
+    <text x="100" y="1050" font-family="'SF Pro Display', sans-serif" font-size="18" fill="#666666">
+      3B1B-Style Visualization
+    </text>
+  </g>
+</svg>

@@ -1,0 +1,323 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1080" width="1920" height="1080">
+  <title>Feature Importance Buildup - 3Blue1Brown Style</title>
+  <desc>Horizontal bar chart showing feature importance accumulating as Random Forest trees are added, with final ranking by importance</desc>
+
+  <defs>
+    <!-- 3Blue1Brown color palette -->
+    <linearGradient id="importanceGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#1C758A;stop-opacity:1"/>
+      <stop offset="100%" style="stop-color:#29ABCA;stop-opacity:1"/>
+    </linearGradient>
+
+    <linearGradient id="highImportanceGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#29ABCA;stop-opacity:1"/>
+      <stop offset="100%" style="stop-color:#27AE60;stop-opacity:1"/>
+    </linearGradient>
+
+    <linearGradient id="mediumImportanceGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#1C758A;stop-opacity:1"/>
+      <stop offset="100%" style="stop-color:#29ABCA;stop-opacity:1"/>
+    </linearGradient>
+
+    <linearGradient id="lowImportanceGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#2C4857;stop-opacity:1"/>
+      <stop offset="100%" style="stop-color:#1C758A;stop-opacity:1"/>
+    </linearGradient>
+
+    <!-- Filters -->
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="4" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+
+    <filter id="starGlow">
+      <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1920" height="1080" fill="#111111"/>
+
+  <!-- Title -->
+  <g id="title" opacity="0">
+    <text x="960" y="70" font-family="'SF Pro Display', 'Lato', sans-serif" font-size="72" font-weight="bold" fill="#FFFFFF" text-anchor="middle">
+      Feature Importance Buildup
+    </text>
+    <text x="960" y="115" font-family="'SF Pro Display', sans-serif" font-size="32" fill="#888888" text-anchor="middle">
+      Random Forest Accumulation (100 Trees)
+    </text>
+    <animate attributeName="opacity" from="0" to="1" begin="0s" dur="0.8s" fill="freeze"/>
+  </g>
+
+  <!-- Main chart area -->
+  <g id="chartArea" transform="translate(200, 200)">
+    <rect x="0" y="0" width="1500" height="700" fill="#1A1A1A" rx="10" stroke="#444444" stroke-width="2" opacity="0">
+      <animate attributeName="opacity" from="0" to="1" begin="0.8s" dur="0.5s" fill="freeze"/>
+    </rect>
+
+    <!-- Axes -->
+    <line x1="280" y1="80" x2="280" y2="640" stroke="#444444" stroke-width="2" opacity="0">
+      <animate attributeName="opacity" from="0" to="1" begin="1s" dur="0.5s" fill="freeze"/>
+    </line>
+    <line x1="280" y1="640" x2="1440" y2="640" stroke="#444444" stroke-width="2" opacity="0">
+      <animate attributeName="opacity" from="0" to="1" begin="1s" dur="0.5s" fill="freeze"/>
+    </line>
+
+    <!-- Axis label -->
+    <text x="860" y="680" font-family="sans-serif" font-size="24" fill="#EEEEEE" text-anchor="middle" opacity="0">
+      Feature Importance Score
+      <animate attributeName="opacity" from="0" to="1" begin="1.5s" dur="0.5s" fill="freeze"/>
+    </text>
+
+    <!-- Grid lines (vertical) -->
+    <g id="gridLines" opacity="0">
+      <line x1="480" y1="80" x2="480" y2="640" stroke="#333333" stroke-width="1" stroke-dasharray="4,4"/>
+      <line x1="680" y1="80" x2="680" y2="640" stroke="#333333" stroke-width="1" stroke-dasharray="4,4"/>
+      <line x1="880" y1="80" x2="880" y2="640" stroke="#333333" stroke-width="1" stroke-dasharray="4,4"/>
+      <line x1="1080" y1="80" x2="1080" y2="640" stroke="#333333" stroke-width="1" stroke-dasharray="4,4"/>
+      <line x1="1280" y1="80" x2="1280" y2="640" stroke="#333333" stroke-width="1" stroke-dasharray="4,4"/>
+      <animate attributeName="opacity" from="0" to="0.5" begin="1.5s" dur="0.5s" fill="freeze"/>
+    </g>
+
+    <!-- Feature labels (Y-axis) -->
+    <g id="featureLabels" opacity="0">
+      <text x="260" y="120" font-family="sans-serif" font-size="20" fill="#EEEEEE" text-anchor="end">daily_max_temp</text>
+      <text x="260" y="190" font-family="sans-serif" font-size="20" fill="#EEEEEE" text-anchor="end">heat_index</text>
+      <text x="260" y="260" font-family="sans-serif" font-size="20" fill="#EEEEEE" text-anchor="end">relative_humidity</text>
+      <text x="260" y="330" font-family="sans-serif" font-size="20" fill="#EEEEEE" text-anchor="end">PM2.5</text>
+      <text x="260" y="400" font-family="sans-serif" font-size="20" fill="#EEEEEE" text-anchor="end">temp_3day_avg</text>
+      <text x="260" y="470" font-family="sans-serif" font-size="20" fill="#EEEEEE" text-anchor="end">age</text>
+      <text x="260" y="540" font-family="sans-serif" font-size="20" fill="#EEEEEE" text-anchor="end">heatwave_flag</text>
+      <text x="260" y="610" font-family="sans-serif" font-size="20" fill="#EEEEEE" text-anchor="end">SES_index</text>
+      <animate attributeName="opacity" from="0" to="1" begin="1.5s" dur="0.5s" fill="freeze"/>
+    </g>
+
+    <!-- Bars (growing from 0 to final values) -->
+    <!-- Feature 1: daily_max_temp (highest importance) -->
+    <g id="bar1">
+      <rect x="280" y="100" width="0" height="35" fill="url(#highImportanceGradient)" rx="5" opacity="0.9">
+        <animate attributeName="width" from="0" to="850" begin="2s" dur="9s" fill="freeze"/>
+      </rect>
+      <text x="290" y="122" font-family="'SF Mono', monospace" font-size="18" fill="#FFFFFF" opacity="0">
+        0.38
+        <animate attributeName="opacity" from="0" to="1" begin="10s" dur="0.5s" fill="freeze"/>
+      </text>
+    </g>
+
+    <!-- Feature 2: heat_index -->
+    <g id="bar2">
+      <rect x="280" y="170" width="0" height="35" fill="url(#highImportanceGradient)" rx="5" opacity="0.9">
+        <animate attributeName="width" from="0" to="720" begin="2s" dur="9s" fill="freeze"/>
+      </rect>
+      <text x="290" y="192" font-family="'SF Mono', monospace" font-size="18" fill="#FFFFFF" opacity="0">
+        0.32
+        <animate attributeName="opacity" from="0" to="1" begin="10s" dur="0.5s" fill="freeze"/>
+      </text>
+    </g>
+
+    <!-- Feature 3: relative_humidity -->
+    <g id="bar3">
+      <rect x="280" y="240" width="0" height="35" fill="url(#mediumImportanceGradient)" rx="5" opacity="0.9">
+        <animate attributeName="width" from="0" to="580" begin="2s" dur="9s" fill="freeze"/>
+      </rect>
+      <text x="290" y="262" font-family="'SF Mono', monospace" font-size="18" fill="#FFFFFF" opacity="0">
+        0.26
+        <animate attributeName="opacity" from="0" to="1" begin="10s" dur="0.5s" fill="freeze"/>
+      </text>
+    </g>
+
+    <!-- Feature 4: PM2.5 -->
+    <g id="bar4">
+      <rect x="280" y="310" width="0" height="35" fill="url(#mediumImportanceGradient)" rx="5" opacity="0.9">
+        <animate attributeName="width" from="0" to="410" begin="2s" dur="9s" fill="freeze"/>
+      </rect>
+      <text x="290" y="332" font-family="'SF Mono', monospace" font-size="18" fill="#FFFFFF" opacity="0">
+        0.18
+        <animate attributeName="opacity" from="0" to="1" begin="10s" dur="0.5s" fill="freeze"/>
+      </text>
+    </g>
+
+    <!-- Feature 5: temp_3day_avg -->
+    <g id="bar5">
+      <rect x="280" y="380" width="0" height="35" fill="url(#mediumImportanceGradient)" rx="5" opacity="0.9">
+        <animate attributeName="width" from="0" to="360" begin="2s" dur="9s" fill="freeze"/>
+      </rect>
+      <text x="290" y="402" font-family="'SF Mono', monospace" font-size="18" fill="#FFFFFF" opacity="0">
+        0.16
+        <animate attributeName="opacity" from="0" to="1" begin="10s" dur="0.5s" fill="freeze"/>
+      </text>
+    </g>
+
+    <!-- Feature 6: age -->
+    <g id="bar6">
+      <rect x="280" y="450" width="0" height="35" fill="url(#lowImportanceGradient)" rx="5" opacity="0.9">
+        <animate attributeName="width" from="0" to="290" begin="2s" dur="9s" fill="freeze"/>
+      </rect>
+      <text x="290" y="472" font-family="'SF Mono', monospace" font-size="18" fill="#FFFFFF" opacity="0">
+        0.13
+        <animate attributeName="opacity" from="0" to="1" begin="10s" dur="0.5s" fill="freeze"/>
+      </text>
+    </g>
+
+    <!-- Feature 7: heatwave_flag -->
+    <g id="bar7">
+      <rect x="280" y="520" width="0" height="35" fill="url(#lowImportanceGradient)" rx="5" opacity="0.9">
+        <animate attributeName="width" from="0" to="230" begin="2s" dur="9s" fill="freeze"/>
+      </rect>
+      <text x="290" y="542" font-family="'SF Mono', monospace" font-size="18" fill="#FFFFFF" opacity="0">
+        0.10
+        <animate attributeName="opacity" from="0" to="1" begin="10s" dur="0.5s" fill="freeze"/>
+      </text>
+    </g>
+
+    <!-- Feature 8: SES_index -->
+    <g id="bar8">
+      <rect x="280" y="590" width="0" height="35" fill="url(#lowImportanceGradient)" rx="5" opacity="0.9">
+        <animate attributeName="width" from="0" to="170" begin="2s" dur="9s" fill="freeze"/>
+      </rect>
+      <text x="290" y="612" font-family="'SF Mono', monospace" font-size="18" fill="#FFFFFF" opacity="0">
+        0.08
+        <animate attributeName="opacity" from="0" to="1" begin="10s" dur="0.5s" fill="freeze"/>
+      </text>
+    </g>
+
+    <!-- Top 3 star icons -->
+    <g id="stars" opacity="0">
+      <text x="1150" y="125" font-family="sans-serif" font-size="36" fill="#FFFF00" filter="url(#starGlow)">★</text>
+      <text x="1020" y="195" font-family="sans-serif" font-size="36" fill="#FFFF00" filter="url(#starGlow)">★</text>
+      <text x="880" y="265" font-family="sans-serif" font-size="36" fill="#FFFF00" filter="url(#starGlow)">★</text>
+      <animate attributeName="opacity" from="0" to="1" begin="11.5s" dur="0.8s" fill="freeze"/>
+    </g>
+  </g>
+
+  <!-- Tree counter and progress bar -->
+  <g id="progressPanel" transform="translate(200, 920)">
+    <rect x="0" y="0" width="1500" height="100" fill="#1A1A1A" rx="10" stroke="#444444" stroke-width="2" opacity="0">
+      <animate attributeName="opacity" from="0" to="1" begin="1.5s" dur="0.5s" fill="freeze"/>
+    </rect>
+
+    <!-- Tree counter -->
+    <text x="40" y="40" font-family="'SF Pro Display', sans-serif" font-size="32" fill="#EEEEEE" opacity="0">
+      Adding tree:
+      <animate attributeName="opacity" from="0" to="1" begin="2s" dur="0.5s" fill="freeze"/>
+    </text>
+    <text x="280" y="40" font-family="'SF Mono', monospace" font-size="36" fill="#29ABCA" font-weight="bold" opacity="0">
+      <animate attributeName="opacity" from="0" to="1" begin="2s" dur="0.5s" fill="freeze"/>
+      1
+      <set attributeName="textContent" to="1" begin="2s"/>
+      <set attributeName="textContent" to="5" begin="2.5s"/>
+      <set attributeName="textContent" to="10" begin="3s"/>
+      <set attributeName="textContent" to="20" begin="4s"/>
+      <set attributeName="textContent" to="40" begin="5.5s"/>
+      <set attributeName="textContent" to="60" begin="7s"/>
+      <set attributeName="textContent" to="80" begin="8.5s"/>
+      <set attributeName="textContent" to="100" begin="10s"/>
+    </text>
+    <text x="350" y="40" font-family="'SF Mono', monospace" font-size="32" fill="#888888" opacity="0">
+      / 100
+      <animate attributeName="opacity" from="0" to="1" begin="2s" dur="0.5s" fill="freeze"/>
+    </text>
+
+    <!-- Progress bar -->
+    <g transform="translate(500, 10)">
+      <rect x="0" y="0" width="900" height="30" fill="#333333" rx="15" opacity="0">
+        <animate attributeName="opacity" from="0" to="1" begin="2s" dur="0.5s" fill="freeze"/>
+      </rect>
+      <rect x="0" y="0" width="0" height="30" fill="#29ABCA" rx="15" opacity="0">
+        <animate attributeName="opacity" from="0" to="1" begin="2s" dur="0.3s" fill="freeze"/>
+        <animate attributeName="width" from="0" to="900" begin="2s" dur="9s" fill="freeze"/>
+      </rect>
+
+      <!-- Percentage text -->
+      <text x="450" y="22" font-family="'SF Mono', monospace" font-size="20" fill="#FFFFFF" text-anchor="middle" opacity="0">
+        <animate attributeName="opacity" from="0" to="1" begin="2.5s" dur="0.3s" fill="freeze"/>
+        0%
+        <set attributeName="textContent" to="0%" begin="2s"/>
+        <set attributeName="textContent" to="5%" begin="2.5s"/>
+        <set attributeName="textContent" to="10%" begin="3s"/>
+        <set attributeName="textContent" to="20%" begin="4s"/>
+        <set attributeName="textContent" to="40%" begin="5.5s"/>
+        <set attributeName="textContent" to="60%" begin="7s"/>
+        <set attributeName="textContent" to="80%" begin="8.5s"/>
+        <set attributeName="textContent" to="100%" begin="10s"/>
+      </text>
+    </g>
+
+    <!-- Completion message -->
+    <text x="750" y="75" font-family="'SF Pro Display', sans-serif" font-size="24" fill="#27AE60" text-anchor="middle" opacity="0">
+      ✓ Importance values stabilized
+      <animate attributeName="opacity" from="0" to="1" begin="11s" dur="0.5s" fill="freeze"/>
+    </text>
+  </g>
+
+  <!-- Annotation callout -->
+  <g id="annotation" transform="translate(1750, 400)" opacity="0">
+    <rect x="0" y="0" width="150" height="280" fill="#1A1A1A" rx="8" stroke="#FFFF00" stroke-width="2"/>
+    <text x="75" y="30" font-family="'SF Pro Display', sans-serif" font-size="20" font-weight="bold" fill="#FFFF00" text-anchor="middle">
+      Top 3
+    </text>
+    <text x="75" y="60" font-family="'SF Pro Display', sans-serif" font-size="18" font-weight="bold" fill="#27AE60" text-anchor="middle">
+      Features
+    </text>
+
+    <text x="10" y="100" font-family="sans-serif" font-size="16" fill="#EEEEEE">
+      1. daily_max
+    </text>
+    <text x="10" y="125" font-family="sans-serif" font-size="16" fill="#EEEEEE">
+      2. heat_index
+    </text>
+    <text x="10" y="150" font-family="sans-serif" font-size="16" fill="#EEEEEE">
+      3. rel_humidity
+    </text>
+
+    <line x1="10" y1="170" x2="140" y2="170" stroke="#444444" stroke-width="1"/>
+
+    <text x="75" y="200" font-family="sans-serif" font-size="14" fill="#888888" text-anchor="middle">
+      These features
+    </text>
+    <text x="75" y="220" font-family="sans-serif" font-size="14" fill="#888888" text-anchor="middle">
+      drive 96% of
+    </text>
+    <text x="75" y="240" font-family="sans-serif" font-size="14" fill="#888888" text-anchor="middle">
+      predictive
+    </text>
+    <text x="75" y="260" font-family="sans-serif" font-size="14" fill="#888888" text-anchor="middle">
+      power
+    </text>
+
+    <animate attributeName="opacity" from="0" to="1" begin="12s" dur="0.8s" fill="freeze"/>
+  </g>
+
+  <!-- Insight box -->
+  <g id="insight" transform="translate(100, 150)" opacity="0">
+    <rect x="0" y="0" width="350" height="120" fill="#1A1A1A" rx="8" stroke="#29ABCA" stroke-width="2"/>
+    <text x="175" y="30" font-family="'SF Pro Display', sans-serif" font-size="20" font-weight="bold" fill="#29ABCA" text-anchor="middle">
+      Variance Reduction
+    </text>
+    <text x="175" y="60" font-family="sans-serif" font-size="16" fill="#EEEEEE" text-anchor="middle">
+      Each tree contributes to
+    </text>
+    <text x="175" y="82" font-family="sans-serif" font-size="16" fill="#EEEEEE" text-anchor="middle">
+      aggregate importance.
+    </text>
+    <text x="175" y="104" font-family="sans-serif" font-size="16" fill="#27AE60" text-anchor="middle">
+      Stabilizes after ~50 trees
+    </text>
+    <animate attributeName="opacity" from="0" to="1" begin="12.5s" dur="0.8s" fill="freeze"/>
+  </g>
+
+  <!-- 3Blue1Brown watermark -->
+  <g id="watermark" opacity="0.3">
+    <text x="100" y="1050" font-family="'SF Pro Display', sans-serif" font-size="18" fill="#666666">
+      3B1B-Style Visualization
+    </text>
+  </g>
+</svg>

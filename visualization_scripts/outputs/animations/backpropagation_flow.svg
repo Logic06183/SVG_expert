@@ -1,0 +1,606 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+     viewBox="0 0 1920 1080" width="1920" height="1080">
+
+  <defs>
+    <!-- Filters -->
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="4" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+
+    <filter id="nodeGlow">
+      <feGaussianBlur stdDeviation="6" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+
+    <!-- Gradients for activation intensity -->
+    <radialGradient id="activeLow">
+      <stop offset="0%" style="stop-color:#5DADE2;stop-opacity:0.9"/>
+      <stop offset="100%" style="stop-color:#2874A6;stop-opacity:0.7"/>
+    </radialGradient>
+
+    <radialGradient id="activeMed">
+      <stop offset="0%" style="stop-color:#3498DB;stop-opacity:1"/>
+      <stop offset="100%" style="stop-color:#2471A3;stop-opacity:0.9"/>
+    </radialGradient>
+
+    <radialGradient id="activeHigh">
+      <stop offset="0%" style="stop-color:#1F618D;stop-opacity:1"/>
+      <stop offset="100%" style="stop-color:#154360;stop-opacity:1"/>
+    </radialGradient>
+
+    <radialGradient id="gradientFlow">
+      <stop offset="0%" style="stop-color:#E74C3C;stop-opacity:1"/>
+      <stop offset="100%" style="stop-color:#C0392B;stop-opacity:0.9"/>
+    </radialGradient>
+
+    <!-- Arrow markers -->
+    <marker id="forwardArrow" markerWidth="8" markerHeight="8" refX="7" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#3498DB"/>
+    </marker>
+
+    <marker id="backwardArrow" markerWidth="8" markerHeight="8" refX="7" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#E74C3C"/>
+    </marker>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1920" height="1080" fill="#1a1a2e"/>
+
+  <!-- Title -->
+  <g id="title">
+    <text x="960" y="55" font-family="'Helvetica Neue', Arial, sans-serif"
+          font-size="42" font-weight="300" fill="#ECF0F1" text-anchor="middle">
+      Backpropagation: Neural Network Learning
+    </text>
+    <text x="960" y="90" font-family="'Helvetica Neue', Arial, sans-serif"
+          font-size="18" font-weight="300" fill="#95A5A6" text-anchor="middle">
+      Forward Pass (Predictions) → Loss → Backward Pass (Gradients) → Weight Updates
+    </text>
+  </g>
+
+  <!-- Main network visualization -->
+  <g id="network" transform="translate(360, 200)">
+    <!-- Network container -->
+    <rect x="-60" y="-20" width="1200" height="650" rx="10"
+          fill="#2C3E50" opacity="0.2" stroke="#3498DB" stroke-width="2"/>
+
+    <!-- Layer labels -->
+    <text x="100" y="-5" font-family="'Helvetica Neue', Arial, sans-serif"
+          font-size="18" fill="#ECF0F1" text-anchor="middle" font-weight="500">
+      Input Layer
+    </text>
+    <text x="540" y="-5" font-family="'Helvetica Neue', Arial, sans-serif"
+          font-size="18" fill="#ECF0F1" text-anchor="middle" font-weight="500">
+      Hidden Layer
+    </text>
+    <text x="980" y="-5" font-family="'Helvetica Neue', Arial, sans-serif"
+          font-size="18" fill="#ECF0F1" text-anchor="middle" font-weight="500">
+      Output Layer
+    </text>
+
+    <!-- ============= CONNECTIONS (EDGES) ============= -->
+    <!-- Input to Hidden layer connections -->
+    <g id="weights-input-hidden" stroke="#7F8C8D" stroke-width="1.5" opacity="0.3">
+      <!-- From input node 1 -->
+      <line x1="130" y1="100" x2="510" y2="120"/>
+      <line x1="130" y1="100" x2="510" y2="220"/>
+      <line x1="130" y1="100" x2="510" y2="320"/>
+      <line x1="130" y1="100" x2="510" y2="420"/>
+
+      <!-- From input node 2 -->
+      <line x1="130" y1="220" x2="510" y2="120"/>
+      <line x1="130" y1="220" x2="510" y2="220"/>
+      <line x1="130" y1="220" x2="510" y2="320"/>
+      <line x1="130" y1="220" x2="510" y2="420"/>
+
+      <!-- From input node 3 -->
+      <line x1="130" y1="340" x2="510" y2="120"/>
+      <line x1="130" y1="340" x2="510" y2="220"/>
+      <line x1="130" y1="340" x2="510" y2="320"/>
+      <line x1="130" y1="340" x2="510" y2="420"/>
+
+      <!-- From input node 4 -->
+      <line x1="130" y1="460" x2="510" y2="120"/>
+      <line x1="130" y1="460" x2="510" y2="220"/>
+      <line x1="130" y1="460" x2="510" y2="320"/>
+      <line x1="130" y1="460" x2="510" y2="420"/>
+    </g>
+
+    <!-- Hidden to Output layer connections -->
+    <g id="weights-hidden-output" stroke="#7F8C8D" stroke-width="1.5" opacity="0.3">
+      <!-- From hidden node 1 -->
+      <line x1="570" y1="120" x2="950" y2="220"/>
+      <line x1="570" y1="120" x2="950" y2="320"/>
+
+      <!-- From hidden node 2 -->
+      <line x1="570" y1="220" x2="950" y2="220"/>
+      <line x1="570" y1="220" x2="950" y2="320"/>
+
+      <!-- From hidden node 3 -->
+      <line x1="570" y1="320" x2="950" y2="220"/>
+      <line x1="570" y1="320" x2="950" y2="320"/>
+
+      <!-- From hidden node 4 -->
+      <line x1="570" y1="420" x2="950" y2="220"/>
+      <line x1="570" y1="420" x2="950" y2="320"/>
+    </g>
+
+    <!-- ============= ANIMATED SIGNAL FLOW (FORWARD PASS) ============= -->
+    <g id="forward-signal" opacity="0">
+      <!-- Wave effect from input to hidden -->
+      <circle r="8" fill="#3498DB" filter="url(#nodeGlow)">
+        <animateMotion dur="1s" begin="0s;20s" repeatCount="1"
+                       path="M 130,100 L 510,220"/>
+      </circle>
+      <circle r="8" fill="#3498DB" filter="url(#nodeGlow)">
+        <animateMotion dur="1s" begin="0.1s;20.1s" repeatCount="1"
+                       path="M 130,220 L 510,220"/>
+      </circle>
+      <circle r="8" fill="#3498DB" filter="url(#nodeGlow)">
+        <animateMotion dur="1s" begin="0.2s;20.2s" repeatCount="1"
+                       path="M 130,340 L 510,320"/>
+      </circle>
+
+      <!-- Wave from hidden to output -->
+      <circle r="8" fill="#3498DB" filter="url(#nodeGlow)">
+        <animateMotion dur="1s" begin="1.2s;21.2s" repeatCount="1"
+                       path="M 570,220 L 950,270"/>
+      </circle>
+
+      <animate attributeName="opacity"
+               values="0;1;1;0;0;1;1;0"
+               keyTimes="0;0.05;0.15;0.2;0.95;0.96;0.98;1"
+               dur="20s"
+               repeatCount="indefinite"/>
+    </g>
+
+    <!-- ============= ANIMATED GRADIENT FLOW (BACKWARD PASS) ============= -->
+    <g id="backward-gradient" opacity="0">
+      <!-- Red wave flowing backward from output to hidden -->
+      <circle r="10" fill="#E74C3C" filter="url(#nodeGlow)">
+        <animateMotion dur="1s" begin="3s;23s" repeatCount="1"
+                       path="M 950,270 L 570,220"/>
+      </circle>
+      <circle r="10" fill="#E74C3C" filter="url(#nodeGlow)">
+        <animateMotion dur="1s" begin="3.1s;23.1s" repeatCount="1"
+                       path="M 950,320 L 570,320"/>
+      </circle>
+
+      <!-- Red wave from hidden to input -->
+      <circle r="10" fill="#E74C3C" filter="url(#nodeGlow)">
+        <animateMotion dur="1s" begin="4.2s;24.2s" repeatCount="1"
+                       path="M 570,220 L 130,220"/>
+      </circle>
+      <circle r="10" fill="#E74C3C" filter="url(#nodeGlow)">
+        <animateMotion dur="1s" begin="4.3s;24.3s" repeatCount="1"
+                       path="M 570,320 L 130,340"/>
+      </circle>
+
+      <animate attributeName="opacity"
+               values="0;0;0;1;1;0;0;0;0;1;1;0"
+               keyTimes="0;0.13;0.15;0.2;0.3;0.35;0.93;0.95;0.96;0.98;0.99;1"
+               dur="20s"
+               repeatCount="indefinite"/>
+    </g>
+
+    <!-- ============= NODES ============= -->
+    <!-- Input layer nodes -->
+    <g id="input-layer">
+      <!-- Node 1: Temperature -->
+      <circle cx="100" cy="100" r="35" fill="#34495E" stroke="#3498DB" stroke-width="3"/>
+      <circle cx="100" cy="100" r="25" fill="url(#activeMed)" opacity="0">
+        <animate attributeName="opacity"
+                 values="0;0.7;0.7;0.7;0.7;0.7;0.7;0.7;0"
+                 keyTimes="0;0.05;0.1;0.3;0.5;0.7;0.9;0.95;1"
+                 dur="20s"
+                 repeatCount="indefinite"/>
+      </circle>
+      <text x="100" y="105" font-family="'Helvetica Neue', Arial, sans-serif"
+            font-size="12" fill="#ECF0F1" text-anchor="middle" font-weight="500">
+        Temp
+      </text>
+      <text x="100" y="160" font-family="'Courier New', monospace"
+            font-size="11" fill="#95A5A6" text-anchor="middle">
+        32.5°C
+      </text>
+
+      <!-- Node 2: Humidity -->
+      <circle cx="100" cy="220" r="35" fill="#34495E" stroke="#3498DB" stroke-width="3"/>
+      <circle cx="100" cy="220" r="25" fill="url(#activeHigh)" opacity="0">
+        <animate attributeName="opacity"
+                 values="0;0.9;0.9;0.9;0.9;0.9;0.9;0.9;0"
+                 keyTimes="0;0.05;0.1;0.3;0.5;0.7;0.9;0.95;1"
+                 dur="20s"
+                 repeatCount="indefinite"/>
+      </circle>
+      <text x="100" y="225" font-family="'Helvetica Neue', Arial, sans-serif"
+            font-size="12" fill="#ECF0F1" text-anchor="middle" font-weight="500">
+        Humid
+      </text>
+      <text x="100" y="280" font-family="'Courier New', monospace"
+            font-size="11" fill="#95A5A6" text-anchor="middle">
+        75%
+      </text>
+
+      <!-- Node 3: PM2.5 -->
+      <circle cx="100" cy="340" r="35" fill="#34495E" stroke="#3498DB" stroke-width="3"/>
+      <circle cx="100" cy="340" r="25" fill="url(#activeLow)" opacity="0">
+        <animate attributeName="opacity"
+                 values="0;0.5;0.5;0.5;0.5;0.5;0.5;0.5;0"
+                 keyTimes="0;0.05;0.1;0.3;0.5;0.7;0.9;0.95;1"
+                 dur="20s"
+                 repeatCount="indefinite"/>
+      </circle>
+      <text x="100" y="345" font-family="'Helvetica Neue', Arial, sans-serif"
+            font-size="12" fill="#ECF0F1" text-anchor="middle" font-weight="500">
+        PM2.5
+      </text>
+      <text x="100" y="400" font-family="'Courier New', monospace"
+            font-size="11" fill="#95A5A6" text-anchor="middle">
+        45 µg/m³
+      </text>
+
+      <!-- Node 4: O3 -->
+      <circle cx="100" cy="460" r="35" fill="#34495E" stroke="#3498DB" stroke-width="3"/>
+      <circle cx="100" cy="460" r="25" fill="url(#activeMed)" opacity="0">
+        <animate attributeName="opacity"
+                 values="0;0.6;0.6;0.6;0.6;0.6;0.6;0.6;0"
+                 keyTimes="0;0.05;0.1;0.3;0.5;0.7;0.9;0.95;1"
+                 dur="20s"
+                 repeatCount="indefinite"/>
+      </circle>
+      <text x="100" y="465" font-family="'Helvetica Neue', Arial, sans-serif"
+            font-size="12" fill="#ECF0F1" text-anchor="middle" font-weight="500">
+        O₃
+      </text>
+      <text x="100" y="520" font-family="'Courier New', monospace"
+            font-size="11" fill="#95A5A6" text-anchor="middle">
+        80 ppb
+      </text>
+    </g>
+
+    <!-- Hidden layer nodes -->
+    <g id="hidden-layer">
+      <circle cx="540" cy="120" r="30" fill="#34495E" stroke="#9B59B6" stroke-width="3"/>
+      <circle cx="540" cy="120" r="20" fill="url(#activeLow)" opacity="0">
+        <animate attributeName="opacity"
+                 values="0;0;0.4;0.4;0.4;0.4;0.4;0.4;0"
+                 keyTimes="0;0.08;0.12;0.3;0.5;0.7;0.9;0.95;1"
+                 dur="20s"
+                 repeatCount="indefinite"/>
+      </circle>
+      <text x="540" y="125" font-family="'Helvetica Neue', Arial, sans-serif"
+            font-size="11" fill="#ECF0F1" text-anchor="middle">h₁</text>
+
+      <circle cx="540" cy="220" r="30" fill="#34495E" stroke="#9B59B6" stroke-width="3"/>
+      <circle cx="540" cy="220" r="20" fill="url(#activeHigh)" opacity="0">
+        <animate attributeName="opacity"
+                 values="0;0;0.85;0.85;0.85;0.85;0.85;0.85;0"
+                 keyTimes="0;0.08;0.12;0.3;0.5;0.7;0.9;0.95;1"
+                 dur="20s"
+                 repeatCount="indefinite"/>
+      </circle>
+      <text x="540" y="225" font-family="'Helvetica Neue', Arial, sans-serif"
+            font-size="11" fill="#ECF0F1" text-anchor="middle">h₂</text>
+
+      <circle cx="540" cy="320" r="30" fill="#34495E" stroke="#9B59B6" stroke-width="3"/>
+      <circle cx="540" cy="320" r="20" fill="url(#activeMed)" opacity="0">
+        <animate attributeName="opacity"
+                 values="0;0;0.65;0.65;0.65;0.65;0.65;0.65;0"
+                 keyTimes="0;0.08;0.12;0.3;0.5;0.7;0.9;0.95;1"
+                 dur="20s"
+                 repeatCount="indefinite"/>
+      </circle>
+      <text x="540" y="325" font-family="'Helvetica Neue', Arial, sans-serif"
+            font-size="11" fill="#ECF0F1" text-anchor="middle">h₃</text>
+
+      <circle cx="540" cy="420" r="30" fill="#34495E" stroke="#9B59B6" stroke-width="3"/>
+      <circle cx="540" cy="420" r="20" fill="url(#activeLow)" opacity="0">
+        <animate attributeName="opacity"
+                 values="0;0;0.3;0.3;0.3;0.3;0.3;0.3;0"
+                 keyTimes="0;0.08;0.12;0.3;0.5;0.7;0.9;0.95;1"
+                 dur="20s"
+                 repeatCount="indefinite"/>
+      </circle>
+      <text x="540" y="425" font-family="'Helvetica Neue', Arial, sans-serif"
+            font-size="11" fill="#ECF0F1" text-anchor="middle">h₄</text>
+    </g>
+
+    <!-- Output layer nodes -->
+    <g id="output-layer">
+      <!-- Node 1: CV Risk Low -->
+      <circle cx="980" cy="220" r="35" fill="#34495E" stroke="#27AE60" stroke-width="3"/>
+      <circle cx="980" cy="220" r="25" fill="url(#activeLow)" opacity="0">
+        <animate attributeName="opacity"
+                 values="0;0;0;0.3;0.3;0.3;0.3;0.3;0"
+                 keyTimes="0;0.13;0.16;0.2;0.5;0.7;0.9;0.95;1"
+                 dur="20s"
+                 repeatCount="indefinite"/>
+      </circle>
+      <text x="980" y="225" font-family="'Helvetica Neue', Arial, sans-serif"
+            font-size="12" fill="#ECF0F1" text-anchor="middle" font-weight="500">
+        Low Risk
+      </text>
+      <text x="980" y="280" font-family="'Courier New', monospace"
+            font-size="11" fill="#27AE60" text-anchor="middle">
+        0.18
+      </text>
+
+      <!-- Node 2: CV Risk High -->
+      <circle cx="980" cy="320" r="35" fill="#34495E" stroke="#E74C3C" stroke-width="3"/>
+      <circle cx="980" cy="320" r="25" fill="url(#activeHigh)" opacity="0">
+        <animate attributeName="opacity"
+                 values="0;0;0;0.9;0.9;0.9;0.9;0.9;0"
+                 keyTimes="0;0.13;0.16;0.2;0.5;0.7;0.9;0.95;1"
+                 dur="20s"
+                 repeatCount="indefinite"/>
+      </circle>
+      <text x="980" y="325" font-family="'Helvetica Neue', Arial, sans-serif"
+            font-size="12" fill="#ECF0F1" text-anchor="middle" font-weight="500">
+        High Risk
+      </text>
+      <text x="980" y="380" font-family="'Courier New', monospace"
+            font-size="11" fill="#E74C3C" text-anchor="middle">
+        0.82
+      </text>
+    </g>
+
+    <!-- Weight update indicators (edges pulsing) -->
+    <g id="weight-updates" opacity="0">
+      <!-- Highlight a few connections during weight update -->
+      <line x1="130" y1="220" x2="510" y2="220" stroke="#F39C12" stroke-width="3"
+            filter="url(#glow)"/>
+      <line x1="570" y1="220" x2="950" y2="320" stroke="#F39C12" stroke-width="3"
+            filter="url(#glow)"/>
+
+      <animate attributeName="opacity"
+               values="0;0;0;0;0.8;0.8;0;0;0;0;0.8;0.8;0"
+               keyTimes="0;0.2;0.25;0.28;0.3;0.32;0.35;0.93;0.95;0.97;0.98;0.99;1"
+               dur="20s"
+               repeatCount="indefinite"/>
+    </g>
+  </g>
+
+  <!-- Loss calculation box -->
+  <g id="loss-display" transform="translate(1350, 500)" opacity="0">
+    <rect x="0" y="0" width="400" height="140" rx="10"
+          fill="#2C3E50" stroke="#E74C3C" stroke-width="3"/>
+
+    <text x="200" y="30" font-family="'Helvetica Neue', Arial, sans-serif"
+          font-size="20" fill="#E74C3C" text-anchor="middle" font-weight="500">
+      Loss Calculation
+    </text>
+
+    <text x="200" y="65" font-family="'Courier New', monospace"
+          font-size="14" fill="#ECF0F1" text-anchor="middle">
+      Predicted: 0.82 (High Risk)
+    </text>
+
+    <text x="200" y="90" font-family="'Courier New', monospace"
+          font-size="14" fill="#ECF0F1" text-anchor="middle">
+      True Label: 1.0 (Admitted)
+    </text>
+
+    <text x="200" y="120" font-family="'Courier New', monospace"
+          font-size="16" fill="#E74C3C" text-anchor="middle" font-weight="600">
+      Loss = (1.0 - 0.82)² = 0.032
+    </text>
+
+    <animate attributeName="opacity"
+             values="0;0;0;1;1;0.3;0.3;0;0;0;1;1;0.3;0.3;0"
+             keyTimes="0;0.15;0.18;0.2;0.28;0.3;0.9;0.93;0.95;0.96;0.98;0.99;0.995;0.998;1"
+             dur="20s"
+             repeatCount="indefinite"/>
+  </g>
+
+  <!-- Process flow indicators -->
+  <g id="process-flow">
+    <!-- Forward pass arrow -->
+    <g transform="translate(300, 150)" opacity="0">
+      <path d="M 0,0 L 150,0" stroke="#3498DB" stroke-width="4"
+            marker-end="url(#forwardArrow)" filter="url(#glow)"/>
+      <text x="75" y="-10" font-family="'Helvetica Neue', Arial, sans-serif"
+            font-size="16" fill="#3498DB" text-anchor="middle" font-weight="500">
+        Forward Pass
+      </text>
+
+      <animate attributeName="opacity"
+               values="0;1;1;0;0;1;1;0"
+               keyTimes="0;0.05;0.15;0.2;0.95;0.96;0.98;1"
+               dur="20s"
+               repeatCount="indefinite"/>
+    </g>
+
+    <!-- Backward pass arrow -->
+    <g transform="translate(1560, 180)" opacity="0">
+      <path d="M 150,0 L 0,0" stroke="#E74C3C" stroke-width="4"
+            marker-end="url(#backwardArrow)" filter="url(#glow)"/>
+      <text x="75" y="-10" font-family="'Helvetica Neue', Arial, sans-serif"
+            font-size="16" fill="#E74C3C" text-anchor="middle" font-weight="500">
+        Backward Pass
+      </text>
+
+      <animate attributeName="opacity"
+               values="0;0;0;1;1;0;0;0;0;1;1;0"
+               keyTimes="0;0.13;0.15;0.2;0.3;0.35;0.93;0.95;0.96;0.98;0.99;1"
+               dur="20s"
+               repeatCount="indefinite"/>
+    </g>
+
+    <!-- Weight update indicator -->
+    <g transform="translate(1600, 300)" opacity="0">
+      <rect x="0" y="0" width="200" height="60" rx="8" fill="#F39C12"/>
+      <text x="100" y="38" font-family="'Helvetica Neue', Arial, sans-serif"
+            font-size="18" fill="#FFFFFF" text-anchor="middle" font-weight="600">
+        Update Weights
+      </text>
+
+      <animate attributeName="opacity"
+               values="0;0;0;0;1;1;0;0;0;0;0;1;1;0"
+               keyTimes="0;0.25;0.28;0.3;0.32;0.35;0.4;0.93;0.95;0.97;0.98;0.99;0.995;1"
+               dur="20s"
+               repeatCount="indefinite"/>
+    </g>
+  </g>
+
+  <!-- Bottom panel: Loss over iterations -->
+  <g id="loss-over-time" transform="translate(300, 880)">
+    <rect x="0" y="0" width="1400" height="160" rx="8"
+          fill="#2C3E50" opacity="0.3" stroke="#E74C3C" stroke-width="2"/>
+
+    <text x="700" y="30" font-family="'Helvetica Neue', Arial, sans-serif"
+          font-size="20" fill="#ECF0F1" text-anchor="middle" font-weight="500">
+      Loss Decreasing Over Iterations
+    </text>
+
+    <!-- Simple line chart -->
+    <g transform="translate(100, 60)">
+      <!-- Axes -->
+      <line x1="0" y1="80" x2="1200" y2="80" stroke="#ECF0F1" stroke-width="2"/>
+      <line x1="0" y1="0" x2="0" y2="80" stroke="#ECF0F1" stroke-width="2"/>
+
+      <text x="600" y="105" font-size="12" fill="#95A5A6" text-anchor="middle">Iteration</text>
+      <text x="-15" y="40" font-size="12" fill="#95A5A6" text-anchor="end"
+            transform="rotate(-90, -15, 40)">Loss</text>
+
+      <!-- Loss curve (exponential decay) -->
+      <path d="M 0,20 Q 150,30 300,40 T 600,55 Q 800,60 1000,65 T 1200,68"
+            fill="none" stroke="#E74C3C" stroke-width="4" stroke-linecap="round">
+        <animate attributeName="stroke-dasharray"
+                 values="0,2000;2000,0"
+                 dur="20s"
+                 repeatCount="indefinite"/>
+      </path>
+
+      <!-- Current iteration marker -->
+      <circle r="8" fill="#F39C12" filter="url(#glow)">
+        <animate attributeName="cx"
+                 values="0;240;480;720;960;1200;1200;0"
+                 keyTimes="0;0.2;0.4;0.6;0.8;0.95;0.98;1"
+                 dur="20s"
+                 repeatCount="indefinite"/>
+        <animate attributeName="cy"
+                 values="20;34;45;54;61;68;68;20"
+                 keyTimes="0;0.2;0.4;0.6;0.8;0.95;0.98;1"
+                 dur="20s"
+                 repeatCount="indefinite"/>
+      </circle>
+    </g>
+  </g>
+
+  <!-- Iteration counter -->
+  <g id="iteration-display" transform="translate(100, 150)">
+    <rect x="0" y="0" width="180" height="100" rx="8"
+          fill="#2C3E50" opacity="0.8" stroke="#F39C12" stroke-width="2"/>
+
+    <text x="90" y="30" font-family="'Helvetica Neue', Arial, sans-serif"
+          font-size="16" fill="#ECF0F1" text-anchor="middle">
+      Iteration
+    </text>
+
+    <text x="90" y="65" font-family="'Courier New', monospace"
+          font-size="32" fill="#F39C12" text-anchor="middle" font-weight="600">
+      <tspan id="iter-num">
+        <set attributeName="textContent" to="1" begin="0s"/>
+        <set attributeName="textContent" to="2" begin="4s"/>
+        <set attributeName="textContent" to="3" begin="8s"/>
+        <set attributeName="textContent" to="4" begin="12s"/>
+        <set attributeName="textContent" to="5" begin="16s"/>
+      </tspan>
+    </text>
+  </g>
+
+  <!-- Learning rate display -->
+  <g id="learning-rate-display" transform="translate(100, 280)">
+    <rect x="0" y="0" width="180" height="80" rx="8"
+          fill="#2C3E50" opacity="0.8" stroke="#9B59B6" stroke-width="2"/>
+
+    <text x="90" y="30" font-family="'Helvetica Neue', Arial, sans-serif"
+          font-size="16" fill="#ECF0F1" text-anchor="middle">
+      Learning Rate
+    </text>
+
+    <text x="90" y="60" font-family="'Courier New', monospace"
+          font-size="24" fill="#9B59B6" text-anchor="middle" font-weight="600">
+      η = 0.01
+    </text>
+  </g>
+
+  <!-- Teaching moment -->
+  <g id="teaching-moment" transform="translate(1350, 700)">
+    <rect x="0" y="0" width="450" height="120" rx="10" fill="#27AE60" opacity="0">
+      <animate attributeName="opacity"
+               values="0;0;0;0;0.9;0.9"
+               keyTimes="0;0.3;0.35;0.4;0.45;1"
+               dur="20s"
+               repeatCount="indefinite"/>
+    </rect>
+
+    <text x="225" y="35" font-family="'Helvetica Neue', Arial, sans-serif"
+          font-size="18" fill="#FFFFFF" text-anchor="middle" font-weight="500"
+          opacity="0">
+      Key Insight: Chain Rule
+      <animate attributeName="opacity"
+               values="0;0;0;0;1;1"
+               keyTimes="0;0.3;0.35;0.4;0.45;1"
+               dur="20s"
+               repeatCount="indefinite"/>
+    </text>
+
+    <text x="225" y="63" font-family="'Courier New', monospace"
+          font-size="13" fill="#ECF0F1" text-anchor="middle"
+          opacity="0">
+      ∂Loss/∂w = ∂Loss/∂out · ∂out/∂w
+      <animate attributeName="opacity"
+               values="0;0;0;0;1;1"
+               keyTimes="0;0.3;0.35;0.4;0.45;1"
+               dur="20s"
+               repeatCount="indefinite"/>
+    </text>
+
+    <text x="225" y="90" font-family="'Helvetica Neue', Arial, sans-serif"
+          font-size="14" fill="#ECF0F1" text-anchor="middle"
+          opacity="0">
+      Gradients flow backward through
+      <animate attributeName="opacity"
+               values="0;0;0;0;1;1"
+               keyTimes="0;0.3;0.35;0.4;0.45;1"
+               dur="20s"
+               repeatCount="indefinite"/>
+    </text>
+
+    <text x="225" y="108" font-family="'Helvetica Neue', Arial, sans-serif"
+          font-size="14" fill="#ECF0F1" text-anchor="middle"
+          opacity="0">
+      network, updating all weights
+      <animate attributeName="opacity"
+               values="0;0;0;0;1;1"
+               keyTimes="0;0.3;0.35;0.4;0.45;1"
+               dur="20s"
+               repeatCount="indefinite"/>
+    </text>
+  </g>
+
+  <!-- Phase indicator -->
+  <g id="phase-indicator" transform="translate(300, 120)">
+    <text x="0" y="0" font-family="'Helvetica Neue', Arial, sans-serif"
+          font-size="18" fill="#F39C12" font-weight="500">
+      <tspan id="phase-text">
+        <set attributeName="textContent" to="Phase 1: Forward propagation (compute predictions)" begin="0s"/>
+        <set attributeName="textContent" to="Phase 2: Calculate loss (error measure)" begin="3s"/>
+        <set attributeName="textContent" to="Phase 3: Backpropagation (compute gradients)" begin="6s"/>
+        <set attributeName="textContent" to="Phase 4: Update weights (gradient descent)" begin="9s"/>
+        <set attributeName="textContent" to="Repeat... Loss converging to minimum" begin="13s"/>
+      </tspan>
+    </text>
+  </g>
+
+</svg>

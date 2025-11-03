@@ -1,0 +1,425 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1080" width="1920" height="1080">
+  <title>Hyperparameter Tuning - Regularization - 3Blue1Brown Style</title>
+  <desc>Regression with varying regularization strength showing coefficient shrinkage, fit quality, and validation curve</desc>
+
+  <defs>
+    <!-- 3Blue1Brown color palette -->
+    <linearGradient id="positiveCoeff" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#1A1A1A;stop-opacity:1"/>
+      <stop offset="100%" style="stop-color:#29ABCA;stop-opacity:1"/>
+    </linearGradient>
+
+    <linearGradient id="negativeCoeff" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#FC6255;stop-opacity:1"/>
+      <stop offset="100%" style="stop-color:#1A1A1A;stop-opacity:1"/>
+    </linearGradient>
+
+    <linearGradient id="optimalGlow" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#27AE60;stop-opacity:0.6"/>
+      <stop offset="100%" style="stop-color:#27AE60;stop-opacity:0"/>
+    </linearGradient>
+
+    <!-- Filters -->
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="4" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+
+    <filter id="strongGlow">
+      <feGaussianBlur stdDeviation="8" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1920" height="1080" fill="#111111"/>
+
+  <!-- Title -->
+  <g id="title" opacity="0">
+    <text x="960" y="65" font-family="'SF Pro Display', 'Lato', sans-serif" font-size="64" font-weight="bold" fill="#FFFFFF" text-anchor="middle">
+      Hyperparameter Tuning: Regularization
+    </text>
+    <text x="960" y="105" font-family="'SF Pro Display', sans-serif" font-size="28" fill="#888888" text-anchor="middle">
+      Controlling Model Complexity Through Coefficient Shrinkage
+    </text>
+    <animate attributeName="opacity" from="0" to="1" begin="0s" dur="0.8s" fill="freeze"/>
+  </g>
+
+  <!-- Lambda slider at top -->
+  <g id="lambdaSlider" transform="translate(660, 140)" opacity="0">
+    <text x="0" y="-10" font-family="'SF Pro Display', sans-serif" font-size="28" fill="#EEEEEE" font-weight="bold">
+      λ (Lambda):
+    </text>
+    <text x="200" y="-10" font-family="'SF Mono', monospace" font-size="36" fill="#FFFF00" font-weight="bold">
+      0
+      <set attributeName="textContent" to="0" begin="2s"/>
+      <set attributeName="textContent" to="0.01" begin="5s"/>
+      <set attributeName="textContent" to="1" begin="8s"/>
+      <set attributeName="textContent" to="10" begin="12s"/>
+      <set attributeName="textContent" to="100" begin="16s"/>
+    </text>
+
+    <!-- Slider track (log scale) -->
+    <rect x="350" y="-20" width="600" height="20" fill="#333333" rx="10"/>
+
+    <!-- Slider fill -->
+    <rect x="350" y="-20" width="0" height="20" fill="#29ABCA" rx="10">
+      <animate attributeName="width" values="0;60;60;240;240;420;420;600" begin="2s" dur="16s" fill="freeze"/>
+    </rect>
+
+    <!-- Slider thumb -->
+    <circle cy="-10" r="16" fill="#EEEEEE" stroke="#29ABCA" stroke-width="3">
+      <animate attributeName="cx" values="350;410;410;590;590;770;770;950" begin="2s" dur="16s" fill="freeze"/>
+    </circle>
+
+    <text x="350" y="30" font-family="monospace" font-size="14" fill="#888888" text-anchor="start">0</text>
+    <text x="590" y="30" font-family="monospace" font-size="14" fill="#888888" text-anchor="middle">1</text>
+    <text x="950" y="30" font-family="monospace" font-size="14" fill="#888888" text-anchor="end">100</text>
+
+    <animate attributeName="opacity" from="0" to="1" begin="1.5s" dur="0.5s" fill="freeze"/>
+  </g>
+
+  <!-- LEFT PANEL: Coefficient Bar Chart -->
+  <g id="leftPanel" transform="translate(80, 200)">
+    <rect x="0" y="0" width="500" height="720" fill="#1A1A1A" rx="10" stroke="#444444" stroke-width="2" opacity="0">
+      <animate attributeName="opacity" from="0" to="1" begin="0.8s" dur="0.5s" fill="freeze"/>
+    </rect>
+
+    <text x="250" y="35" font-family="'SF Pro Display', sans-serif" font-size="28" font-weight="bold" fill="#EEEEEE" text-anchor="middle" opacity="0">
+      Coefficient Values
+      <animate attributeName="opacity" from="0" to="1" begin="1s" dur="0.5s" fill="freeze"/>
+    </text>
+
+    <!-- Center line -->
+    <line x1="250" y1="80" x2="250" y2="680" stroke="#666666" stroke-width="2" opacity="0">
+      <animate attributeName="opacity" from="0" to="1" begin="1.5s" dur="0.5s" fill="freeze"/>
+    </line>
+
+    <!-- Feature labels (Y-axis) -->
+    <g id="coeffLabels" opacity="0">
+      <text x="240" y="120" font-family="sans-serif" font-size="16" fill="#EEEEEE" text-anchor="end">daily_max_temp</text>
+      <text x="240" y="180" font-family="sans-serif" font-size="16" fill="#EEEEEE" text-anchor="end">heat_index</text>
+      <text x="240" y="240" font-family="sans-serif" font-size="16" fill="#EEEEEE" text-anchor="end">rel_humidity</text>
+      <text x="240" y="300" font-family="sans-serif" font-size="16" fill="#EEEEEE" text-anchor="end">PM2.5</text>
+      <text x="240" y="360" font-family="sans-serif" font-size="16" fill="#EEEEEE" text-anchor="end">temp_3day_avg</text>
+      <text x="240" y="420" font-family="sans-serif" font-size="16" fill="#EEEEEE" text-anchor="end">age</text>
+      <text x="240" y="480" font-family="sans-serif" font-size="16" fill="#EEEEEE" text-anchor="end">heatwave_flag</text>
+      <text x="240" y="540" font-family="sans-serif" font-size="16" fill="#EEEEEE" text-anchor="end">SES_index</text>
+      <animate attributeName="opacity" from="0" to="1" begin="1.5s" dur="0.5s" fill="freeze"/>
+    </g>
+
+    <!-- Coefficient bars (shrinking with lambda) -->
+    <!-- Feature 1: positive coefficient (blue) -->
+    <g id="coeff1">
+      <rect x="250" y="105" width="180" height="25" fill="#29ABCA" opacity="0.8">
+        <animate attributeName="width" values="180;170;90;45;9" begin="2s" dur="16s" fill="freeze"/>
+      </rect>
+      <text x="440" y="122" font-family="monospace" font-size="14" fill="#29ABCA" opacity="0">
+        +1.8
+        <set attributeName="textContent" to="+1.8" begin="2s"/>
+        <set attributeName="textContent" to="+1.7" begin="5s"/>
+        <set attributeName="textContent" to="+0.9" begin="8s"/>
+        <set attributeName="textContent" to="+0.4" begin="12s"/>
+        <set attributeName="textContent" to="+0.1" begin="16s"/>
+        <animate attributeName="opacity" from="0" to="1" begin="2s" dur="0.3s" fill="freeze"/>
+      </text>
+    </g>
+
+    <!-- Feature 2: positive coefficient -->
+    <g id="coeff2">
+      <rect x="250" y="165" width="150" height="25" fill="#29ABCA" opacity="0.8">
+        <animate attributeName="width" values="150;140;75;38;8" begin="2s" dur="16s" fill="freeze"/>
+      </rect>
+      <text x="410" y="182" font-family="monospace" font-size="14" fill="#29ABCA" opacity="0">
+        +1.5
+        <set attributeName="textContent" to="+1.5" begin="2s"/>
+        <set attributeName="textContent" to="+1.4" begin="5s"/>
+        <set attributeName="textContent" to="+0.8" begin="8s"/>
+        <set attributeName="textContent" to="+0.4" begin="12s"/>
+        <set attributeName="textContent" to="+0.1" begin="16s"/>
+        <animate attributeName="opacity" from="0" to="1" begin="2s" dur="0.3s" fill="freeze"/>
+      </text>
+    </g>
+
+    <!-- Feature 3: negative coefficient (red) -->
+    <g id="coeff3">
+      <rect x="90" y="225" width="160" height="25" fill="#FC6255" opacity="0.8">
+        <animate attributeName="width" values="160;150;80;40;8" begin="2s" dur="16s" fill="freeze"/>
+        <animate attributeName="x" values="90;100;170;210;242" begin="2s" dur="16s" fill="freeze"/>
+      </rect>
+      <text x="80" y="242" font-family="monospace" font-size="14" fill="#FC6255" opacity="0">
+        -1.6
+        <set attributeName="textContent" to="-1.6" begin="2s"/>
+        <set attributeName="textContent" to="-1.5" begin="5s"/>
+        <set attributeName="textContent" to="-0.8" begin="8s"/>
+        <set attributeName="textContent" to="-0.4" begin="12s"/>
+        <set attributeName="textContent" to="-0.1" begin="16s"/>
+        <animate attributeName="opacity" from="0" to="1" begin="2s" dur="0.3s" fill="freeze"/>
+      </text>
+    </g>
+
+    <!-- Feature 4: positive coefficient -->
+    <g id="coeff4">
+      <rect x="250" y="285" width="120" height="25" fill="#29ABCA" opacity="0.8">
+        <animate attributeName="width" values="120;110;60;30;6" begin="2s" dur="16s" fill="freeze"/>
+      </rect>
+      <text x="380" y="302" font-family="monospace" font-size="14" fill="#29ABCA" opacity="0">
+        +1.2
+        <set attributeName="textContent" to="+1.2" begin="2s"/>
+        <set attributeName="textContent" to="+1.1" begin="5s"/>
+        <set attributeName="textContent" to="+0.6" begin="8s"/>
+        <set attributeName="textContent" to="+0.3" begin="12s"/>
+        <set attributeName="textContent" to="+0.1" begin="16s"/>
+        <animate attributeName="opacity" from="0" to="1" begin="2s" dur="0.3s" fill="freeze"/>
+      </text>
+    </g>
+
+    <!-- Feature 5: negative coefficient -->
+    <g id="coeff5">
+      <rect x="130" y="345" width="120" height="25" fill="#FC6255" opacity="0.8">
+        <animate attributeName="width" values="120;115;62;31;6" begin="2s" dur="16s" fill="freeze"/>
+        <animate attributeName="x" values="130;135;188;219;244" begin="2s" dur="16s" fill="freeze"/>
+      </rect>
+      <text x="120" y="362" font-family="monospace" font-size="14" fill="#FC6255" opacity="0">
+        -1.2
+        <set attributeName="textContent" to="-1.2" begin="2s"/>
+        <set attributeName="textContent" to="-1.2" begin="5s"/>
+        <set attributeName="textContent" to="-0.6" begin="8s"/>
+        <set attributeName="textContent" to="-0.3" begin="12s"/>
+        <set attributeName="textContent" to="-0.1" begin="16s"/>
+        <animate attributeName="opacity" from="0" to="1" begin="2s" dur="0.3s" fill="freeze"/>
+      </text>
+    </g>
+
+    <!-- Feature 6: positive coefficient -->
+    <g id="coeff6">
+      <rect x="250" y="405" width="90" height="25" fill="#29ABCA" opacity="0.8">
+        <animate attributeName="width" values="90;85;45;23;5" begin="2s" dur="16s" fill="freeze"/>
+      </rect>
+      <text x="350" y="422" font-family="monospace" font-size="14" fill="#29ABCA" opacity="0">
+        +0.9
+        <set attributeName="textContent" to="+0.9" begin="2s"/>
+        <set attributeName="textContent" to="+0.9" begin="5s"/>
+        <set attributeName="textContent" to="+0.5" begin="8s"/>
+        <set attributeName="textContent" to="+0.2" begin="12s"/>
+        <set attributeName="textContent" to="+0.1" begin="16s"/>
+        <animate attributeName="opacity" from="0" to="1" begin="2s" dur="0.3s" fill="freeze"/>
+      </text>
+    </g>
+
+    <!-- Feature 7: negative coefficient -->
+    <g id="coeff7">
+      <rect x="170" y="465" width="80" height="25" fill="#FC6255" opacity="0.8">
+        <animate attributeName="width" values="80;75;40;20;4" begin="2s" dur="16s" fill="freeze"/>
+        <animate attributeName="x" values="170;175;210;230;246" begin="2s" dur="16s" fill="freeze"/>
+      </rect>
+      <text x="160" y="482" font-family="monospace" font-size="14" fill="#FC6255" opacity="0">
+        -0.8
+        <set attributeName="textContent" to="-0.8" begin="2s"/>
+        <set attributeName="textContent" to="-0.8" begin="5s"/>
+        <set attributeName="textContent" to="-0.4" begin="8s"/>
+        <set attributeName="textContent" to="-0.2" begin="12s"/>
+        <set attributeName="textContent" to="0.0" begin="16s"/>
+        <animate attributeName="opacity" from="0" to="1" begin="2s" dur="0.3s" fill="freeze"/>
+      </text>
+    </g>
+
+    <!-- Feature 8: positive coefficient -->
+    <g id="coeff8">
+      <rect x="250" y="525" width="70" height="25" fill="#29ABCA" opacity="0.8">
+        <animate attributeName="width" values="70;65;35;18;4" begin="2s" dur="16s" fill="freeze"/>
+      </rect>
+      <text x="330" y="542" font-family="monospace" font-size="14" fill="#29ABCA" opacity="0">
+        +0.7
+        <set attributeName="textContent" to="+0.7" begin="2s"/>
+        <set attributeName="textContent" to="+0.7" begin="5s"/>
+        <set attributeName="textContent" to="+0.4" begin="8s"/>
+        <set attributeName="textContent" to="+0.2" begin="12s"/>
+        <set attributeName="textContent" to="0.0" begin="16s"/>
+        <animate attributeName="opacity" from="0" to="1" begin="2s" dur="0.3s" fill="freeze"/>
+      </text>
+    </g>
+
+    <!-- Shrinkage annotation -->
+    <text x="250" y="620" font-family="'SF Pro Display', sans-serif" font-size="22" fill="#FFFF00" text-anchor="middle" opacity="0">
+      ← Shrinkage →
+      <animate attributeName="opacity" values="0;1;1;0" begin="8s" dur="6s" fill="freeze"/>
+    </text>
+  </g>
+
+  <!-- CENTER PANEL: Regression Fit -->
+  <g id="centerPanel" transform="translate(620, 200)">
+    <rect x="0" y="0" width="560" height="720" fill="#1A1A1A" rx="10" stroke="#444444" stroke-width="2" opacity="0">
+      <animate attributeName="opacity" from="0" to="1" begin="0.8s" dur="0.5s" fill="freeze"/>
+    </rect>
+
+    <text x="280" y="35" font-family="'SF Pro Display', sans-serif" font-size="28" font-weight="bold" fill="#EEEEEE" text-anchor="middle" opacity="0">
+      Regression Fit
+      <animate attributeName="opacity" from="0" to="1" begin="1s" dur="0.5s" fill="freeze"/>
+    </text>
+
+    <!-- Plot area -->
+    <g transform="translate(40, 80)">
+      <!-- Axes -->
+      <line x1="0" y1="600" x2="480" y2="600" stroke="#444444" stroke-width="2"/>
+      <line x1="0" y1="0" x2="0" y2="600" stroke="#444444" stroke-width="2"/>
+      <text x="240" y="630" font-family="sans-serif" font-size="18" fill="#888888" text-anchor="middle">Temperature</text>
+      <text x="-20" y="300" font-family="sans-serif" font-size="18" fill="#888888" text-anchor="middle" transform="rotate(-90 -20 300)">CV Risk</text>
+
+      <!-- Data points -->
+      <g id="regressionData" opacity="0">
+        <circle cx="80" cy="480" r="6" fill="#29ABCA" opacity="0.6"/>
+        <circle cx="120" cy="490" r="6" fill="#29ABCA" opacity="0.6"/>
+        <circle cx="160" cy="410" r="6" fill="#FC6255" opacity="0.6"/>
+        <circle cx="200" cy="350" r="6" fill="#FC6255" opacity="0.6"/>
+        <circle cx="240" cy="280" r="6" fill="#FC6255" opacity="0.6"/>
+        <circle cx="280" cy="220" r="6" fill="#FC6255" opacity="0.6"/>
+        <circle cx="320" cy="200" r="6" fill="#FC6255" opacity="0.6"/>
+        <circle cx="360" cy="240" r="6" fill="#FC6255" opacity="0.6"/>
+        <circle cx="400" cy="340" r="6" fill="#29ABCA" opacity="0.6"/>
+        <circle cx="440" cy="440" r="6" fill="#29ABCA" opacity="0.6"/>
+        <animate attributeName="opacity" from="0" to="1" begin="2s" dur="0.5s" fill="freeze"/>
+      </g>
+
+      <!-- Lambda = 0: Overfit (wiggly, blue) -->
+      <path id="lambda0Fit" d="M 40,510 Q 80,485 120,495 T 160,405 T 200,345 T 240,275 T 280,215 T 320,195 T 360,245 T 400,345 T 440,445"
+            fill="none" stroke="#29ABCA" stroke-width="4" opacity="0">
+        <animate attributeName="opacity" values="0;0.8;0.8;0" begin="2s" dur="6s" fill="freeze"/>
+      </path>
+
+      <!-- Lambda = 1: Optimal (smooth, green glow) -->
+      <path id="lambda1Fit" d="M 40,510 Q 120,480 240,270 T 440,430"
+            fill="none" stroke="#27AE60" stroke-width="5" opacity="0" filter="url(#strongGlow)">
+        <animate attributeName="opacity" values="0;1;1;0" begin="8s" dur="6s" fill="freeze"/>
+        <animate attributeName="opacity" values="1;0.7;1" begin="9s" dur="2s" repeatCount="2"/>
+      </path>
+
+      <!-- Lambda = 100: Underfit (nearly flat, red) -->
+      <path id="lambda100Fit" d="M 40,420 L 440,380"
+            fill="none" stroke="#FC6255" stroke-width="4" opacity="0">
+        <animate attributeName="opacity" values="0;0.8;0.8;0.8" begin="16s" dur="3s" fill="freeze"/>
+      </path>
+    </g>
+  </g>
+
+  <!-- RIGHT PANEL: Validation Curve -->
+  <g id="rightPanel" transform="translate(1220, 200)">
+    <rect x="0" y="0" width="620" height="720" fill="#1A1A1A" rx="10" stroke="#444444" stroke-width="2" opacity="0">
+      <animate attributeName="opacity" from="0" to="1" begin="0.8s" dur="0.5s" fill="freeze"/>
+    </rect>
+
+    <text x="310" y="35" font-family="'SF Pro Display', sans-serif" font-size="28" font-weight="bold" fill="#EEEEEE" text-anchor="middle" opacity="0">
+      Validation Error (U-Curve)
+      <animate attributeName="opacity" from="0" to="1" begin="1s" dur="0.5s" fill="freeze"/>
+    </text>
+
+    <!-- Plot area -->
+    <g transform="translate(60, 100)">
+      <!-- Axes -->
+      <line x1="0" y1="550" x2="500" y2="550" stroke="#444444" stroke-width="3"/>
+      <line x1="0" y1="0" x2="0" y2="550" stroke="#444444" stroke-width="3"/>
+      <text x="250" y="590" font-family="sans-serif" font-size="22" fill="#EEEEEE" text-anchor="middle">λ (log scale)</text>
+      <text x="-30" y="275" font-family="sans-serif" font-size="22" fill="#EEEEEE" text-anchor="middle" transform="rotate(-90 -30 275)">Error</text>
+
+      <!-- Tick marks (log scale) -->
+      <text x="0" y="570" font-family="monospace" font-size="16" fill="#888888" text-anchor="middle">0</text>
+      <text x="100" y="570" font-family="monospace" font-size="16" fill="#888888" text-anchor="middle">0.01</text>
+      <text x="250" y="570" font-family="monospace" font-size="16" fill="#888888" text-anchor="middle">1</text>
+      <text x="400" y="570" font-family="monospace" font-size="16" fill="#888888" text-anchor="middle">10</text>
+      <text x="500" y="570" font-family="monospace" font-size="16" fill="#888888" text-anchor="middle">100</text>
+
+      <!-- U-shaped validation curve -->
+      <path id="validationCurve" d="M 0,150 Q 100,130 250,90 T 500,250"
+            fill="none" stroke="#FC6255" stroke-width="4" opacity="0" stroke-dasharray="700" stroke-dashoffset="700">
+        <animate attributeName="stroke-dashoffset" from="700" to="0" begin="13s" dur="3s" fill="freeze"/>
+        <animate attributeName="opacity" from="0" to="1" begin="13s" dur="0.3s" fill="freeze"/>
+      </path>
+
+      <!-- Optimal point marker -->
+      <line id="optimalLine" x1="250" y1="0" x2="250" y2="550" stroke="#FFFF00" stroke-width="3" stroke-dasharray="8,4" opacity="0">
+        <animate attributeName="opacity" from="0" to="0.7" begin="16s" dur="0.5s" fill="freeze"/>
+      </line>
+      <circle cx="250" cy="90" r="12" fill="#FFFF00" opacity="0" filter="url(#glow)">
+        <animate attributeName="opacity" from="0" to="1" begin="16s" dur="0.5s" fill="freeze"/>
+        <animate attributeName="r" values="12;16;12" begin="16.5s" dur="1.5s" repeatCount="indefinite"/>
+      </circle>
+      <text x="250" y="60" font-family="sans-serif" font-size="48" fill="#FFFF00" text-anchor="middle" opacity="0">
+        ★
+        <animate attributeName="opacity" from="0" to="1" begin="16s" dur="0.5s" fill="freeze"/>
+      </text>
+
+      <!-- Current lambda indicator (moving dot) -->
+      <circle r="10" fill="#29ABCA" filter="url(#glow)" opacity="0">
+        <animate attributeName="opacity" from="0" to="1" begin="13s" dur="0.3s" fill="freeze"/>
+        <animate attributeName="cx" values="0;0;100;100;250;250;400;400;500" begin="13s" dur="6s" fill="freeze"/>
+        <animate attributeName="cy" values="150;150;130;130;90;90;150;150;250" begin="13s" dur="6s" fill="freeze"/>
+      </circle>
+
+      <!-- Shaded regions -->
+      <rect x="0" y="0" width="150" height="550" fill="#FC6255" opacity="0">
+        <animate attributeName="opacity" from="0" to="0.08" begin="16.5s" dur="0.5s" fill="freeze"/>
+      </rect>
+      <text x="75" y="30" font-family="sans-serif" font-size="18" fill="#FC6255" text-anchor="middle" opacity="0">
+        Overfit
+        <animate attributeName="opacity" from="0" to="1" begin="17s" dur="0.5s" fill="freeze"/>
+      </text>
+
+      <rect x="150" y="0" width="200" height="550" fill="#27AE60" opacity="0">
+        <animate attributeName="opacity" from="0" to="0.08" begin="16.5s" dur="0.5s" fill="freeze"/>
+      </rect>
+      <text x="250" y="30" font-family="sans-serif" font-size="18" fill="#27AE60" text-anchor="middle" font-weight="bold" opacity="0">
+        Optimal
+        <animate attributeName="opacity" from="0" to="1" begin="17s" dur="0.5s" fill="freeze"/>
+      </text>
+
+      <rect x="350" y="0" width="150" height="550" fill="#29ABCA" opacity="0">
+        <animate attributeName="opacity" from="0" to="0.08" begin="16.5s" dur="0.5s" fill="freeze"/>
+      </rect>
+      <text x="425" y="30" font-family="sans-serif" font-size="18" fill="#29ABCA" text-anchor="middle" opacity="0">
+        Underfit
+        <animate attributeName="opacity" from="0" to="1" begin="17s" dur="0.5s" fill="freeze"/>
+      </text>
+    </g>
+  </g>
+
+  <!-- Formula overlay -->
+  <g id="formula" transform="translate(960, 960)" opacity="0">
+    <rect x="-500" y="-55" width="1000" height="100" fill="#1A1A1A" opacity="0.95" rx="10" stroke="#444444" stroke-width="2"/>
+    <text x="0" y="-5" font-family="'SF Pro Display', sans-serif" font-size="44" fill="#EEEEEE" text-anchor="middle">
+      Loss = <tspan fill="#FC6255">MSE</tspan> + <tspan fill="#FFFF00">λ</tspan><tspan fill="#29ABCA">||β||²</tspan>
+    </text>
+    <text x="0" y="30" font-family="sans-serif" font-size="22" fill="#888888" text-anchor="middle">
+      Regularization penalty shrinks coefficients toward zero
+    </text>
+    <animate attributeName="opacity" from="0" to="1" begin="17.5s" dur="0.8s" fill="freeze"/>
+  </g>
+
+  <!-- Summary insight -->
+  <g id="summary" transform="translate(100, 150)" opacity="0">
+    <rect x="0" y="0" width="320" height="100" fill="#1A1A1A" rx="8" stroke="#27AE60" stroke-width="2"/>
+    <text x="160" y="30" font-family="'SF Pro Display', sans-serif" font-size="20" font-weight="bold" fill="#27AE60" text-anchor="middle">
+      Optimal λ ≈ 1
+    </text>
+    <text x="160" y="58" font-family="sans-serif" font-size="16" fill="#EEEEEE" text-anchor="middle">
+      Balances fit quality
+    </text>
+    <text x="160" y="80" font-family="sans-serif" font-size="16" fill="#EEEEEE" text-anchor="middle">
+      and generalization
+    </text>
+    <animate attributeName="opacity" from="0" to="1" begin="18s" dur="0.8s" fill="freeze"/>
+  </g>
+
+  <!-- 3Blue1Brown watermark -->
+  <g id="watermark" opacity="0.3">
+    <text x="100" y="1050" font-family="'SF Pro Display', sans-serif" font-size="18" fill="#666666">
+      3B1B-Style Visualization
+    </text>
+  </g>
+</svg>

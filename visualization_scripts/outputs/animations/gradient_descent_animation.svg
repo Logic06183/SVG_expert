@@ -1,0 +1,429 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+     viewBox="0 0 1920 1080" width="1920" height="1080">
+
+  <defs>
+    <!-- Gradients for 3D effect -->
+    <radialGradient id="surfaceGradient">
+      <stop offset="0%" style="stop-color:#4A90E2;stop-opacity:0.8"/>
+      <stop offset="100%" style="stop-color:#2E5C8A;stop-opacity:0.9"/>
+    </radialGradient>
+
+    <linearGradient id="lossGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#E74C3C;stop-opacity:0.3"/>
+      <stop offset="100%" style="stop-color:#C0392B;stop-opacity:0.6"/>
+    </linearGradient>
+
+    <!-- Shadow filter -->
+    <filter id="shadow">
+      <feGaussianBlur in="SourceAlpha" stdDeviation="3"/>
+      <feOffset dx="2" dy="2" result="offsetblur"/>
+      <feComponentTransfer>
+        <feFuncA type="linear" slope="0.3"/>
+      </feComponentTransfer>
+      <feMerge>
+        <feMergeNode/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+
+    <!-- Glow effect for current position -->
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="4" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+
+    <!-- Red glow for local minimum trap -->
+    <filter id="redGlow">
+      <feGaussianBlur stdDeviation="5" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+
+    <!-- Green glow for global minimum -->
+    <filter id="greenGlow">
+      <feGaussianBlur stdDeviation="5" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1920" height="1080" fill="#1a1a2e"/>
+
+  <!-- Title -->
+  <g id="title">
+    <text x="960" y="50" font-family="'Helvetica Neue', Arial, sans-serif"
+          font-size="44" font-weight="300" fill="#ECF0F1" text-anchor="middle">
+      Gradient Descent: Local vs Global Minima
+    </text>
+    <text x="960" y="85" font-family="'Helvetica Neue', Arial, sans-serif"
+          font-size="22" font-weight="300" fill="#F39C12" text-anchor="middle">
+      Why Initialization Matters!
+    </text>
+  </g>
+
+  <!-- LEFT SCENARIO: Gets stuck in local minimum -->
+  <g id="scenario-A" transform="translate(100, 150)">
+    <!-- Panel background -->
+    <rect x="-20" y="-10" width="820" height="820" rx="12"
+          fill="#2C3E50" opacity="0.2" stroke="#E74C3C" stroke-width="3"/>
+
+    <!-- Scenario label -->
+    <text x="390" y="30" font-family="'Helvetica Neue', Arial, sans-serif"
+          font-size="28" font-weight="500" fill="#E74C3C" text-anchor="middle">
+      Scenario A: Poor Initialization
+    </text>
+
+    <!-- Loss surface with local minimum -->
+    <g id="surface-A" transform="translate(0, 60)">
+      <!-- Grid lines -->
+      <g id="grid-A" opacity="0.15">
+        <path d="M 100,600 L 150,450" stroke="#ECF0F1" stroke-width="0.5"/>
+        <path d="M 200,600 L 250,450" stroke="#ECF0F1" stroke-width="0.5"/>
+        <path d="M 300,600 L 350,450" stroke="#ECF0F1" stroke-width="0.5"/>
+        <path d="M 400,600 L 450,450" stroke="#ECF0F1" stroke-width="0.5"/>
+        <path d="M 500,600 L 550,450" stroke="#ECF0F1" stroke-width="0.5"/>
+        <path d="M 600,600 L 650,450" stroke="#ECF0F1" stroke-width="0.5"/>
+        <path d="M 700,600 L 750,450" stroke="#ECF0F1" stroke-width="0.5"/>
+
+        <path d="M 100,600 L 700,600" stroke="#ECF0F1" stroke-width="0.5"/>
+        <path d="M 120,500 L 720,500" stroke="#ECF0F1" stroke-width="0.5"/>
+        <path d="M 140,450 L 740,450" stroke="#ECF0F1" stroke-width="0.5"/>
+      </g>
+
+      <!-- Local minimum contours (left side) -->
+      <g id="local-minimum">
+        <ellipse cx="250" cy="480" rx="80" ry="50" fill="none"
+                 stroke="#F39C12" stroke-width="2" opacity="0.5"/>
+        <ellipse cx="250" cy="480" rx="60" ry="38" fill="none"
+                 stroke="#F1C40F" stroke-width="2" opacity="0.6"/>
+        <ellipse cx="250" cy="480" rx="40" ry="25" fill="none"
+                 stroke="#E67E22" stroke-width="2.5" opacity="0.7"/>
+
+        <!-- Local minimum point -->
+        <circle cx="250" cy="480" r="8" fill="#F39C12" opacity="0.9"/>
+
+        <!-- Label -->
+        <text x="250" y="550" font-family="'Helvetica Neue', Arial, sans-serif"
+              font-size="18" font-weight="600" fill="#F39C12" text-anchor="middle">
+          Local Minimum
+        </text>
+        <text x="250" y="572" font-family="'Helvetica Neue', Arial, sans-serif"
+              font-size="14" fill="#E67E22" text-anchor="middle">
+          (suboptimal)
+        </text>
+      </g>
+
+      <!-- Global minimum contours (right side, deeper) -->
+      <g id="global-minimum-A">
+        <ellipse cx="550" cy="520" rx="120" ry="70" fill="none"
+                 stroke="#52C77B" stroke-width="2" opacity="0.4"/>
+        <ellipse cx="550" cy="520" rx="90" ry="52" fill="none"
+                 stroke="#52C77B" stroke-width="2" opacity="0.5"/>
+        <ellipse cx="550" cy="520" rx="60" ry="35" fill="none"
+                 stroke="#27AE60" stroke-width="2" opacity="0.7"/>
+        <ellipse cx="550" cy="520" rx="35" ry="20" fill="none"
+                 stroke="#27AE60" stroke-width="2.5" opacity="0.8"/>
+
+        <!-- Global minimum point -->
+        <circle cx="550" cy="520" r="8" fill="#27AE60" opacity="0.9"/>
+
+        <!-- Label -->
+        <text x="550" y="595" font-family="'Helvetica Neue', Arial, sans-serif"
+              font-size="18" font-weight="600" fill="#27AE60" text-anchor="middle">
+          Global Minimum
+        </text>
+        <text x="550" y="617" font-family="'Helvetica Neue', Arial, sans-serif"
+              font-size="14" fill="#52C77B" text-anchor="middle">
+          (optimal - missed!)
+        </text>
+      </g>
+
+      <!-- Barrier between minima (hill) -->
+      <path d="M 300,490 Q 380,420 450,490" fill="none"
+            stroke="#E74C3C" stroke-width="2" opacity="0.4" stroke-dasharray="5,5"/>
+
+      <!-- Descent path - gets stuck in local minimum -->
+      <g id="descent-path-A">
+        <path d="M 180,350 L 200,380 L 220,420 L 235,450 L 245,470 L 250,480"
+              fill="none" stroke="#E74C3C" stroke-width="4"
+              stroke-linecap="round" opacity="0.8">
+          <animate attributeName="stroke-dasharray"
+                   values="0,500;500,0"
+                   dur="16s"
+                   repeatCount="indefinite"/>
+        </path>
+      </g>
+
+      <!-- Animated ball - starts upper left, descends to local minimum -->
+      <g id="ball-A">
+        <circle r="14" fill="#E74C3C" filter="url(#redGlow)">
+          <animate attributeName="cx"
+                   values="180;180;200;220;235;245;250;250;250;250;250;250;250;250;180"
+                   keyTimes="0;0.1;0.2;0.3;0.4;0.5;0.6;0.65;0.7;0.75;0.8;0.85;0.9;0.95;1"
+                   dur="16s"
+                   repeatCount="indefinite"/>
+
+          <animate attributeName="cy"
+                   values="350;350;380;420;450;470;480;480;480;480;480;480;480;480;350"
+                   keyTimes="0;0.1;0.2;0.3;0.4;0.5;0.6;0.65;0.7;0.75;0.8;0.85;0.9;0.95;1"
+                   dur="16s"
+                   repeatCount="indefinite"/>
+        </circle>
+
+        <!-- Shake effect when stuck in local minimum -->
+        <circle r="14" fill="none" stroke="#E74C3C" stroke-width="3">
+          <animate attributeName="cx"
+                   values="180;180;200;220;235;245;250;252;248;250;252;248;250;250;180"
+                   keyTimes="0;0.1;0.2;0.3;0.4;0.5;0.6;0.65;0.7;0.75;0.8;0.85;0.9;0.95;1"
+                   dur="16s"
+                   repeatCount="indefinite"/>
+
+          <animate attributeName="cy"
+                   values="350;350;380;420;450;470;480;482;478;480;482;478;480;480;350"
+                   keyTimes="0;0.1;0.2;0.3;0.4;0.5;0.6;0.65;0.7;0.75;0.8;0.85;0.9;0.95;1"
+                   dur="16s"
+                   repeatCount="indefinite"/>
+
+          <animate attributeName="r"
+                   values="14;14;14;14;14;14;14;18;14;18;14;18;14;14;14"
+                   keyTimes="0;0.1;0.2;0.3;0.4;0.5;0.6;0.65;0.7;0.75;0.8;0.85;0.9;0.95;1"
+                   dur="16s"
+                   repeatCount="indefinite"/>
+
+          <animate attributeName="opacity"
+                   values="1;1;1;1;1;1;1;0.3;1;0.3;1;0.3;1;1;1"
+                   keyTimes="0;0.1;0.2;0.3;0.4;0.5;0.6;0.65;0.7;0.75;0.8;0.85;0.9;0.95;1"
+                   dur="16s"
+                   repeatCount="indefinite"/>
+        </circle>
+      </g>
+
+      <!-- "STUCK!" indicator -->
+      <g id="stuck-warning" opacity="0">
+        <rect x="150" y="420" width="200" height="50" rx="8"
+              fill="#E74C3C" opacity="0.95"/>
+        <text x="250" y="451" font-family="'Helvetica Neue', Arial, sans-serif"
+              font-size="22" font-weight="700" fill="#FFFFFF" text-anchor="middle">
+          STUCK! ⚠️
+        </text>
+
+        <animate attributeName="opacity"
+                 values="0;0;0;0;0;0;0;1;1;1;1;1;1;0"
+                 keyTimes="0;0.1;0.2;0.3;0.4;0.5;0.6;0.65;0.7;0.75;0.8;0.85;0.95;1"
+                 dur="16s"
+                 repeatCount="indefinite"/>
+      </g>
+
+      <!-- Axes labels -->
+      <text x="390" y="660" font-family="'Helvetica Neue', Arial, sans-serif"
+            font-size="16" fill="#95A5A6" text-anchor="middle">Parameter Space</text>
+    </g>
+
+    <!-- Status panel -->
+    <g id="status-A" transform="translate(0, 720)">
+      <rect x="10" y="0" width="760" height="70" rx="8"
+            fill="#34495E" opacity="0.9" stroke="#E74C3C" stroke-width="2"/>
+
+      <text x="390" y="30" font-family="'Helvetica Neue', Arial, sans-serif"
+            font-size="18" font-weight="500" fill="#ECF0F1" text-anchor="middle">
+        Result: Converged to suboptimal solution
+      </text>
+
+      <text x="390" y="55" font-family="'Courier New', monospace"
+            font-size="15" fill="#E74C3C" text-anchor="middle">
+        Final Loss = 12.4 (not the best possible!)
+      </text>
+    </g>
+  </g>
+
+  <!-- RIGHT SCENARIO: Finds global minimum -->
+  <g id="scenario-B" transform="translate(1000, 150)">
+    <!-- Panel background -->
+    <rect x="-20" y="-10" width="820" height="820" rx="12"
+          fill="#2C3E50" opacity="0.2" stroke="#27AE60" stroke-width="3"/>
+
+    <!-- Scenario label -->
+    <text x="390" y="30" font-family="'Helvetica Neue', Arial, sans-serif"
+          font-size="28" font-weight="500" fill="#27AE60" text-anchor="middle">
+      Scenario B: Good Initialization
+    </text>
+
+    <!-- Loss surface (same as left, but different starting point) -->
+    <g id="surface-B" transform="translate(0, 60)">
+      <!-- Grid lines -->
+      <g id="grid-B" opacity="0.15">
+        <path d="M 100,600 L 150,450" stroke="#ECF0F1" stroke-width="0.5"/>
+        <path d="M 200,600 L 250,450" stroke="#ECF0F1" stroke-width="0.5"/>
+        <path d="M 300,600 L 350,450" stroke="#ECF0F1" stroke-width="0.5"/>
+        <path d="M 400,600 L 450,450" stroke="#ECF0F1" stroke-width="0.5"/>
+        <path d="M 500,600 L 550,450" stroke="#ECF0F1" stroke-width="0.5"/>
+        <path d="M 600,600 L 650,450" stroke="#ECF0F1" stroke-width="0.5"/>
+        <path d="M 700,600 L 750,450" stroke="#ECF0F1" stroke-width="0.5"/>
+
+        <path d="M 100,600 L 700,600" stroke="#ECF0F1" stroke-width="0.5"/>
+        <path d="M 120,500 L 720,500" stroke="#ECF0F1" stroke-width="0.5"/>
+        <path d="M 140,450 L 740,450" stroke="#ECF0F1" stroke-width="0.5"/>
+      </g>
+
+      <!-- Local minimum contours (left side, faded) -->
+      <g id="local-minimum-B" opacity="0.3">
+        <ellipse cx="250" cy="480" rx="80" ry="50" fill="none"
+                 stroke="#95A5A6" stroke-width="2" opacity="0.3"/>
+        <ellipse cx="250" cy="480" rx="60" ry="38" fill="none"
+                 stroke="#95A5A6" stroke-width="2" opacity="0.4"/>
+        <ellipse cx="250" cy="480" rx="40" ry="25" fill="none"
+                 stroke="#95A5A6" stroke-width="2" opacity="0.5"/>
+
+        <circle cx="250" cy="480" r="6" fill="#95A5A6" opacity="0.5"/>
+
+        <text x="250" y="550" font-family="'Helvetica Neue', Arial, sans-serif"
+              font-size="16" fill="#95A5A6" text-anchor="middle">
+          Local Min (avoided)
+        </text>
+      </g>
+
+      <!-- Global minimum contours (right side, highlighted) -->
+      <g id="global-minimum-B">
+        <ellipse cx="550" cy="520" rx="120" ry="70" fill="none"
+                 stroke="#52C77B" stroke-width="2" opacity="0.4"/>
+        <ellipse cx="550" cy="520" rx="90" ry="52" fill="none"
+                 stroke="#52C77B" stroke-width="2" opacity="0.5"/>
+        <ellipse cx="550" cy="520" rx="60" ry="35" fill="none"
+                 stroke="#27AE60" stroke-width="2" opacity="0.7"/>
+        <ellipse cx="550" cy="520" rx="35" ry="20" fill="none"
+                 stroke="#27AE60" stroke-width="2.5" opacity="0.9"/>
+
+        <!-- Global minimum point -->
+        <circle cx="550" cy="520" r="8" fill="#27AE60" opacity="0.9"/>
+
+        <!-- Label -->
+        <text x="550" y="595" font-family="'Helvetica Neue', Arial, sans-serif"
+              font-size="18" font-weight="600" fill="#27AE60" text-anchor="middle">
+          Global Minimum
+        </text>
+        <text x="550" y="617" font-family="'Helvetica Neue', Arial, sans-serif"
+              font-size="14" fill="#52C77B" text-anchor="middle">
+          (optimal - found!)
+        </text>
+      </g>
+
+      <!-- Descent path - finds global minimum -->
+      <g id="descent-path-B">
+        <path d="M 620,340 L 600,380 L 585,420 L 570,460 L 560,490 L 555,505 L 550,520"
+              fill="none" stroke="#27AE60" stroke-width="4"
+              stroke-linecap="round" opacity="0.8">
+          <animate attributeName="stroke-dasharray"
+                   values="0,500;500,0"
+                   dur="16s"
+                   repeatCount="indefinite"/>
+        </path>
+      </g>
+
+      <!-- Animated ball - starts upper right, descends to global minimum -->
+      <g id="ball-B">
+        <circle r="14" fill="#27AE60" filter="url(#greenGlow)">
+          <animate attributeName="cx"
+                   values="620;620;600;585;570;560;555;550;550;550;550;550;550;550;620"
+                   keyTimes="0;0.1;0.2;0.3;0.4;0.5;0.55;0.6;0.65;0.7;0.75;0.8;0.85;0.95;1"
+                   dur="16s"
+                   repeatCount="indefinite"/>
+
+          <animate attributeName="cy"
+                   values="340;340;380;420;460;490;505;520;520;520;520;520;520;520;340"
+                   keyTimes="0;0.1;0.2;0.3;0.4;0.5;0.55;0.6;0.65;0.7;0.75;0.8;0.85;0.95;1"
+                   dur="16s"
+                   repeatCount="indefinite"/>
+        </circle>
+
+        <!-- Success ring pulse -->
+        <circle r="14" fill="none" stroke="#27AE60" stroke-width="3">
+          <animate attributeName="cx"
+                   values="620;620;600;585;570;560;555;550;550;550;550;550;550;550;620"
+                   keyTimes="0;0.1;0.2;0.3;0.4;0.5;0.55;0.6;0.65;0.7;0.75;0.8;0.85;0.95;1"
+                   dur="16s"
+                   repeatCount="indefinite"/>
+
+          <animate attributeName="cy"
+                   values="340;340;380;420;460;490;505;520;520;520;520;520;520;520;340"
+                   keyTimes="0;0.1;0.2;0.3;0.4;0.5;0.55;0.6;0.65;0.7;0.75;0.8;0.85;0.95;1"
+                   dur="16s"
+                   repeatCount="indefinite"/>
+
+          <animate attributeName="r"
+                   values="14;14;14;14;14;14;14;14;18;25;18;25;18;14;14"
+                   keyTimes="0;0.1;0.2;0.3;0.4;0.5;0.55;0.6;0.65;0.7;0.75;0.8;0.85;0.95;1"
+                   dur="16s"
+                   repeatCount="indefinite"/>
+
+          <animate attributeName="opacity"
+                   values="1;1;1;1;1;1;1;1;1;0;1;0;1;1;1"
+                   keyTimes="0;0.1;0.2;0.3;0.4;0.5;0.55;0.6;0.65;0.7;0.75;0.8;0.85;0.95;1"
+                   dur="16s"
+                   repeatCount="indefinite"/>
+        </circle>
+      </g>
+
+      <!-- "SUCCESS!" indicator -->
+      <g id="success-indicator" opacity="0">
+        <rect x="450" y="440" width="200" height="50" rx="8"
+              fill="#27AE60" opacity="0.95"/>
+        <text x="550" y="471" font-family="'Helvetica Neue', Arial, sans-serif"
+              font-size="22" font-weight="700" fill="#FFFFFF" text-anchor="middle">
+          SUCCESS! ✓
+        </text>
+
+        <animate attributeName="opacity"
+                 values="0;0;0;0;0;0;0;1;1;1;1;1;1;0"
+                 keyTimes="0;0.1;0.2;0.3;0.4;0.5;0.6;0.65;0.7;0.75;0.8;0.85;0.95;1"
+                 dur="16s"
+                 repeatCount="indefinite"/>
+      </g>
+
+      <!-- Axes labels -->
+      <text x="390" y="660" font-family="'Helvetica Neue', Arial, sans-serif"
+            font-size="16" fill="#95A5A6" text-anchor="middle">Parameter Space</text>
+    </g>
+
+    <!-- Status panel -->
+    <g id="status-B" transform="translate(0, 720)">
+      <rect x="10" y="0" width="760" height="70" rx="8"
+            fill="#34495E" opacity="0.9" stroke="#27AE60" stroke-width="2"/>
+
+      <text x="390" y="30" font-family="'Helvetica Neue', Arial, sans-serif"
+            font-size="18" font-weight="500" fill="#ECF0F1" text-anchor="middle">
+        Result: Found optimal solution!
+      </text>
+
+      <text x="390" y="55" font-family="'Courier New', monospace"
+            font-size="15" fill="#27AE60" text-anchor="middle">
+        Final Loss = 2.1 (best possible!)
+      </text>
+    </g>
+  </g>
+
+  <!-- Bottom key insights panel -->
+  <g id="key-insights" transform="translate(960, 1000)">
+    <rect x="-450" y="0" width="900" height="70" rx="10"
+          fill="#34495E" opacity="0.95" stroke="#3498DB" stroke-width="2"/>
+
+    <text x="0" y="28" font-family="'Helvetica Neue', Arial, sans-serif"
+          font-size="20" font-weight="500" fill="#3498DB" text-anchor="middle">
+      Key Insight: Gradient descent only guarantees local optimum!
+    </text>
+
+    <text x="0" y="54" font-family="'Helvetica Neue', Arial, sans-serif"
+          font-size="16" fill="#ECF0F1" text-anchor="middle">
+      Solution: Random restarts, momentum methods, or stochastic gradient descent
+    </text>
+  </g>
+
+</svg>
