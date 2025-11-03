@@ -1,0 +1,191 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 1400" font-family="'Segoe UI', Tahoma, Geneva, Verdana, sans-serif">
+  <defs>
+    <!-- Color palette: warm, solidarity colors -->
+    <linearGradient id="level1Grad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#d4765e;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#c96852;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="level2Grad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#e88d6f;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#df7a5d;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="level3Grad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#f0a384;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#e89272;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="level4Grad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#a37fb5;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#9270a6;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="level5Grad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#5fa8aa;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#4f9799;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="level6Grad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#3d8b8d;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#2d7a7c;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="level7Grad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#2a6b6d;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#1d5658;stop-opacity:1" />
+    </linearGradient>
+
+    <!-- Arrow marker -->
+    <marker id="arrowhead" markerWidth="10" markerHeight="10" refX="5" refY="3" orient="auto" fill="#666">
+      <polygon points="0 0, 10 3, 0 6" />
+    </marker>
+  </defs>
+
+  <!-- Background -->
+  <rect width="800" height="1400" fill="#fafafa"/>
+
+  <!-- Title -->
+  <text x="400" y="40" text-anchor="middle" font-size="28" font-weight="700" fill="#2d3748">
+    Movement-Building Framework
+  </text>
+  <text x="400" y="70" text-anchor="middle" font-size="16" fill="#718096">
+    Refugee & Migrant Rights Organizing in South Africa
+  </text>
+
+  <!-- Level 1: Everyday Struggle -->
+  <g id="level-1">
+    <rect x="100" y="110" width="600" height="100" rx="8" fill="url(#level1Grad)" opacity="0.9"/>
+    <text x="120" y="140" font-size="18" font-weight="700" fill="#ffffff">
+      Level 1: Everyday Struggle &amp; Exclusion
+    </text>
+    <text x="120" y="165" font-size="14" fill="#ffffff" opacity="0.95">
+      Documentation • Policing • Clinics • Schools • Informal Economy
+    </text>
+  </g>
+
+  <!-- Arrow 1-2 -->
+  <line x1="400" y1="210" x2="400" y2="240" stroke="#666" stroke-width="3" marker-end="url(#arrowhead)"/>
+
+  <!-- Level 2: Survival & Mutual Support -->
+  <g id="level-2">
+    <rect x="100" y="240" width="600" height="130" rx="8" fill="url(#level2Grad)" opacity="0.9"/>
+    <text x="120" y="270" font-size="18" font-weight="700" fill="#ffffff">
+      Level 2: Survival &amp; Mutual Support
+    </text>
+    <text x="120" y="295" font-size="14" fill="#ffffff" opacity="0.95">
+      • Paralegal accompaniment
+    </text>
+    <text x="120" y="315" font-size="14" fill="#ffffff" opacity="0.95">
+      • WhatsApp emergency networks
+    </text>
+    <text x="120" y="335" font-size="14" fill="#ffffff" opacity="0.95">
+      • Faith &amp; community solidarity • Women &amp; youth leadership
+    </text>
+    <text x="120" y="355" font-size="14" fill="#ffffff" opacity="0.95">
+      • Safe info-sharing hubs
+    </text>
+  </g>
+
+  <!-- Arrow 2-3 -->
+  <line x1="400" y1="370" x2="400" y2="400" stroke="#666" stroke-width="3" marker-end="url(#arrowhead)"/>
+
+  <!-- Level 3: Quiet Organising -->
+  <g id="level-3">
+    <rect x="100" y="400" width="600" height="120" rx="8" fill="url(#level3Grad)" opacity="0.9"/>
+    <text x="120" y="430" font-size="18" font-weight="700" fill="#ffffff">
+      Level 3: Quiet Organising &amp; Local Leadership
+    </text>
+    <text x="120" y="455" font-size="14" fill="#ffffff" opacity="0.95">
+      • Refugee-led orgs emerging
+    </text>
+    <text x="120" y="475" font-size="14" fill="#ffffff" opacity="0.95">
+      • Local alliances (markets, schools)
+    </text>
+    <text x="120" y="495" font-size="14" fill="#ffffff" opacity="0.95">
+      • Street committees / ward advocacy • Trusted community figures
+    </text>
+  </g>
+
+  <!-- Arrow 3-4 -->
+  <line x1="400" y1="520" x2="400" y2="550" stroke="#666" stroke-width="3" marker-end="url(#arrowhead)"/>
+
+  <!-- Level 4: Collective Action -->
+  <g id="level-4">
+    <rect x="100" y="550" width="600" height="120" rx="8" fill="url(#level4Grad)" opacity="0.9"/>
+    <text x="120" y="580" font-size="18" font-weight="700" fill="#ffffff">
+      Level 4: Collective Action &amp; Coordination
+    </text>
+    <text x="120" y="605" font-size="14" fill="#ffffff" opacity="0.95">
+      • Coalition responses to violence
+    </text>
+    <text x="120" y="625" font-size="14" fill="#ffffff" opacity="0.95">
+      • Joint statements, rapid calls
+    </text>
+    <text x="120" y="645" font-size="14" fill="#ffffff" opacity="0.95">
+      • Cross-organisational workshops • Movement convenings (e.g., MOVE)
+    </text>
+  </g>
+
+  <!-- Arrow 4-5 -->
+  <line x1="400" y1="670" x2="400" y2="700" stroke="#666" stroke-width="3" marker-end="url(#arrowhead)"/>
+
+  <!-- Level 5: Broad-Based Solidarity -->
+  <g id="level-5">
+    <rect x="100" y="700" width="600" height="120" rx="8" fill="url(#level5Grad)" opacity="0.9"/>
+    <text x="120" y="730" font-size="18" font-weight="700" fill="#ffffff">
+      Level 5: Broad-Based Solidarity &amp; Strategy
+    </text>
+    <text x="120" y="755" font-size="14" fill="#ffffff" opacity="0.95">
+      • Health justice alliances
+    </text>
+    <text x="120" y="775" font-size="14" fill="#ffffff" opacity="0.95">
+      • Housing &amp; informal settlement orgs
+    </text>
+    <text x="120" y="795" font-size="14" fill="#ffffff" opacity="0.95">
+      • Youth &amp; feminist organising ties • Legal networks &amp; advocacy groups
+    </text>
+  </g>
+
+  <!-- Arrow 5-6 -->
+  <line x1="400" y1="820" x2="400" y2="850" stroke="#666" stroke-width="3" marker-end="url(#arrowhead)"/>
+
+  <!-- Level 6: Movement Infrastructure -->
+  <g id="level-6">
+    <rect x="100" y="850" width="600" height="180" rx="8" fill="url(#level6Grad)" opacity="0.9"/>
+    <text x="120" y="880" font-size="18" font-weight="700" fill="#ffffff">
+      Level 6: Movement Infrastructure Pillars
+    </text>
+    <text x="120" y="905" font-size="14" fill="#ffffff" opacity="0.95">
+      • Shared narrative + anti-xenophobia frame
+    </text>
+    <text x="120" y="925" font-size="14" fill="#ffffff" opacity="0.95">
+      • Leadership development (women/youth/migrant-led)
+    </text>
+    <text x="120" y="945" font-size="14" fill="#ffffff" opacity="0.95">
+      • Coordinating structures (coalitions, convenings)
+    </text>
+    <text x="120" y="965" font-size="14" fill="#ffffff" opacity="0.95">
+      • Pooled flexible funding + solidarity funds
+    </text>
+    <text x="120" y="985" font-size="14" fill="#ffffff" opacity="0.95">
+      • Community defence + rapid response networks
+    </text>
+    <text x="120" y="1005" font-size="14" fill="#ffffff" opacity="0.95">
+      • Policy + litigation strategy
+    </text>
+  </g>
+
+  <!-- Arrow 6-7 -->
+  <line x1="400" y1="1030" x2="400" y2="1060" stroke="#666" stroke-width="3" marker-end="url(#arrowhead)"/>
+
+  <!-- Level 7: Powerful Movement -->
+  <g id="level-7">
+    <rect x="80" y="1060" width="640" height="100" rx="12" fill="url(#level7Grad)" opacity="0.95"/>
+    <text x="400" y="1100" text-anchor="middle" font-size="20" font-weight="700" fill="#ffffff">
+      Level 7: Powerful, Inclusive Movement
+    </text>
+    <text x="400" y="1130" text-anchor="middle" font-size="18" font-weight="600" fill="#ffffff">
+      for Dignity, Belonging, &amp; Equal Rights
+    </text>
+  </g>
+
+  <!-- Footer -->
+  <text x="400" y="1200" text-anchor="middle" font-size="12" fill="#718096" font-style="italic">
+    From everyday struggles to collective power: Building movements for refugee and migrant justice
+  </text>
+</svg>
