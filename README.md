@@ -1,19 +1,18 @@
-# Wits Planetary Health Research - SVG Slide Master
+# Animation Export Worktree
 
-Professional, Figma-ready SVG slide generation for climate and health research presentations.
+This git worktree is dedicated to converting SVG animations to MP4 and GIF formats for PowerPoint presentations.
 
 ## Overview
 
-This repository contains an exceptional Claude Code skill for generating publication-quality SVG slides that import flawlessly into Figma with fully editable layers. Optimized for Wits Planetary Health Research branding and visual identity.
+Convert your animated SVG visualizations to video and GIF formats that work seamlessly in PowerPoint, Keynote, and other presentation software.
 
 ## Features
 
-- **One-shot slide generation** - Request a slide, get production-ready SVG
-- **Figma-optimized** - All text remains editable, layers properly organized
-- **Brand-compliant** - Wits PHR colors, fonts, and style guidelines built-in
-- **Multiple templates** - Title, content, data visualization, key messages, sections
-- **Professional quality** - Publication-ready output every time
-- **Accessibility-first** - WCAG AA compliant color contrast and readability
+- **Automated conversion** - Convert SVG animations to MP4 and GIF
+- **PowerPoint ready** - Formats optimized for presentation software
+- **Batch processing** - Convert multiple animations at once
+- **Customizable** - Adjust FPS, duration, and quality settings
+- **High quality** - Smooth playback with configurable frame rates
 
 ## Quick Start
 

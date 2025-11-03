@@ -72,3 +72,34 @@ env/
 # Keep templates and examples
 !templates/*.svg
 !examples/*.svg
+# Animation conversion outputs
+converted_animations/
+frames/
+temp_viewer.html
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+*.so
+*.egg
+*.egg-info/
+dist/
+build/
+
+# Virtual environments
+venv/
+env/
+ENV/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# macOS
+.DS_Store
